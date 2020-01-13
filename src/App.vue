@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <card></card>
+    <button v-on:click="getACard">Get A Card</button>
   </div>
 </template>
 
@@ -18,6 +19,13 @@ export default {
   components: {
     "card": Card
   },
+  methods: {
+    getACard(){
+      fetch('https://deckofcardsapi.com/api/deck/22237lie3n1x/draw/?count=1')
+      .then(res => res.json())
+      .then(cardData => this.selectedCard = cardData)
+    }
+    },
   mounted(){
     fetch('https://deckofcardsapi.com/api/deck/new/')
     .then(res => res.json())

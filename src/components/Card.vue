@@ -1,12 +1,20 @@
 <template lang="html">
   <div>
-    <button>Get A Card</button>
+    
   </div>
 
 </template>
 
 <script>
+import {eventBus} from '../main.js'
 export default {
+  name: 'card',
+  props: ['card'],
+  methods: {
+    getACard(){
+      eventBus.$emit('Select a card', this.card);
+    }
+  }
 }
 </script>
 
