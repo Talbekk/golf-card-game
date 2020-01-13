@@ -1,19 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <card></card>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Card from './components/Card.vue'
 
 export default {
   name: 'app',
+  data(){
+    return{
+      deck: [],
+      selectedCard: []
+    }
+  },
   components: {
-    HelloWorld
-  }
+    "card": Card
+  },
+  mounted(){
+    fetch('https://deckofcardsapi.com/api/deck/new/')
+    .then(res => res.json())
+    .then(deckData => this.deck = deckData)
 }
+}
+
 </script>
 
 <style>
