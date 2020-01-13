@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <card></card>
+    <div v-if="selectedCard">
+    <img class="card-icon" :src="selectedCard.cards[0].image"/>
+    <img class="card-icon" :src="selectedCard.cards[1].image"/>
+    <img class="card-icon" :src="selectedCard.cards[2].image"/>
+    <img class="card-icon" :src="selectedCard.cards[3].image"/>
+  </div>
     <button v-on:click="getACard">Get A Card</button>
   </div>
 </template>
@@ -13,7 +18,7 @@ export default {
   data(){
     return{
       deck: [],
-      selectedCard: []
+      selectedCard: null
     }
   },
   components: {
@@ -21,13 +26,13 @@ export default {
   },
   methods: {
     getACard(){
-      fetch('https://deckofcardsapi.com/api/deck/22237lie3n1x/draw/?count=1')
+      fetch('https://deckofcardsapi.com/api/deck/oa8yyy0x1v1u/draw/?count=4')
       .then(res => res.json())
       .then(cardData => this.selectedCard = cardData)
     }
     },
   mounted(){
-    fetch('https://deckofcardsapi.com/api/deck/new/')
+    fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
     .then(res => res.json())
     .then(deckData => this.deck = deckData)
 }
