@@ -6,7 +6,8 @@
     <img class="card-icon" :src="selectedCard.cards[2].image"/>
     <img class="card-icon" :src="selectedCard.cards[3].image"/>
   </div>
-    <button v-on:click="getACard">Get A Card</button>
+    <button v-on:click="getACard">Deal Cards</button>
+    <button v-on:click="newGame">New Game</button>
   </div>
 </template>
 
@@ -18,7 +19,8 @@ export default {
   data(){
     return{
       deck: [],
-      selectedCard: null
+      selectedCard: null,
+      topCard: null
     }
   },
   components: {
@@ -26,16 +28,18 @@ export default {
   },
   methods: {
     getACard(){
-      fetch('https://deckofcardsapi.com/api/deck/oa8yyy0x1v1u/draw/?count=4')
+      let deckID = this.deck.deck_id
+      fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=4`)
       .then(res => res.json())
       .then(cardData => this.selectedCard = cardData)
-    }
     },
-  mounted(){
-    fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
-    .then(res => res.json())
-    .then(deckData => this.deck = deckData)
-}
+    newGame(){
+      this.selectedCard = null
+      fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
+      .then(res => res.json())
+      .then(deckData => this.deck = deckData)
+    }
+    }
 }
 
 </script>
