@@ -1,15 +1,13 @@
 <template>
   <div id="app">
+    <h3>Golf: The Card Game</h3>
+    <div id="header">
+      <button v-on:click="getACard">Deal Cards</button>
+      <button v-on:click="newGame">New Game</button>
+    </div>
     <div v-if="playerCards">
-    <player-cards :playerCards = 'playerCards'></player-cards>
-    <!-- <img class="card-icon" :src="selectedCards.cards[0].image"/>
-    <img class="card-icon" :src="selectedCards.cards[1].image"/>
-    <img class="card-icon" :src="selectedCards.cards[2].image"/>
-    <img class="card-icon" :src="selectedCards.cards[3].image"/> -->
-  </div>
-    <button v-on:click="getACard">Deal Cards</button>
-    <button v-on:click="newGame">New Game</button>
-    <!-- <player-cards :selectedCards = 'selectedCards'></player-cards> -->
+      <player-cards :playerCards = 'playerCards'></player-cards>
+    </div>
   </div>
 </template>
 
@@ -54,5 +52,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 </style>

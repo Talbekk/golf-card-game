@@ -25,4 +25,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 </style>
