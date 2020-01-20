@@ -1,37 +1,39 @@
 <template>
   <div id="app">
-    <div v-if="selectedCard">
-    <img class="card-icon" :src="selectedCard.cards[0].image"/>
-    <img class="card-icon" :src="selectedCard.cards[1].image"/>
-    <img class="card-icon" :src="selectedCard.cards[2].image"/>
-    <img class="card-icon" :src="selectedCard.cards[3].image"/>
+    <div v-if="playerCards">
+    <player-cards :playerCards = 'playerCards'></player-cards>
+    <!-- <img class="card-icon" :src="selectedCards.cards[0].image"/>
+    <img class="card-icon" :src="selectedCards.cards[1].image"/>
+    <img class="card-icon" :src="selectedCards.cards[2].image"/>
+    <img class="card-icon" :src="selectedCards.cards[3].image"/> -->
   </div>
     <button v-on:click="getACard">Deal Cards</button>
     <button v-on:click="newGame">New Game</button>
+    <!-- <player-cards :selectedCards = 'selectedCards'></player-cards> -->
   </div>
 </template>
 
 <script>
-import Card from './components/Card.vue'
+import PlayerCards from './components/PlayerCards.vue'
 
 export default {
   name: 'app',
   data(){
     return{
       deck: [],
-      selectedCard: null,
+      playerCards: null,
       topCard: null
     }
   },
   components: {
-    "card": Card
+    "player-cards": PlayerCards
   },
   methods: {
     getACard(){
       let deckID = this.deck.deck_id
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=4`)
       .then(res => res.json())
-      .then(cardData => this.selectedCard = cardData)
+      .then(cardData => this.playerCards = cardData)
     },
     newGame(){
       this.selectedCard = null
