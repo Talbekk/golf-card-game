@@ -2,8 +2,8 @@
   <li>
     <img class="card-icon" v-if="hidden" v-on:click="revealCard" src="../assets/CardBack.png"/>
     <img class="card-icon" v-if="!hidden" :src="playerCard.image"/>
-    <div id="button-container">
-    <button type="button" v-o:click="lockCard" name="button">LOCK IN</button>
+    <div id="button-container" v-if="!lockedIn">
+    <button type="button" v-on:click="lockCard" name="button">LOCK IN</button>
     <button type="button" name="button">SWITCH</button>
     </div>
   </li>
@@ -22,7 +22,7 @@ export default {
   methods: {
   revealCard() {
     if(this.lockedIn === false){
-    this.hidden = !this.hidden;
+    this.hidden = false;
   }
   },
   lockCard() {
