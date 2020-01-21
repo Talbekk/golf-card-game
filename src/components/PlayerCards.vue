@@ -31,5 +31,6 @@ ul {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  padding: 20em;
 }
 </style>
