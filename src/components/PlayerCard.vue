@@ -1,16 +1,12 @@
 <template lang="html">
-  <div>
   <li>
     <img class="card-icon" v-if="hidden" v-on:click="revealCard" src="../assets/CardBack.png"/>
-    <img class="card-icon" v-if="!hidden" v-on:click="revealCard" :src="playerCard.image"/>
+    <img class="card-icon" v-if="!hidden" :src="playerCard.image"/>
     <div id="button-container">
-    <button type="button" name="button">LOCK IN</button>
+    <button type="button" v-o:click="lockCard" name="button">LOCK IN</button>
     <button type="button" name="button">SWITCH</button>
     </div>
   </li>
-
-  </div>
-
 </template>
 
 <script>
@@ -19,12 +15,19 @@ export default {
   props: ['playerCard', 'index'],
   data () {
     return {
-      hidden: true
+      hidden: true,
+      lockedIn: false
     }
   },
   methods: {
   revealCard() {
+    if(this.lockedIn === false){
     this.hidden = !this.hidden;
+  }
+  },
+  lockCard() {
+    this.revealCard();
+    this.lockedIn = true;
   }
 }
 }
@@ -45,8 +48,8 @@ li {
 }
 
 .card-icon {
-  max-width: 20em;
-  max-height: 20em;
+  max-width: 15em;
+  max-height: 15em;
   padding: 2em;
 }
 </style>
