@@ -5,10 +5,16 @@
 </template>
 
 <script>
+
+import {eventBus} from '../main.js'
+
 export default {
   name: "topCard",
   props: ['topCard']
-}
+  // mounted() {
+  //     eventBus.$emit('top-card', this.topCard);
+  //   }
+  }
 </script>
 
 <style lang="css" scoped>

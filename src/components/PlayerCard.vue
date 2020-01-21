@@ -4,15 +4,18 @@
     <img class="card-icon" v-if="!hidden" :src="playerCard.image"/>
     <div id="button-container" v-if="!lockedIn">
     <button type="button" v-on:click="lockCard" name="button">LOCK IN</button>
-    <button type="button" name="button">SWITCH</button>
+    <button type="button" v-on:click="switchCard" name="button">SWITCH</button>
     </div>
   </li>
 </template>
 
 <script>
+
+import {eventBus} from '../main.js'
+
 export default {
   name: 'player-card',
-  props: ['playerCard', 'index'],
+  props: ['playerCard'],
   data () {
     return {
       hidden: true,
@@ -28,7 +31,11 @@ export default {
   lockCard() {
     this.revealCard();
     this.lockedIn = true;
-  }
+  },
+  switchCard() {
+  eventBus.$emit('player-card', this.playerCard)
+  this.revealCard();
+}
 }
 }
 </script>

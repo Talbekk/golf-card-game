@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import {eventBus} from './main.js'
 import TopCard from './components/TopCard.vue'
 import PlayerCards from './components/PlayerCards.vue'
 
@@ -32,6 +33,12 @@ export default {
     "player-cards": PlayerCards,
     "top-card": TopCard
   },
+  mounted(){
+    eventBus.$on('player-card', (card) => {
+      let index = this.playerCards.cards.indexOf(card);
+      this.playerCards.cards.splice(index, 1, this.topCard.cards[0]);
+  })
+},
   methods: {
     getACard(){
       let deckID = this.deck.deck_id
