@@ -1,7 +1,8 @@
 <template lang="html">
   <div>
   <li>
-    <img class="card-icon" :src="playerCard.image"/>
+    <img class="card-icon" v-if="hidden" v-on:click="revealCard" src="../assets/CardBack.png"/>
+    <img class="card-icon" v-if="!hidden" v-on:click="revealCard" :src="playerCard.image"/>
     <div id="button-container">
     <button type="button" name="button">LOCK IN</button>
     <button type="button" name="button">SWITCH</button>
@@ -15,7 +16,17 @@
 <script>
 export default {
   name: 'player-card',
-  props: ['playerCard', 'index']
+  props: ['playerCard', 'index'],
+  data () {
+    return {
+      hidden: true
+    }
+  },
+  methods: {
+  revealCard() {
+    this.hidden = !this.hidden;
+  }
+}
 }
 </script>
 
@@ -31,5 +42,11 @@ li {
   flex-direction: row;
   justify-content: space-evenly;
 
+}
+
+.card-icon {
+  max-width: 20em;
+  max-height: 20em;
+  padding: 2em;
 }
 </style>
