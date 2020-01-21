@@ -37,6 +37,7 @@ export default {
     eventBus.$on('player-card', (card) => {
       let index = this.playerCards.cards.indexOf(card);
       this.playerCards.cards.splice(index, 1, this.topCard.cards[0]);
+      this.drawTopCard();
   })
 },
   methods: {

@@ -34,7 +34,7 @@ export default {
   },
   switchCard() {
   eventBus.$emit('player-card', this.playerCard)
-  this.revealCard();
+  this.lockCard();
 }
 }
 }
