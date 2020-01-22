@@ -40,6 +40,7 @@ export default {
     eventBus.$on('player-card', (card) => {
       let index = this.playerCards.cards.indexOf(card);
       this.playerCards.cards.splice(index, 1, this.topCard.cards[0]);
+      this.runningTotal += this.calculateScore(this.topCard.cards[0].value);
       this.drawTopCard();
   })
   eventBus.$on('card-value', (card) => {

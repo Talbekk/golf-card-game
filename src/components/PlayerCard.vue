@@ -29,15 +29,14 @@ export default {
   }
   },
   lockCard() {
-    console.log('lockCard', this.playerCard)
     eventBus.$emit('card-value', this.playerCard)
     this.revealCard();
     this.lockedIn = true;
   },
   switchCard() {
-    console.log('switchCard', this.playerCard)
   eventBus.$emit('player-card', this.playerCard)
-  this.lockCard();
+  this.revealCard();
+  this.lockedIn = true;
 }
 }
 }
