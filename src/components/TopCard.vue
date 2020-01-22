@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="top-card">
-  <img class="card-icon" :src="topCard.cards[0].image"/>
+  <img class="card-icon" :src="this.topCard.cards[0].image"/>
   </div>
 </template>
 

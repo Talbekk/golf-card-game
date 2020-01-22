@@ -2,7 +2,7 @@
   <div id="app">
     <h3>Golf: The Card Game</h3>
     <div id="header">
-      <button v-on:click="getCards">Deal Cards</button>
+      <!-- <button v-on:click="getCards">Deal Cards</button> -->
       <button v-on:click="newGame">New Game</button>
       <p v-if="playerCards"><b>Score: {{ this.runningTotal }}</b></p>
     </div>
@@ -40,7 +40,7 @@ export default {
   mounted(){
     eventBus.$on('player-card', (card) => {
       let index = this.playerCards.cards.indexOf(card);
-      this.playerCards.cards.splice(index, 1, this.topCard.cards[0]);
+      let switchedCard = this.playerCards.cards.splice(index, 1, this.topCard.cards[0]);
       this.runningTotal += this.calculateScore(this.topCard.cards[0].value);
       this.drawTopCard();
   })
@@ -71,6 +71,8 @@ export default {
       fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
       .then(res => res.json())
       .then(deckData => this.deck = deckData)
+      .then(setTimeout( () =>
+      { this.getCards() }, 1000))
     },
     drawTopCard(){
       if (this.playerCards){
