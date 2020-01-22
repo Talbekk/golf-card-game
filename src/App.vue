@@ -4,6 +4,7 @@
     <div id="header">
       <button v-on:click="getACard">Deal Cards</button>
       <button v-on:click="newGame">New Game</button>
+      <p v-if="playerCards">Score:{{ this.runningTotal }}</p>
     </div>
     <div id="board-one">
       <img class="card-icon" v-on:click="drawTopCard" src="./assets/CardBack.png"/>
@@ -26,7 +27,9 @@ export default {
     return{
       deck: [],
       playerCards: null,
-      topCard: null
+      topCard: null,
+      currentCard: null,
+      runningTotal: 0
     }
   },
   components: {
@@ -39,7 +42,30 @@ export default {
       this.playerCards.cards.splice(index, 1, this.topCard.cards[0]);
       this.drawTopCard();
   })
+  eventBus.$on('card-value', (card) => {
+    this.currentCard = card;
+  })
 },
+  watch: {
+    currentCard() {
+      this.runningTotal += this.calculateScore(this.currentCard.value)
+    }
+  // }
+  // computed: {
+  //   currentScore: function () {
+  //     let runningTotal = 0;
+  //     eventBus.$on('card-value', (card) => {
+  //         this.currentCard = card})
+  //         .then(runningTotal += this.calculateScore(this.currentCard.value))
+  // for (const currentCard of this.playerCards.cards){
+  //   let value = currentCard.value;
+  //   if(currentCard.lockedIn){
+  //     runningTotal+= this.calculatescore(value);
+  //   }
+  // }
+  // return runningTotal;
+// }
+  },
   methods: {
     getACard(){
       let deckID = this.deck.deck_id
@@ -48,7 +74,9 @@ export default {
       .then(cardData => this.playerCards = cardData)
     },
     newGame(){
-      this.selectedCard = null
+      this.playerCards = null;
+      this.topCard = null;
+      this.runningTotal = 0;
       fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
       .then(res => res.json())
       .then(deckData => this.deck = deckData)
@@ -58,6 +86,25 @@ export default {
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`)
       .then(res => res.json())
       .then(cardData => this.topCard = cardData)
+    },
+    calculateScore(value){
+      switch (value) {
+        case "ACE":
+        return 1;
+        break;
+        case "KING":
+        return 10;
+        break;
+        case "QUEEN":
+        return 10;
+        break;
+        case "JACK":
+        return 10;
+        break;
+        default:
+        return parseInt(value);
+        break;
+      }
     }
     }
 }
