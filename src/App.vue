@@ -2,16 +2,16 @@
   <div id="app">
     <h3>Golf: The Card Game</h3>
     <div id="header">
-      <button v-on:click="getACard">Deal Cards</button>
+      <button v-on:click="getCards">Deal Cards</button>
       <button v-on:click="newGame">New Game</button>
-      <p v-if="playerCards">Score:{{ this.runningTotal }}</p>
+      <p v-if="playerCards"><b>Score: {{ this.runningTotal }}</b></p>
     </div>
     <div id="board-one">
       <img class="card-icon" v-on:click="drawTopCard" src="./assets/CardBack.png"/>
       <top-card v-if='topCard' :topCard='topCard'></top-card>
     </div>
     <div v-if="playerCards">
-      <player-cards :playerCards = 'playerCards'></player-cards>
+      <player-cards :playerCards='playerCards'></player-cards>
     </div>
   </div>
 </template>
@@ -29,7 +29,8 @@ export default {
       playerCards: null,
       topCard: null,
       currentCard: null,
-      runningTotal: 0
+      runningTotal: 0,
+      counter: 0
     }
   },
   components: {
@@ -50,43 +51,34 @@ export default {
   watch: {
     currentCard() {
       this.runningTotal += this.calculateScore(this.currentCard.value)
+      this.counter += 1;
+    },
+    playerCards(){
+      if (this.topCard === null) {
+      this.drawTopCard();
     }
-  // }
-  // computed: {
-  //   currentScore: function () {
-  //     let runningTotal = 0;
-  //     eventBus.$on('card-value', (card) => {
-  //         this.currentCard = card})
-  //         .then(runningTotal += this.calculateScore(this.currentCard.value))
-  // for (const currentCard of this.playerCards.cards){
-  //   let value = currentCard.value;
-  //   if(currentCard.lockedIn){
-  //     runningTotal+= this.calculatescore(value);
-  //   }
-  // }
-  // return runningTotal;
-// }
+    }
   },
   methods: {
-    getACard(){
+    getCards(){
       let deckID = this.deck.deck_id
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=4`)
       .then(res => res.json())
       .then(cardData => this.playerCards = cardData)
     },
     newGame(){
-      this.playerCards = null;
-      this.topCard = null;
-      this.runningTotal = 0;
+      this.setupGame();
       fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
       .then(res => res.json())
       .then(deckData => this.deck = deckData)
     },
     drawTopCard(){
+      if (this.playerCards){
       let deckID = this.deck.deck_id
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`)
       .then(res => res.json())
       .then(cardData => this.topCard = cardData)
+    }
     },
     calculateScore(value){
       switch (value) {
@@ -94,7 +86,7 @@ export default {
         return 1;
         break;
         case "KING":
-        return 10;
+        return 0;
         break;
         case "QUEEN":
         return 10;
@@ -102,10 +94,17 @@ export default {
         case "JACK":
         return 10;
         break;
+        case "5":
+        return -5;
         default:
         return parseInt(value);
         break;
       }
+    },
+    setupGame(){
+      this.playerCards = null;
+      this.topCard = null;
+      this.runningTotal = 0;
     }
     }
 }
@@ -114,10 +113,16 @@ export default {
 
 <style>
 
+/* html, body {
+  height: 100%;
+  background-color: green;
+} */
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
+  font-weight: bold;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
@@ -135,13 +140,9 @@ export default {
   justify-content: center;
 }
 
-/* #deck {
-  padding: 7em;
-} */
-
 .card-icon {
-  max-width: 15em;
-  max-height: 15em;
+  max-width: 12em;
+  max-height: 12em;
   padding: 2em;
 
 }

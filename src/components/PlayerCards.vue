@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <ul>
-      <player-card v-for="(playerCard, index) in playerCards.cards" :playerCard='playerCard' :key='index'></player-card>
+      <player-card v-for="(playerCard, index) in playerCards.cards" :playerCard='playerCard' :key='index' :shownCards='shownCards'></player-card>
     </ul>
   </div>
 </template>
@@ -13,10 +13,15 @@ import PlayerCard from './PlayerCard.vue'
 export default {
   name: 'players-cards',
   props: ['playerCards'],
-  methods: {
-    getACard(){
-      eventBus.$emit('Select a card', this.card);
+  data () {
+    return {
+      shownCards: 0
     }
+  },
+  mounted(){
+    eventBus.$on('shown-a-card', (number) => {
+      this.shownCards+= number;
+    });
   },
   components: {
     "player-card": PlayerCard

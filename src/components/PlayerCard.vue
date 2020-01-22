@@ -1,6 +1,6 @@
 <template lang="html">
   <li>
-    <img class="card-icon" v-if="hidden" v-on:click="revealCard" src="../assets/CardBack.png"/>
+    <img class="card-icon" v-if="hidden" v-on:click="showCard" src="../assets/CardBack.png"/>
     <img class="card-icon" v-if="!hidden" :src="playerCard.image"/>
     <div id="button-container" v-if="!lockedIn">
     <button type="button" v-on:click="lockCard" name="button">LOCK IN</button>
@@ -15,7 +15,7 @@ import {eventBus} from '../main.js'
 
 export default {
   name: 'player-card',
-  props: ['playerCard'],
+  props: ['playerCard', 'shownCards'],
   data () {
     return {
       hidden: true,
@@ -23,10 +23,20 @@ export default {
     }
   },
   methods: {
+    showCard() {
+      if (this.shownCards < 2){
+      eventBus.$emit('shown-a-card', 1)
+      this.revealCard();
+      setTimeout(()=> { this.hideCard() },2000);
+    }
+    },
   revealCard() {
     if(this.lockedIn === false){
     this.hidden = false;
   }
+  },
+  hideCard(){
+    this.hidden = true;
   },
   lockCard() {
     eventBus.$emit('card-value', this.playerCard)
@@ -57,8 +67,8 @@ li {
 }
 
 .card-icon {
-  max-width: 15em;
-  max-height: 15em;
-  padding: 2em;
+  max-width: 12em;
+  max-height: 12em;
+  padding: 1em;
 }
 </style>
