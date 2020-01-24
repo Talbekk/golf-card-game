@@ -1,19 +1,16 @@
 <template lang="html">
   <div id="top-card">
-  <img class="card-icon" :src="this.topCard.cards[0].image"/>
+    <img class="card-icon" :src="this.topCard.cards[0].image"/>
   </div>
 </template>
 
 <script>
 
-import {eventBus} from '../main.js'
+import {eventBus} from '../main.js';
 
 export default {
   name: "topCard",
   props: ['topCard']
-  // mounted() {
-  //     eventBus.$emit('top-card', this.topCard);
-  //   }
   }
 </script>
 
@@ -23,7 +20,6 @@ export default {
   max-width: 12em;
   max-height: 12em;
   padding: 2em;
-
 }
 
 </style>

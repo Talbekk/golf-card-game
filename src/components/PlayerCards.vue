@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import {eventBus} from '../main.js'
-import PlayerCard from './PlayerCard.vue'
+import {eventBus} from '../main.js';
+import PlayerCard from './PlayerCard.vue';
 
 export default {
   name: 'players-cards',
@@ -20,7 +20,7 @@ export default {
   },
   mounted(){
     eventBus.$on('shown-a-card', (number) => {
-      this.shownCards+= number;
+    this.shownCards+= number;
     });
   },
   components: {
@@ -36,7 +36,6 @@ ul {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  /* padding: 20em; */
-  /* border: 2px solid; */
 }
+
 </style>

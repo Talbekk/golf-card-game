@@ -17,20 +17,21 @@
 </template>
 
 <script>
-import {eventBus} from './main.js'
-import TopCard from './components/TopCard.vue'
-import PlayerCards from './components/PlayerCards.vue'
+import {eventBus} from './main.js';
+import TopCard from './components/TopCard.vue';
+import PlayerCards from './components/PlayerCards.vue';
 
 export default {
   name: 'app',
-  data(){
-    return{
+  data() {
+    return {
       deck: [],
       playerCards: null,
       topCard: null,
       currentCard: null,
       runningTotal: 0,
-      counter: 0
+      counter: 0,
+      lockedCards: []
     }
   },
   components: {
@@ -43,15 +44,22 @@ export default {
       let switchedCard = this.playerCards.cards.splice(index, 1, this.topCard.cards[0]);
       this.runningTotal += this.calculateScore(this.topCard.cards[0].value);
       this.drawTopCard();
-  })
+      this.lockedCards.push(this.topCard.cards[0].value);
+  }),
   eventBus.$on('card-value', (card) => {
     this.currentCard = card;
   })
 },
   watch: {
     currentCard() {
-      this.runningTotal += this.calculateScore(this.currentCard.value)
+      if (this.lockedCards.includes(this.currentCard.value)){
+        this.runningTotal -= this.calculateScore(this.currentCard.value);
+      } else {
+      this.runningTotal += this.calculateScore(this.currentCard.value);
+    }
       this.counter += 1;
+      this.drawTopCard();
+      this.lockedCards.push(this.currentCard.value);
     },
     playerCards(){
       if (this.topCard === null) {
@@ -61,7 +69,7 @@ export default {
   },
   methods: {
     getCards(){
-      let deckID = this.deck.deck_id
+      let deckID = this.deck.deck_id;
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=4`)
       .then(res => res.json())
       .then(cardData => this.playerCards = cardData)
@@ -75,12 +83,12 @@ export default {
       { this.getCards() }, 1000))
     },
     drawTopCard(){
-      if (this.playerCards){
-      let deckID = this.deck.deck_id
+      if (this.playerCards) {
+      let deckID = this.deck.deck_id;
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`)
       .then(res => res.json())
       .then(cardData => this.topCard = cardData)
-    }
+      }
     },
     calculateScore(value){
       switch (value) {
@@ -107,8 +115,9 @@ export default {
       this.playerCards = null;
       this.topCard = null;
       this.runningTotal = 0;
+      this.lockedCards = [];
     }
-    }
+  }
 }
 
 </script>
@@ -146,6 +155,6 @@ export default {
   max-width: 12em;
   max-height: 12em;
   padding: 2em;
-
 }
+
 </style>
