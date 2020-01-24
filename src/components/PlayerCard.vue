@@ -1,7 +1,7 @@
 <template lang="html">
   <li>
     <img class="card-icon" v-if="hidden" v-on:click="showCard" src="../assets/CardBack.png"/>
-    <img class="card-icon" v-if="!hidden" :src="playerCard.image"/>
+    <img class="card-icon" v-if="!hidden" :src="this.playerCard.image"/>
     <div id="button-container" v-if="!lockedIn">
       <button type="button" v-on:click="lockCard" name="button">LOCK IN</button>
       <button type="button" v-on:click="switchCard" name="button">SWITCH</button>
@@ -23,7 +23,7 @@ export default {
     }
   },
   methods: {
-      showCard() {
+    showCard() {
       if (this.shownCards < 2){
         eventBus.$emit('shown-a-card', 1)
         this.revealCard();
@@ -31,8 +31,8 @@ export default {
       }
     },
     revealCard() {
-    if(this.lockedIn === false){
-      this.hidden = false;
+      if(this.lockedIn === false){
+        this.hidden = false;
       }
     },
     hideCard(){

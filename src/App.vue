@@ -2,9 +2,10 @@
   <div id="app">
     <h3>Golf: The Card Game</h3>
     <div id="header">
-      <!-- <button v-on:click="getCards">Deal Cards</button> -->
-      <button v-on:click="newGame">New Game</button>
-      <p v-if="playerCards"><b>Score: {{ this.runningTotal }}</b></p>
+      <button v-on:click="newGame" v-if="this.currentHole > 1 && this.counter===0">Next Round</button>
+      <!-- <button v-if="" v-on:click="getCards">Deal Cards</button> -->
+      <button v-if="currentHole===9 || !playerCards" v-on:click="newGame">New Game</button>
+      <score-card :scoreCard="scoreCard"></score-card>
     </div>
     <div id="board-one">
       <img class="card-icon" v-on:click="drawTopCard" src="./assets/CardBack.png"/>
@@ -17,9 +18,11 @@
 </template>
 
 <script>
+
 import {eventBus} from './main.js';
 import TopCard from './components/TopCard.vue';
 import PlayerCards from './components/PlayerCards.vue';
+import ScoreCard from './components/ScoreCard.vue';
 
 export default {
   name: 'app',
@@ -31,20 +34,23 @@ export default {
       currentCard: null,
       runningTotal: 0,
       counter: 0,
-      lockedCards: []
+      currentHole: 1,
+      lockedCards: [],
+      scoreCard: []
     }
   },
   components: {
     "player-cards": PlayerCards,
-    "top-card": TopCard
+    "top-card": TopCard,
+    "score-card": ScoreCard
   },
   mounted(){
     eventBus.$on('player-card', (card) => {
       let index = this.playerCards.cards.indexOf(card);
-      let switchedCard = this.playerCards.cards.splice(index, 1, this.topCard.cards[0]);
-      this.runningTotal += this.calculateScore(this.topCard.cards[0].value);
-      this.drawTopCard();
-      this.lockedCards.push(this.topCard.cards[0].value);
+      let currentTopCard = this.topCard.cards[0];
+      let switchedCard = this.playerCards.cards.splice(index, 1, currentTopCard);
+      this.runningTotal += this.calculateScore(currentTopCard.value);
+      this.nextRound(currentTopCard.value)
   }),
   eventBus.$on('card-value', (card) => {
     this.currentCard = card;
@@ -52,19 +58,32 @@ export default {
 },
   watch: {
     currentCard() {
-      if (this.lockedCards.includes(this.currentCard.value)){
-        this.runningTotal -= this.calculateScore(this.currentCard.value);
+      let cardValue = this.currentCard.value;
+      let amount = this.calculateScore(cardValue);
+      // if (cardValue !== "5") {
+      if (this.lockedCards.includes(cardValue)) {
+        this.runningTotal -= amount;
       } else {
-      this.runningTotal += this.calculateScore(this.currentCard.value);
-    }
-      this.counter += 1;
-      this.drawTopCard();
-      this.lockedCards.push(this.currentCard.value);
+      this.runningTotal += amount;
+    // }
+  }
+  this.nextRound(cardValue);
     },
     playerCards(){
       if (this.topCard === null) {
       this.drawTopCard();
     }
+  },
+  counter(){
+    if (this.counter === 4){
+      this.scoreCard.push(this.runningTotal);
+    this.nextHole();
+    }
+  }
+  },
+  computed: {
+    holesCompleted(){
+      return this.scoreCard.length;
     }
   },
   methods: {
@@ -116,6 +135,16 @@ export default {
       this.topCard = null;
       this.runningTotal = 0;
       this.lockedCards = [];
+    },
+    nextHole(){
+      this.counter = 0;
+      this.runningTotal = 0;
+      this.currentHole += 1;
+    },
+    nextRound(value){
+      this.counter += 1;
+      this.drawTopCard();
+      this.lockedCards.push(value);
     }
   }
 }
@@ -128,6 +157,18 @@ export default {
   height: 100%;
   background-color: green;
 } */
+
+button {
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #60a3bc;
+  padding: 15px;
+  border-radius: 75px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+}
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -143,6 +184,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 #board-one {
