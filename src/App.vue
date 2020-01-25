@@ -1,14 +1,15 @@
 <template>
   <div id="app">
     <h3>Golf: The Card Game</h3>
-    <div id="header">
+    <div id="intro-container">
+      <intro-screen v-if="!tutorialStatus"></intro-screen>
+    </div>
+    <div id="header" v-if="tutorialStatus">
       <button v-on:click="nextHole" v-if="this.currentHole >= 0 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus">Next Round</button>
       <button v-if="!gameStatus" v-on:click="setupNewGame" name="button">Play Again?</button>
-      <button v-if="!playerCards && this.currentHole === 0" v-on:click="getCards">Deal Cards</button>
-      <button v-if="currentHole===9 || !playerCards" v-on:click="newGame">New Game</button>
       <score-card :scoreCard="scoreCard"></score-card>
     </div>
-    <div id="board-one">
+    <div id="board-one" v-if="tutorialStatus">
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
       <div class="deck">
         <h4>Deck:</h4>
@@ -24,6 +25,7 @@
 
 <script>
 
+import IntroScreen from './components/IntroScreen.vue';
 import DiscardPile from './components/DiscardPile.vue';
 import {eventBus} from './main.js';
 import TopCard from './components/TopCard.vue';
@@ -42,19 +44,21 @@ export default {
       currentCard: null,
       runningTotal: 0,
       counter: 0,
-      currentHole: 0,
+      currentHole: 1,
       lockedCards: [],
       scoreCard: [],
       discardPile: [],
       drawnCard: false,
-      gameStatus: true
+      gameStatus: true,
+      tutorialStatus: false
     }
   },
   components: {
     "player-cards": PlayerCards,
     "top-card": TopCard,
     "score-card": ScoreCard,
-    "discard-pile": DiscardPile
+    "discard-pile": DiscardPile,
+    "intro-screen": IntroScreen
   },
   mounted(){
     eventBus.$on('player-card', (card) => {
@@ -64,9 +68,18 @@ export default {
       this.runningTotal += this.calculateScore(currentTopCard.value);
       this.nextRound(currentTopCard.value);
       this.discardPile.push(switchedCard);
+      this.counter += 1;
   }),
   eventBus.$on('card-value', (card) => {
     this.currentCard = card;
+    this.counter += 1;
+  }),
+  eventBus.$on('clicked-new-game', () => {
+    this.newGame();
+  }),
+  eventBus.$on('clicked-deal-cards', () => {
+    this.getCards();
+    this.tutorialStatus = true;
   })
 },
   watch: {
@@ -190,13 +203,12 @@ export default {
       this.roundDeck = [];
       this.setupGame();
       this.getCards();
+      this.discardPile = [];
     },
     nextRound(value){
-      this.counter += 1;
       this.drawTopCard();
       this.drawnCard = false;
       this.lockedCards.push(value);
-      this.discardPile = [];
     },
     drawNextCard(){
       if (this.drawnCard === false){
@@ -211,10 +223,17 @@ export default {
 
 <style>
 
-/* html, body {
+#intro-screen{
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+html, body {
   height: 100%;
-  background-color: green;
-} */
+  background-color: #279F00;
+}
 
 button {
   color: #fff !important;
