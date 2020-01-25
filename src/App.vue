@@ -2,8 +2,8 @@
   <div id="app">
     <h3>Golf: The Card Game</h3>
     <div id="header">
-      <button v-on:click="newGame" v-if="this.currentHole > 1 && this.counter===0">Next Round</button>
-      <!-- <button v-if="" v-on:click="getCards">Deal Cards</button> -->
+      <button v-on:click="nextHole" v-if="this.currentHole >= 0 && this.counter===4 && this.lockedCards.length === 4">Next Round</button>
+      <button v-if="!playerCards && this.currentHole === 0" v-on:click="getCards">Deal Cards</button>
       <button v-if="currentHole===9 || !playerCards" v-on:click="newGame">New Game</button>
       <score-card :scoreCard="scoreCard"></score-card>
     </div>
@@ -11,12 +11,12 @@
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
       <div class="deck">
         <h4>Deck:</h4>
-        <img class="card-icon" v-on:click="drawTopCard" src="./assets/CardBack.png"/>
+        <img class="card-icon" v-on:click="drawNextCard" src="./assets/CardBack.png"/>
       </div>
       <top-card v-if='topCard' :topCard='topCard'></top-card>
     </div>
     <div v-if="playerCards">
-      <player-cards :playerCards='playerCards'></player-cards>
+      <player-cards :lockedCards='lockedCards' :playerCards='playerCards'></player-cards>
     </div>
   </div>
 </template>
@@ -34,16 +34,18 @@ export default {
   data() {
     return {
       deck: [],
-      cards: [],
+      gameDeck: [],
+      roundDeck: [],
       playerCards: null,
       topCard: null,
       currentCard: null,
       runningTotal: 0,
       counter: 0,
-      currentHole: 1,
+      currentHole: 0,
       lockedCards: [],
       scoreCard: [],
-      discardPile: []
+      discardPile: [],
+      drawnCard: false
     }
   },
   components: {
@@ -54,9 +56,9 @@ export default {
   },
   mounted(){
     eventBus.$on('player-card', (card) => {
-      let index = this.playerCards.cards.indexOf(card);
-      let currentTopCard = this.topCard.cards[0];
-      let switchedCard = this.playerCards.cards.splice(index, 1, currentTopCard);
+      let index = this.playerCards.indexOf(card);
+      let currentTopCard = this.topCard;
+      let switchedCard = this.playerCards.splice(index, 1, currentTopCard);
       this.runningTotal += this.calculateScore(currentTopCard.value);
       this.nextRound(currentTopCard.value);
       this.discardPile.push(switchedCard);
@@ -69,14 +71,12 @@ export default {
     currentCard() {
       let cardValue = this.currentCard.value;
       let amount = this.calculateScore(cardValue);
-      // if (cardValue !== "5") {
       if (this.lockedCards.includes(cardValue)) {
         this.runningTotal -= amount;
       } else {
-      this.runningTotal += amount;
-    // }
-  }
-  this.nextRound(cardValue);
+          this.runningTotal += amount;
+        }
+      this.nextRound(cardValue);
     },
     playerCards(){
       if (this.topCard === null) {
@@ -86,36 +86,59 @@ export default {
   counter(){
     if (this.counter === 4){
       this.scoreCard.push(this.runningTotal);
-    this.nextHole();
     }
   }
-  },
+},
   computed: {
     holesCompleted(){
       return this.scoreCard.length;
     }
   },
   methods: {
+    getRoundDeck(){
+      this.gameDeck.cards.forEach((card) => {
+        this.roundDeck.push(card);
+      })
+      return this.shuffleDeck(this.roundDeck);
+    },
+    shuffleDeck(deck){
+      let newPosition;
+      let temp;
+      for (let i = deck.length-1; i > 0; i --) {
+        newPosition = Math.floor(Math.random() * (i+1))
+        temp = deck[i];
+        deck[i] = deck[newPosition];
+        deck[newPosition] = temp;
+      }
+    },
     getCards(){
-      let deckID = this.deck.deck_id;
-      fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=4`)
-      .then(res => res.json())
-      .then(cardData => this.playerCards = cardData)
+      this.getRoundDeck();
+      let hand = [];
+      for (let counter = 0; counter < 4; counter++){
+        let card = this.roundDeck.shift();
+        hand.push(card);
+      }
+      this.playerCards = hand;
+      this.playerCards.forEach((card) => {
+        card.lockedIn = false;
+      })
+    },
+    getDeck(){
+      let deckID = this.deck.deck_id
+      fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=52`)
+        .then(res => res.json())
+        .then(cardData => this.gameDeck = cardData)
     },
     newGame(){
       this.setupGame();
       fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
       .then(res => res.json())
       .then(deckData => this.deck = deckData)
-      .then(setTimeout( () =>
-      { this.getCards() }, 1000))
+      .then(setTimeout( () => {this.getDeck() }, 1000))
     },
     drawTopCard(){
       if (this.playerCards) {
-      let deckID = this.deck.deck_id;
-      fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`)
-      .then(res => res.json())
-      .then(cardData => this.topCard = cardData)
+        this.topCard = this.roundDeck.shift();
       }
     },
     calculateScore(value){
@@ -147,13 +170,23 @@ export default {
     },
     nextHole(){
       this.counter = 0;
-      this.runningTotal = 0;
       this.currentHole += 1;
+      this.roundDeck = [];
+      this.setupGame();
+      this.getCards();
     },
     nextRound(value){
       this.counter += 1;
       this.drawTopCard();
+      this.drawnCard = false;
       this.lockedCards.push(value);
+      this.discardPile = [];
+    },
+    drawNextCard(){
+      if (this.drawnCard === false){
+      this.drawTopCard();
+      this.drawnCard = true;
+    }
     }
   }
 }

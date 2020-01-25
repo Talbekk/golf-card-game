@@ -1,5 +1,5 @@
 <template lang="html">
-  <li>
+  <li v-if="">
     <img class="card-icon" v-if="hidden" v-on:click="showCard" src="../assets/CardBack.png"/>
     <img class="card-icon" v-if="!hidden" :src="this.playerCard.image"/>
     <div id="button-container" v-if="!lockedIn">
@@ -15,38 +15,53 @@ import {eventBus} from '../main.js';
 
 export default {
   name: 'player-card',
-  props: ['playerCard', 'shownCards'],
+  props: ['playerCard', 'shownCards', 'lockedCards'],
   data () {
     return {
       hidden: true,
       lockedIn: false
     }
   },
+  watch: {
+    lockedCards(){
+      if (this.lockedCards.length === 0){
+        this.resetCard();
+      }
+    }
+  },
   methods: {
     showCard() {
       if (this.shownCards < 2){
         eventBus.$emit('shown-a-card', 1)
-        this.revealCard();
+        this.hidden = false;
         setTimeout(()=> { this.hideCard() },2000);
       }
     },
     revealCard() {
       if(this.lockedIn === false){
+        this.hidden = true;
+      } else {
         this.hidden = false;
       }
     },
     hideCard(){
+      if (this.lockedIn === false){
       this.hidden = true;
+    }
     },
     lockCard() {
       eventBus.$emit('card-value', this.playerCard)
-      this.revealCard();
       this.lockedIn = true;
+      this.revealCard();
     },
     switchCard() {
       eventBus.$emit('player-card', this.playerCard)
-      this.revealCard();
       this.lockedIn = true;
+      this.revealCard();
+    },
+    resetCard(){
+      this.hidden = true;
+      this.lockedIn = false;
     }
   }
 }

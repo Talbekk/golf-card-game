@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="top-card">
     <h4>Top Card:</h4>
-    <img class="card-icon" :src="this.topCard.cards[0].image"/>
+    <img class="card-icon" :src="this.topCard.image"/>
   </div>
 </template>
 
