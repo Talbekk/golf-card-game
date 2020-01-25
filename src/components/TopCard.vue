@@ -1,5 +1,6 @@
 <template lang="html">
   <div id="top-card">
+    <h4>Top Card:</h4>
     <img class="card-icon" :src="this.topCard.cards[0].image"/>
   </div>
 </template>
@@ -17,8 +18,8 @@ export default {
 <style lang="css" scoped>
 
 .card-icon {
-  max-width: 12em;
-  max-height: 12em;
+  max-width: 10em;
+  max-height: 10em;
   padding: 2em;
 }
 

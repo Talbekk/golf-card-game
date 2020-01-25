@@ -8,7 +8,11 @@
       <score-card :scoreCard="scoreCard"></score-card>
     </div>
     <div id="board-one">
-      <img class="card-icon" v-on:click="drawTopCard" src="./assets/CardBack.png"/>
+      <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
+      <div class="deck">
+        <h4>Deck:</h4>
+        <img class="card-icon" v-on:click="drawTopCard" src="./assets/CardBack.png"/>
+      </div>
       <top-card v-if='topCard' :topCard='topCard'></top-card>
     </div>
     <div v-if="playerCards">
@@ -19,6 +23,7 @@
 
 <script>
 
+import DiscardPile from './components/DiscardPile.vue';
 import {eventBus} from './main.js';
 import TopCard from './components/TopCard.vue';
 import PlayerCards from './components/PlayerCards.vue';
@@ -29,6 +34,7 @@ export default {
   data() {
     return {
       deck: [],
+      cards: [],
       playerCards: null,
       topCard: null,
       currentCard: null,
@@ -36,13 +42,15 @@ export default {
       counter: 0,
       currentHole: 1,
       lockedCards: [],
-      scoreCard: []
+      scoreCard: [],
+      discardPile: []
     }
   },
   components: {
     "player-cards": PlayerCards,
     "top-card": TopCard,
-    "score-card": ScoreCard
+    "score-card": ScoreCard,
+    "discard-pile": DiscardPile
   },
   mounted(){
     eventBus.$on('player-card', (card) => {
@@ -50,7 +58,8 @@ export default {
       let currentTopCard = this.topCard.cards[0];
       let switchedCard = this.playerCards.cards.splice(index, 1, currentTopCard);
       this.runningTotal += this.calculateScore(currentTopCard.value);
-      this.nextRound(currentTopCard.value)
+      this.nextRound(currentTopCard.value);
+      this.discardPile.push(switchedCard);
   }),
   eventBus.$on('card-value', (card) => {
     this.currentCard = card;
@@ -172,8 +181,8 @@ button {
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  /* -webkit-font-smoothing: antialiased; */
-  /* -moz-osx-font-smoothing: grayscale; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-weight: bold;
   text-align: center;
   color: #2c3e50;
@@ -194,8 +203,8 @@ button {
 }
 
 .card-icon {
-  max-width: 12em;
-  max-height: 12em;
+  max-width: 11em;
+  max-height: 11em;
   padding: 2em;
 }
 

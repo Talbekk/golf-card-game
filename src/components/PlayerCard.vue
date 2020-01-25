@@ -66,9 +66,9 @@ li {
 }
 
 .card-icon {
-  max-width: 12em;
-  max-height: 12em;
-  padding: 1em;
+  max-width: 11em;
+  max-height: 11em;
+  padding: 2em;
 }
 
 </style>
