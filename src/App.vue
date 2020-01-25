@@ -2,7 +2,8 @@
   <div id="app">
     <h3>Golf: The Card Game</h3>
     <div id="header">
-      <button v-on:click="nextHole" v-if="this.currentHole >= 0 && this.counter===4 && this.lockedCards.length === 4">Next Round</button>
+      <button v-on:click="nextHole" v-if="this.currentHole >= 0 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus">Next Round</button>
+      <button v-if="!gameStatus" v-on:click="setupNewGame" name="button">Play Again?</button>
       <button v-if="!playerCards && this.currentHole === 0" v-on:click="getCards">Deal Cards</button>
       <button v-if="currentHole===9 || !playerCards" v-on:click="newGame">New Game</button>
       <score-card :scoreCard="scoreCard"></score-card>
@@ -45,7 +46,8 @@ export default {
       lockedCards: [],
       scoreCard: [],
       discardPile: [],
-      drawnCard: false
+      drawnCard: false,
+      gameStatus: true
     }
   },
   components: {
@@ -86,6 +88,11 @@ export default {
   counter(){
     if (this.counter === 4){
       this.scoreCard.push(this.runningTotal);
+    }
+  },
+  scoreCard(){
+    if (this.scoreCard.length === 9){
+      this.gameStatus = false;
     }
   }
 },
@@ -167,6 +174,15 @@ export default {
       this.topCard = null;
       this.runningTotal = 0;
       this.lockedCards = [];
+    },
+    setupNewGame(){
+      this.setupGame();
+      this.scoreCard = [];
+      this.counter = 0;
+      this.currentHole = 0;
+      this.roundDeck = [];
+      this.getCards();
+      this.gameStatus = true;
     },
     nextHole(){
       this.counter = 0;

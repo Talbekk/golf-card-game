@@ -26,20 +26,28 @@ export default {
     }
   },
   mounted(){
-    for ( let hole = 0; hole <= 9; hole++){
+    for ( let hole = 1; hole <= 9; hole++){
       this.holes.push(hole);
     }
-    for (let score = 0; score <= 9; score++){
+    for (let score = 1; score <= 9; score++){
       this.scores.push("");
     }
   },
     watch: {
       scoreCard() {
+
+        if (this.scoreCard.length === 0){
+          this.scores = [];
+          for (let score = 1; score <= 9; score++){
+            this.scores.push("");
+          }
+        } else {
         let counter = 0;
         for (const currentScore of this.scoreCard){
         this.scores.splice(counter, 1, currentScore);
         counter +=1;
       }
+    }
       }
     },
     computed: {
