@@ -230,10 +230,10 @@ export default {
   flex-wrap: wrap;
 }
 
-html, body {
+/* html, body {
   height: 100%;
-  background-color: #279F00;
-}
+  background-color: ;
+} */
 
 button {
   color: #fff !important;

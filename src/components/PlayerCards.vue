@@ -25,6 +25,13 @@ export default {
   },
   components: {
     "player-card": PlayerCard
+  },
+  watch: {
+    lockedCards() {
+    if (this.lockedCards.length === 0){
+      this.shownCards = 0;
+    }
+  }
   }
 }
 </script>
