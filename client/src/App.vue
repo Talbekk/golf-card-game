@@ -72,7 +72,13 @@ export default {
       let index = this.playerCards.indexOf(card);
       let currentTopCard = this.topCard;
       let switchedCard = this.playerCards.splice(index, 1, currentTopCard);
+      let matchingCardValues = this.lockedCards.filter(card =>
+        currentTopCard.value === card)
+        if (matchingCardValues.length === 1) {
+          this.runningTotal -= this.calculateScore(currentTopCard.value);
+        } else {
       this.runningTotal += this.calculateScore(currentTopCard.value);
+    }
       this.nextRound(currentTopCard.value);
       this.discardPile.push(switchedCard);
       this.counter += 1;
@@ -96,7 +102,10 @@ export default {
     currentCard() {
       let cardValue = this.currentCard.value;
       let amount = this.calculateScore(cardValue);
-      if (this.lockedCards.includes(cardValue)) {
+      let matchingCardValues = this.lockedCards.filter(card =>
+        cardValue === card)
+        console.log("cardvalues", matchingCardValues);
+      if (matchingCardValues.length === 1) {
         this.runningTotal -= amount;
       } else {
           this.runningTotal += amount;
