@@ -50,6 +50,11 @@ export default {
     }
       }
     },
+    scores() {
+      if (this.scores.length === 9){
+        eventBus.$emit('total-score', this.score);
+      }
+    },
     computed: {
       totalScore: function () {
         let total = 0;
@@ -68,10 +73,13 @@ export default {
 table {
   empty-cells: show;
   border-collapse: collapse;
+  table-layout: auto;
+  width: 400px;
 }
 
 table, tr, th {
   border: 1px solid black;
+
 }
 
 </style>

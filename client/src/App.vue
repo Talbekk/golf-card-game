@@ -49,7 +49,8 @@ export default {
       discardPile: [],
       drawnCard: false,
       gameStatus: true,
-      tutorialStatus: false
+      tutorialStatus: false,
+      userName: null
     }
   },
   components: {
@@ -61,6 +62,12 @@ export default {
     "card-deck": CardDeck
   },
   mounted(){
+
+    fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
+    .then(res => res.json())
+    .then(deckData => this.deck = deckData)
+    .then(setTimeout( () => {this.getDeck() }, 1000)),
+
     eventBus.$on('player-card', (card) => {
       let index = this.playerCards.indexOf(card);
       let currentTopCard = this.topCard;
@@ -75,14 +82,14 @@ export default {
     this.counter += 1;
   }),
   eventBus.$on('clicked-new-game', () => {
-    this.newGame();
-  }),
-  eventBus.$on('clicked-deal-cards', () => {
     this.getCards();
     this.tutorialStatus = true;
   }),
   eventBus.$on('draw-next-card', () => {
     this.drawNextCard();
+  }),
+  eventBus.$on('username-selected', (name) => {
+    this.userName = name;
   })
 },
   watch: {
@@ -108,7 +115,8 @@ export default {
   },
   scoreCard(){
     if (this.scoreCard.length === 9){
-      scoreCardRef.push({card: this.scoreCard, edit: false});
+      let gameTotal = this.getTotalScore();
+      scoreCardRef.push({golfer: this.userName, score: gameTotal, card: this.scoreCard, edit: false});
       this.gameStatus = false;
     }
   }
@@ -151,17 +159,11 @@ export default {
       })
     },
     getDeck(){
+      this.setupGame();
       let deckID = this.deck.deck_id
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=52`)
         .then(res => res.json())
         .then(cardData => this.gameDeck = cardData)
-    },
-    newGame(){
-      this.setupGame();
-      fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
-      .then(res => res.json())
-      .then(deckData => this.deck = deckData)
-      .then(setTimeout( () => {this.getDeck() }, 1000))
     },
     drawTopCard(){
       if (this.playerCards) {
@@ -222,7 +224,14 @@ export default {
       this.drawTopCard();
       this.drawnCard = true;
     }
-    }
+  },
+  getTotalScore() {
+    let counter = 0;
+     this.scoreCard.forEach((score) => {
+       counter += score;
+    })
+    return counter;
+  }
   }
 }
 
