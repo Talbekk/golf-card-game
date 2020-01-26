@@ -5,16 +5,13 @@
       <intro-screen v-if="!tutorialStatus"></intro-screen>
     </div>
     <div id="header" v-if="tutorialStatus">
-      <button v-on:click="nextHole" v-if="this.currentHole >= 0 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus">Next Round</button>
+      <button v-on:click="nextHole" v-if="checkIfHoleFinished">Next Round</button>
       <button v-if="!gameStatus" v-on:click="setupNewGame" name="button">Play Again?</button>
       <score-card :scoreCard="scoreCard"></score-card>
     </div>
     <div id="board-one" v-if="tutorialStatus">
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
-      <div class="deck">
-        <h4>Deck:</h4>
-        <img class="card-icon" v-on:click="drawNextCard" src="./assets/CardBack.png"/>
-      </div>
+      <card-deck></card-deck>
       <top-card v-if='topCard' :topCard='topCard'></top-card>
     </div>
     <div v-if="playerCards">
@@ -31,6 +28,7 @@ import {eventBus} from './main.js';
 import TopCard from './components/TopCard.vue';
 import PlayerCards from './components/PlayerCards.vue';
 import ScoreCard from './components/ScoreCard.vue';
+import CardDeck from './components/CardDeck.vue';
 
 export default {
   name: 'app',
@@ -58,7 +56,8 @@ export default {
     "top-card": TopCard,
     "score-card": ScoreCard,
     "discard-pile": DiscardPile,
-    "intro-screen": IntroScreen
+    "intro-screen": IntroScreen,
+    "card-deck": CardDeck
   },
   mounted(){
     eventBus.$on('player-card', (card) => {
@@ -80,6 +79,9 @@ export default {
   eventBus.$on('clicked-deal-cards', () => {
     this.getCards();
     this.tutorialStatus = true;
+  }),
+  eventBus.$on('draw-next-card', () => {
+    this.drawNextCard();
   })
 },
   watch: {
@@ -112,8 +114,11 @@ export default {
   computed: {
     holesCompleted(){
       return this.scoreCard.length;
-    }
-  },
+    },
+  checkIfHoleFinished(){
+    return ((this.currentHole >= 1 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
+  }
+},
   methods: {
     getRoundDeck(){
       this.gameDeck.cards.forEach((card) => {
