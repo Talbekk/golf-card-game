@@ -1,5 +1,9 @@
-import Vue from 'vue'
-import App from './App.vue'
+import './firebase';
+import Vue from 'vue';
+import App from './App.vue';
+import * as VueFire from 'vuefire';
+
+Vue.use(VueFire);
 
 export const eventBus = new Vue();
 
