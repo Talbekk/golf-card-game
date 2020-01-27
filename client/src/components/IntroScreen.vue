@@ -30,7 +30,7 @@
     <!-- <button v-if='!newGame' v-on:click='clickedNewGame'>New Game</button> -->
     <button v-if='newGame' v-on:click='clickedDealCards'>Tee Off</button>
   </div>
-  <div>
+  <div id="score-container">
   <scores-page v-if='selectScoresPage'></scores-page>
   <button v-on:click="seeScoresPage"></button>
   </div>
@@ -110,6 +110,14 @@ h4 {
   margin-left: auto;
   margin-right: auto;
 
+}
+
+#score-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 5px 12px 5px;
+  max-width: 600px;
+  font-size: 13px;
 }
 
 #username{
