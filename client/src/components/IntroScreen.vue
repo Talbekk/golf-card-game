@@ -1,5 +1,6 @@
 <template lang="html">
-  <div id="intro-screen">
+  <div class="">
+  <div id="intro-screen" v-if="!selectScoresPage">
     <h4>The Deal:</h4>
     <p>
       Each player is dealt 4 cards face down from the deck. The remainder of the cards are placed face down, and the top card is turned up to start the discard pile beside it. Players arrange their 4 cards in a row face down. At the start of a round, the player can look at two cards but only for a short time.
@@ -29,19 +30,28 @@
     <!-- <button v-if='!newGame' v-on:click='clickedNewGame'>New Game</button> -->
     <button v-if='newGame' v-on:click='clickedDealCards'>Tee Off</button>
   </div>
-
+  <div>
+  <scores-page v-if='selectScoresPage'></scores-page>
+  <button v-on:click="seeScoresPage"></button>
+  </div>
+    </div>
 </template>
 
 <script>
 import {eventBus} from '../main.js';
+import ScoresPage from './ScoresPage.vue';
 
 export default {
   name: 'intro-screen',
   data() {
     return {
       newGame: false,
-      userName: null
+      userName: null,
+      selectScoresPage: false
     }
+  },
+  components: {
+    "scores-page": ScoresPage
   },
   methods: {
     clickedNewGame(){
@@ -50,6 +60,10 @@ export default {
     handleClick(){
       eventBus.$emit('username-selected', this.userName);
       this.clickedNewGame();
+    },
+    seeScoresPage(){
+      this.selectScoresPage = true;
+
     }
   }
 }

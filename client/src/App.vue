@@ -29,7 +29,7 @@ import TopCard from './components/TopCard.vue';
 import PlayerCards from './components/PlayerCards.vue';
 import ScoreCard from './components/ScoreCard.vue';
 import CardDeck from './components/CardDeck.vue';
-import {scoreCardRef} from './firebase.js';
+import {scoreRef} from './firebase.js';
 
 export default {
   name: 'app',
@@ -125,7 +125,7 @@ export default {
   scoreCard(){
     if (this.scoreCard.length === 9){
       let gameTotal = this.getTotalScore();
-      scoreCardRef.push({golfer: this.userName, score: gameTotal, card: this.scoreCard, edit: false});
+      scoreRef.push({golfer: this.userName, score: gameTotal, card: this.scoreCard, edit: false});
       this.gameStatus = false;
     }
   }
