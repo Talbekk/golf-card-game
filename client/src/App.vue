@@ -74,42 +74,50 @@ export default {
       let switchedCard = this.playerCards.splice(index, 1, currentTopCard);
       let matchingCardValues = this.lockedCards.filter(card =>
         currentTopCard.value === card)
-        if (matchingCardValues.length === 1) {
-          this.runningTotal -= this.calculateScore(currentTopCard.value);
-        } else {
-      this.runningTotal += this.calculateScore(currentTopCard.value);
-    }
+      if (matchingCardValues.length === 3){
+          this.runningTotal = -30;
+      } else if(matchingCardValues.length === 1 & currentTopCard.value === "5"){
+        this.runningTotal += this.calculateScore(currentTopCard.value);
+      } else if (matchingCardValues.length === 1) {
+        this.runningTotal -= this.calculateScore(currentTopCard.value);
+      } else {
+        this.runningTotal += this.calculateScore(currentTopCard.value);
+      }
       this.nextRound(currentTopCard.value);
       this.discardPile.push(switchedCard);
       this.counter += 1;
-  }),
-  eventBus.$on('card-value', (card) => {
-    this.currentCard = card;
-    this.counter += 1;
-  }),
-  eventBus.$on('clicked-new-game', () => {
-    this.getCards();
-    this.tutorialStatus = true;
-  }),
-  eventBus.$on('draw-next-card', () => {
-    this.drawNextCard();
-  }),
-  eventBus.$on('username-selected', (name) => {
-    this.userName = name;
+    }),
+    eventBus.$on('card-value', (card) => {
+      this.currentCard = card;
+      this.counter += 1;
+    }),
+    eventBus.$on('clicked-new-game', () => {
+      this.getCards();
+      this.tutorialStatus = true;
+    }),
+    eventBus.$on('draw-next-card', () => {
+      this.drawNextCard();
+    }),
+    eventBus.$on('username-selected', (name) => {
+      this.userName = name;
   })
 },
   watch: {
     currentCard() {
       let cardValue = this.currentCard.value;
       let amount = this.calculateScore(cardValue);
-      let matchingCardValues = this.lockedCards.filter(card =>
-        cardValue === card)
-        console.log("cardvalues", matchingCardValues);
-      if (matchingCardValues.length === 1) {
+      let matchingCardValues = this.lockedCards.filter(card => cardValue === card)
+      console.log("cardvalues", matchingCardValues);
+      if (matchingCardValues.length === 3){
+          this.runningTotal = -30;
+      }
+        else if(matchingCardValues.length === 1 & cardValue === "5"){
+        this.runningTotal += amount;
+      } else if (matchingCardValues.length === 1) {
         this.runningTotal -= amount;
       } else {
           this.runningTotal += amount;
-        }
+      }
       this.nextRound(cardValue);
     },
     playerCards(){

@@ -32,7 +32,8 @@
   </div>
   <div id="score-container">
   <scores-page v-if='selectScoresPage'></scores-page>
-  <button v-on:click="seeScoresPage"></button>
+  <button v-if="!selectScoresPage" v-on:click="seeScoresPage">Leaderboard</button>
+  <button v-if="selectScoresPage" v-on:click="seeScoresPage">Back</button>
   </div>
     </div>
 </template>
@@ -62,7 +63,7 @@ export default {
       this.clickedNewGame();
     },
     seeScoresPage(){
-      this.selectScoresPage = true;
+      this.selectScoresPage = !this.selectScoresPage;
 
     }
   }
