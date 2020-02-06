@@ -15,7 +15,7 @@
       <top-card v-if='topCard' :topCard='topCard'></top-card>
     </div>
     <div v-if="playerCards">
-      <player-cards :lockedCards='lockedCards' :playerCards='playerCards'></player-cards>
+      <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards'></player-cards>
     </div>
   </div>
 </template>

@@ -15,7 +15,7 @@ import {eventBus} from '../main.js';
 
 export default {
   name: 'player-card',
-  props: ['playerCard', 'shownCards', 'lockedCards'],
+  props: ['playerCard', 'shownCards', 'lockedCards', 'counter'],
   data () {
     return {
       hidden: true,
@@ -31,10 +31,10 @@ export default {
   },
   methods: {
     showCard() {
-      if (this.shownCards < 2){
-        eventBus.$emit('shown-a-card', 1)
+      if (this.shownCards < 2 && this.counter === 0){
         this.hidden = false;
         setTimeout(()=> { this.hideCard() },2000);
+        eventBus.$emit('shown-a-card', 1);
       }
     },
     revealCard() {
