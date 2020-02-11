@@ -20,4 +20,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+.card-icon {
+  max-width: 10em;
+  max-height: 10em;
+  padding: 1.5em;
+}
+
+h4{
+  margin-top: 10px;
+  margin-bottom: 0;
+}
 </style>

@@ -75,15 +75,21 @@ li {
 }
 
 #button-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 75px 75px;
+  grid-gap: 10px;
+
 }
 
 .card-icon {
-  max-width: 11em;
-  max-height: 11em;
-  padding: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 8em;
+  max-height: 10em;
+  padding: 1.5em;
+
 }
 
 </style>

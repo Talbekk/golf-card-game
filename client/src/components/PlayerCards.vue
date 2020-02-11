@@ -39,8 +39,15 @@ export default {
 <style lang="css" scoped>
 
 ul {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 100px; */
+  max-width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  /* grid-row-gap: 5px; */
   display: flex;
-  flex-direction: row;
+  flex-direction: center;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
