@@ -13,5 +13,6 @@ const app = initializeApp({
 
 export const db = app.database();
 export const scoreRef = db.ref('scores');
+export const leaderboardRef = db.ref('leaderboard');
 
 export const firstScoreRef = db.ref('scores/-LzbcOnDQ_isE4pJ0ylY').toJSON();

@@ -1,35 +1,32 @@
 <template lang="html">
   <div id="leaderboard-container">
-    <h3>Leaderboard:</h3>
-    <table>
-  <tr>
-    <th>Name</th>
-    <th>Score</th>
-  </tr>
-  <tr v-for="score in sortedScores">
-    <td>{{score.golfer}}</td>
-    <td>{{score.score}}</td>
-  </tr>
-</table>
+  <leaderboard v-if="sortedScores" :scores='this.sortedScores' :title='title'></leaderboard>
+  <leaderboard v-if="sortedLeaderBoard" :scores='this.sortedLeaderBoard'></leaderboard>
   </div>
-
 </template>
 
 <script>
 
 import {db} from '../firebase.js';
+import LeaderBoard from './LeaderBoard.vue';
 
 export default {
   name: "playerScores",
   data(){
     return {
       scores: {},
-      sortedScores: []
-
+      sortedScores: [],
+      leaderBoard: {},
+      sortedLeaderBoard: [],
+      title: "Legacy"
     }
+  },
+  components: {
+    "leaderboard": LeaderBoard
   },
   created() {
    db.ref('scores').once('value', storedValue => this.scores = storedValue.toJSON());
+   db.ref('leaderboard').once('value', storedValue => this.leaderBoard = storedValue.toJSON());
  },
   watch: {
     scores(){
@@ -39,6 +36,14 @@ export default {
       this.sortedScores.sort(function(a,b){
         return a.score-b.score;
       })
+    },
+    leaderBoard(){
+      this.sortedLeaderBoard = Object.keys(this.leaderBoard).map(key => {
+        return this.leaderBoard[key];
+      })
+      this.sortedLeaderBoard.sort(function(a,b){
+        return a.score-b.score;
+      })
     }
   }
  }
@@ -46,26 +51,16 @@ export default {
 
 <style lang="css" scoped>
 
-table, th, td {
-  border: 1px solid black;
-}
-
 #leaderboard-container{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  margin-right: auto;
+  justify-content: center;
   padding: 8px 5px 12px 5px;
-  max-width: 600px;
   font-size: 13px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-table {
-  width: 75%;
-}
 
-th {
-  height: 30px;
-}
 
 </style>

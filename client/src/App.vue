@@ -30,27 +30,28 @@ import PlayerCards from './components/PlayerCards.vue';
 import ScoreCard from './components/ScoreCard.vue';
 import CardDeck from './components/CardDeck.vue';
 import {scoreRef} from './firebase.js';
+import {leaderboardRef} from './firebase.js';
 
 export default {
   name: 'app',
   data() {
     return {
       deck: [],
-      gameDeck: [],
-      roundDeck: [],
-      playerCards: null,
-      topCard: null,
-      currentCard: null,
-      runningTotal: 0,
-      counter: 0,
-      currentHole: 1,
-      lockedCards: [],
-      scoreCard: [],
-      discardPile: [],
-      drawnCard: false,
-      gameStatus: true,
+      gameDeck: [], //game
+      roundDeck: [], //round
+      playerCards: null, //round
+      topCard: null, //round
+      currentCard: null, //round
+      runningTotal: 0, //round
+      counter: 0, //round
+      currentHole: 1, //game
+      lockedCards: [], //round
+      scoreCard: [], //game
+      discardPile: [], //round
+      drawnCard: false, //round
+      gameStatus: true, //game
       tutorialStatus: false,
-      userName: null
+      userName: null //game
     }
   },
   components: {
@@ -68,6 +69,7 @@ export default {
     .then(deckData => this.deck = deckData)
     .then(setTimeout( () => {this.getDeck() }, 1000)),
 
+    // round
     eventBus.$on('player-card', (card) => {
       let index = this.playerCards.indexOf(card);
       let currentTopCard = this.topCard;
@@ -87,22 +89,31 @@ export default {
       this.discardPile.push(switchedCard);
       this.counter += 1;
     }),
+
+    //round
     eventBus.$on('card-value', (card) => {
       this.currentCard = card;
       this.counter += 1;
     }),
+
+    //game
     eventBus.$on('clicked-new-game', () => {
       this.getCards();
       this.tutorialStatus = true;
     }),
+
+    //round
     eventBus.$on('draw-next-card', () => {
       this.drawNextCard();
     }),
+
+    //game
     eventBus.$on('username-selected', (name) => {
       this.userName = name;
   })
 },
   watch: {
+    //round
     currentCard() {
       let cardValue = this.currentCard.value;
       let amount = this.calculateScore(cardValue);
@@ -120,39 +131,46 @@ export default {
       }
       this.nextRound(cardValue);
     },
+    //round
     playerCards(){
       if (this.topCard === null) {
       this.drawTopCard();
     }
   },
+  //round
   counter(){
     if (this.counter === 4){
       this.scoreCard.push(this.runningTotal);
     }
   },
+  //game
   scoreCard(){
     if (this.scoreCard.length === 9){
       let gameTotal = this.getTotalScore();
-      scoreRef.push({golfer: this.userName, score: gameTotal, card: this.scoreCard, edit: false});
+      leaderboardRef.push({golfer: this.userName, score: gameTotal, card: this.scoreCard, edit: false});
       this.gameStatus = false;
     }
   }
 },
   computed: {
+    //game
     holesCompleted(){
       return this.scoreCard.length;
     },
+    //round
   checkIfHoleFinished(){
     return ((this.currentHole >= 1 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
   }
 },
   methods: {
+    //round
     getRoundDeck(){
       this.gameDeck.cards.forEach((card) => {
         this.roundDeck.push(card);
       })
       return this.shuffleDeck(this.roundDeck);
     },
+    //game
     shuffleDeck(deck){
       let newPosition;
       let temp;
@@ -163,6 +181,7 @@ export default {
         deck[newPosition] = temp;
       }
     },
+    //round
     getCards(){
       this.getRoundDeck();
       let hand = [];
@@ -175,6 +194,7 @@ export default {
         card.lockedIn = false;
       })
     },
+    //app
     getDeck(){
       this.setupGame();
       let deckID = this.deck.deck_id
@@ -182,11 +202,13 @@ export default {
         .then(res => res.json())
         .then(cardData => this.gameDeck = cardData)
     },
+    //round
     drawTopCard(){
       if (this.playerCards) {
         this.topCard = this.roundDeck.shift();
       }
     },
+    //round
     calculateScore(value){
       switch (value) {
         case "ACE":
@@ -208,21 +230,24 @@ export default {
         break;
       }
     },
+    //round
     setupGame(){
       this.playerCards = null;
       this.topCard = null;
       this.runningTotal = 0;
       this.lockedCards = [];
     },
+    //app
     setupNewGame(){
       this.setupGame();
       this.scoreCard = [];
       this.counter = 0;
-      this.currentHole = 0;
+      this.currentHole = 1;
       this.roundDeck = [];
       this.getCards();
       this.gameStatus = true;
     },
+    // round
     nextHole(){
       this.counter = 0;
       this.currentHole += 1;
