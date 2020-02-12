@@ -47,7 +47,6 @@ export default {
     },
     seeScoresPage(){
       this.selectScoresPage = !this.selectScoresPage;
-
     }
   }
 }

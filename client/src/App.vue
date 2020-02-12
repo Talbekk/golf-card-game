@@ -7,12 +7,14 @@
     <div id="header" v-if="tutorialStatus">
       <button v-on:click="nextHole" v-if="checkIfHoleFinished">Next Round</button>
       <button v-if="!gameStatus" v-on:click="setupNewGame" name="button">Play Again?</button>
+      <button v-if="gameStatus" v-on:click="setupNewGame" name="button">Restart</button>
       <score-card :scoreCard="scoreCard"></score-card>
     </div>
     <div id="board-one" v-if="tutorialStatus">
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
       <card-deck></card-deck>
       <top-card v-if='topCard' :topCard='topCard'></top-card>
+      <info-box></info-box>
     </div>
     <div v-if="playerCards">
       <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards'></player-cards>
@@ -31,6 +33,7 @@ import ScoreCard from './components/ScoreCard.vue';
 import CardDeck from './components/CardDeck.vue';
 import {scoreRef} from './firebase.js';
 import {leaderboardRef} from './firebase.js';
+import InfoBox from './components/InfoBox.vue';
 
 export default {
   name: 'app',
@@ -60,7 +63,8 @@ export default {
     "score-card": ScoreCard,
     "discard-pile": DiscardPile,
     "intro-screen": IntroScreen,
-    "card-deck": CardDeck
+    "card-deck": CardDeck,
+    "info-box": InfoBox
   },
   mounted(){
 
