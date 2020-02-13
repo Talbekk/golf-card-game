@@ -3,10 +3,10 @@
     <h4>Hint:</h4>
     <div id="info-container">
     <div id="info-box">
-    <p>King: 0</p>
-    <p>5: -5</p>
-    <p>Pair: 0</p>
-    <p>4 of a kind: -30</p>
+    <p><b>King:</b> 0</p>
+    <p><b>5:</b> -5</p>
+    <p><b>Pair:</b> 0</p>
+    <p><b>4 of a kind:</b> -30</p>
   </div>
   </div>
   </div>

@@ -240,6 +240,7 @@ export default {
       this.topCard = null;
       this.runningTotal = 0;
       this.lockedCards = [];
+      this.discardPile = [];
     },
     //app
     setupNewGame(){
