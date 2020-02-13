@@ -1,7 +1,7 @@
 <template lang="html">
 <div class="deck-container">
   <h4>Deck:</h4>
-  <img class="card-icon" v-on:click="drawNextCard" src="../assets/CardBack.png"/>
+  <img v-bind:class="[topCardStatus ? selectedClass : unSelectedClass]" v-on:click="drawNextCard" src="../assets/CardBack.png"/>
 </div>
 </template>
 
@@ -11,20 +11,40 @@ import {eventBus} from '../main.js';
 
 export default {
   name: "deck-list",
+  props:['topCardStatus'],
+  data() {
+    return{
+      selectedClass: 'card-icon-greyed',
+      unSelectedClass: 'card-icon-original'
+    }
+
+  },
   methods: {
     drawNextCard(){
       eventBus.$emit('draw-next-card');
     }
   }
+  // computed: {
+  //   handleStatus() {
+  //     return
+  //   }
+
 }
 </script>
 
 <style lang="css" scoped>
 
-.card-icon {
+.card-icon-original {
   max-width: 10em;
   max-height: 10em;
   padding: 1.5em;
+}
+
+.card-icon-greyed {
+  max-width: 10em;
+  max-height: 10em;
+  padding: 1.5em;
+  filter: grayscale(75%);
 }
 
 h4{

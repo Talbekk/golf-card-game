@@ -1,0 +1,296 @@
+<template lang="html">
+  <div id="game_container">
+    <div id="header">
+      <button v-on:click="nextHole" v-if="checkIfHoleFinished">Next Round</button>
+      <button v-if="!this.gameStatus" v-on:click="setupNewGame" name="button">Play Again?</button>
+      <button v-if="this.gameStatus" v-on:click="setupNewGame" name="button">Restart</button>
+      <score-card :scoreCard="scoreCard"></score-card>
+    </div>
+    <div id="board-one">
+      <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
+      <card-deck :topCardStatus='topCardStatus'></card-deck>
+      <top-card v-if='topCard' :topCard='topCard'></top-card>
+      <info-box></info-box>
+    </div>
+    <div v-if="playerCards">
+      <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards'></player-cards>
+    </div>
+  </div>
+</template>
+
+<script>
+
+import DiscardPile from './DiscardPile.vue';
+import TopCard from './TopCard.vue';
+import PlayerCards from './PlayerCards.vue';
+import ScoreCard from './ScoreCard.vue';
+import CardDeck from './CardDeck.vue';
+import InfoBox from './InfoBox.vue';
+import {eventBus} from '../main.js';
+import {scoreRef} from '../firebase.js';
+import {leaderboardRef} from '../firebase.js';
+
+export default {
+  name: "game-container",
+  props: ['gameDeck', 'userName', 'gameStatus'],
+  data(){
+    return {
+      // gameDeck: [], //game
+      roundDeck: [], //round
+      playerCards: null, //round
+      topCard: null, //round
+      currentCard: null, //round
+      runningTotal: 0, //round
+      counter: 0, //round
+      currentHole: 1, //game
+      lockedCards: [], //round
+      scoreCard: [], //game
+      discardPile: [], //round
+      drawnCard: false, //round
+      topCardStatus: false
+    }
+  },
+  components: {
+    "player-cards": PlayerCards,
+    "top-card": TopCard,
+    "score-card": ScoreCard,
+    "discard-pile": DiscardPile,
+    "card-deck": CardDeck,
+    "info-box": InfoBox
+  },
+  mounted(){
+    eventBus.$on('player-card', (card) => {
+      let index = this.playerCards.indexOf(card);
+      let currentTopCard = this.topCard;
+      let switchedCard = this.playerCards.splice(index, 1, currentTopCard);
+      let matchingCardValues = this.lockedCards.filter(card =>
+        currentTopCard.value === card)
+      if (matchingCardValues.length === 3){
+          this.runningTotal = -30;
+      } else if(matchingCardValues.length === 1 & currentTopCard.value === "5"){
+        this.runningTotal += this.calculateScore(currentTopCard.value);
+      } else if (matchingCardValues.length === 1) {
+        this.runningTotal -= this.calculateScore(currentTopCard.value);
+      } else {
+        this.runningTotal += this.calculateScore(currentTopCard.value);
+      }
+      this.nextRound(currentTopCard.value);
+      this.discardPile.push(switchedCard);
+      this.counter += 1;
+    }),
+    //round
+    eventBus.$on('card-value', (card) => {
+      this.currentCard = card;
+      this.counter += 1;
+    }),
+    //round
+    eventBus.$on('draw-next-card', () => {
+      this.drawNextCard();
+      this.topCardStatus = true;
+    }),
+    //game
+    eventBus.$on('get-cards', () => {
+      this.getCards();
+    }),
+    eventBus.$on('setup-game', () => {
+      this.setupGame();
+    })
+  },
+  watch: {
+    //round
+    currentCard() {
+      let cardValue = this.currentCard.value;
+      let amount = this.calculateScore(cardValue);
+      let matchingCardValues = this.lockedCards.filter(card => cardValue === card)
+      console.log("cardvalues", matchingCardValues);
+      if (matchingCardValues.length === 3){
+          this.runningTotal = -30;
+      }
+        else if(matchingCardValues.length === 1 & cardValue === "5"){
+        this.runningTotal += amount;
+      } else if (matchingCardValues.length === 1) {
+        this.runningTotal -= amount;
+      } else {
+          this.runningTotal += amount;
+      }
+      this.nextRound(cardValue);
+    },
+    //round
+    playerCards(){
+      if (this.topCard === null) {
+      this.drawTopCard();
+    }
+  },
+  //round
+  counter(){
+    if (this.counter === 4){
+      this.scoreCard.push(this.runningTotal);
+    }
+  },
+  //game
+  scoreCard(){
+    if (this.scoreCard.length === 9){
+      let gameTotal = this.getTotalScore();
+      leaderboardRef.push({golfer: this.userName, score: gameTotal, card: this.scoreCard, edit: false});
+      // this.gameStatus = false;
+      eventBus.$emit('game-status', false);
+    }
+  }
+},
+computed: {
+  //game
+  holesCompleted(){
+    return this.scoreCard.length;
+  },
+  //round
+checkIfHoleFinished(){
+  return ((this.currentHole >= 1 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
+}
+},
+  methods: {
+    //round
+    getCards(){
+      this.getRoundDeck();
+      let hand = [];
+      for (let counter = 0; counter < 4; counter++){
+        let card = this.roundDeck.shift();
+        hand.push(card);
+      }
+      this.playerCards = hand;
+      this.playerCards.forEach((card) => {
+        card.lockedIn = false;
+      })
+    },
+    //round
+    getRoundDeck(){
+      this.gameDeck.cards.forEach((card) => {
+        this.roundDeck.push(card);
+      })
+      return this.shuffleDeck(this.roundDeck);
+    },
+    //game
+    shuffleDeck(deck){
+      let newPosition;
+      let temp;
+      for (let i = deck.length-1; i > 0; i --) {
+        newPosition = Math.floor(Math.random() * (i+1))
+        temp = deck[i];
+        deck[i] = deck[newPosition];
+        deck[newPosition] = temp;
+      }
+    },
+    //round
+    drawTopCard(){
+      if (this.playerCards) {
+        this.topCard = this.roundDeck.shift();
+      }
+    },
+    //round
+    calculateScore(value){
+      switch (value) {
+        case "ACE":
+        return 1;
+        break;
+        case "KING":
+        return 0;
+        break;
+        case "QUEEN":
+        return 10;
+        break;
+        case "JACK":
+        return 10;
+        break;
+        case "5":
+        return -5;
+        default:
+        return parseInt(value);
+        break;
+      }
+    },
+    setupGame(){
+      this.playerCards = null;
+      this.topCard = null;
+      this.runningTotal = 0;
+      this.lockedCards = [];
+      this.discardPile = [];
+    },
+    //app
+    setupNewGame(){
+      this.setupGame();
+      this.scoreCard = [];
+      this.counter = 0;
+      this.currentHole = 1;
+      this.roundDeck = [];
+      this.getCards();
+      eventBus.$emit('game-status', true);
+      // this.gameStatus = true;
+      this.topCardStatus = false;
+    },
+    // round
+    nextHole(){
+      this.counter = 0;
+      this.currentHole += 1;
+      this.roundDeck = [];
+      this.setupGame();
+      this.getCards();
+      this.discardPile = [];
+      this.topCardStatus = false;
+    },
+    nextRound(value){
+      this.drawTopCard();
+      this.drawnCard = false;
+      this.lockedCards.push(value);
+      this.topCardStatus = false;
+    },
+    drawNextCard(){
+      if (this.drawnCard === false){
+      this.drawTopCard();
+      this.drawnCard = true;
+    }
+  },
+  getTotalScore() {
+    let counter = 0;
+     this.scoreCard.forEach((score) => {
+       counter += score;
+    })
+    return counter;
+  }
+
+  }
+}
+</script>
+
+<style lang="css" scoped>
+
+#header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#board-one {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.card-icon {
+  max-width: 11em;
+  max-height: 11em;
+  padding: 2em;
+}
+
+button {
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #60a3bc;
+  padding: 15px;
+  border-radius: 75px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+}
+
+</style>
