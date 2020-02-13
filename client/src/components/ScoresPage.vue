@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="leaderboard-container">
-  <leaderboard v-if="sortedScores" :scores='this.sortedScores' :title='title'></leaderboard>
-  <leaderboard v-if="sortedLeaderBoard" :scores='this.sortedLeaderBoard'></leaderboard>
+    <leaderboard v-if="sortedLeaderBoard" :scores='this.sortedLeaderBoard' :title='newTitle'></leaderboard>
+    <leaderboard v-if="sortedScores" :scores='this.sortedScores' :title='title'></leaderboard>
   </div>
 </template>
 
@@ -18,7 +18,8 @@ export default {
       sortedScores: [],
       leaderBoard: {},
       sortedLeaderBoard: [],
-      title: "Legacy"
+      title: "Legacy",
+      newTitle: "Current"
     }
   },
   components: {

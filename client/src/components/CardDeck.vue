@@ -24,11 +24,6 @@ export default {
       eventBus.$emit('draw-next-card');
     }
   }
-  // computed: {
-  //   handleStatus() {
-  //     return
-  //   }
-
 }
 </script>
 

@@ -35,7 +35,6 @@ export default {
   props: ['gameDeck', 'userName', 'gameStatus'],
   data(){
     return {
-      // gameDeck: [], //game
       roundDeck: [], //round
       playerCards: null, //round
       topCard: null, //round
