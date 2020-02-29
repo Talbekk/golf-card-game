@@ -3,10 +3,12 @@
     <h3>{{title}} Leaderboard:</h3>
     <table>
   <tr>
+    <th>#</th>
     <th>Name</th>
     <th>Score</th>
   </tr>
-  <tr v-for="score in scores">
+  <tr v-for="(score, index) in scores">
+    <td>{{index+1}}</td>
     <td>{{score.golfer}}</td>
     <td>{{score.score}}</td>
   </tr>

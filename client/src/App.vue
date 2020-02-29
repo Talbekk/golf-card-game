@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <game-header></game-header>
+    <logo-header></logo-header>
     <div id="intro-container">
       <intro-screen v-if="!tutorialStatus"></intro-screen>
     </div>
@@ -13,7 +13,7 @@
 import IntroScreen from './components/IntroScreen.vue';
 import {eventBus} from './main.js';
 import {scoreRef} from './firebase.js';
-import GameHeader from './components/GameHeader.vue';
+import LogoHeader from './components/LogoHeader.vue';
 import GameContainer from './components/GameContainer.vue';
 
 export default {
@@ -29,15 +29,18 @@ export default {
   },
   components: {
     "intro-screen": IntroScreen,
-    "game-header": GameHeader,
+    "logo-header": LogoHeader,
     "game-container": GameContainer
   },
   mounted(){
+
+    this.getDeck();
 
     fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
     .then(res => res.json())
     .then(deckData => this.deck = deckData)
     .then(setTimeout( () => {this.getDeck() }, 1000)),
+    console.log("deck", this.deck);
 
     eventBus.$on('clicked-new-game', () => {
       setTimeout( () => {eventBus.$emit('get-cards')}, 500)
