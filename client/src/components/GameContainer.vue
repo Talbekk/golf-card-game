@@ -1,10 +1,10 @@
 <template lang="html">
   <div id="game_container">
     <div id="header">
-      <button v-on:click="nextHole" v-if="checkIfHoleFinished">Next Round</button>
       <button v-if="!this.gameStatus" v-on:click="setupNewGame" name="button">Play Again?</button>
       <button v-if="this.gameStatus" v-on:click="setupNewGame" name="button">Restart</button>
       <score-card :scoreCard="scoreCard"></score-card>
+      <button v-on:click="nextHole" v-if="checkIfHoleFinished">Next Round</button>
     </div>
     <div id="board-one">
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
