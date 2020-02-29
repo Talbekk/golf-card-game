@@ -1,10 +1,7 @@
 <template lang="html">
   <div id="game_container">
     <div id="header">
-      <button v-if="!this.gameStatus" v-on:click="setupNewGame" name="button">Play Again?</button>
-      <button v-if="this.gameStatus" v-on:click="setupNewGame" name="button">Restart</button>
-      <score-card :scoreCard="scoreCard"></score-card>
-      <button v-on:click="nextHole" v-if="checkIfHoleFinished">Next Round</button>
+      <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole"></game-header>
     </div>
     <div id="board-one">
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
@@ -23,6 +20,7 @@
 import DiscardPile from './DiscardPile.vue';
 import TopCard from './TopCard.vue';
 import PlayerCards from './PlayerCards.vue';
+import GameHeader from './GameHeader.vue';
 import ScoreCard from './ScoreCard.vue';
 import CardDeck from './CardDeck.vue';
 import InfoBox from './InfoBox.vue';
@@ -55,7 +53,8 @@ export default {
     "score-card": ScoreCard,
     "discard-pile": DiscardPile,
     "card-deck": CardDeck,
-    "info-box": InfoBox
+    "info-box": InfoBox,
+    "game-header": GameHeader
   },
   mounted(){
     eventBus.$on('player-card', (card) => {
@@ -93,6 +92,12 @@ export default {
     }),
     eventBus.$on('setup-game', () => {
       this.setupGame();
+    }),
+    eventBus.$on('start-next-hole', () => {
+      this.nextHole();
+    }),
+    eventBus.$on('start=new-game', () => {
+      this.setupNewGame();
     })
   },
   watch: {

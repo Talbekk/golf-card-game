@@ -26,6 +26,7 @@ import GameRules from './GameRules.vue';
 
 export default {
   name: 'intro-screen',
+  props: ['viewLeaderBoard'],
   data() {
     return {
       newGame: false,
