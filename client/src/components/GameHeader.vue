@@ -1,11 +1,10 @@
 <template lang="html">
   <div id="game-header">
-    <button v-if="!this.gameStatus" v-on:click="newGame" name="button">Play Again?</button>
-    <button v-if="this.gameStatus" v-on:click="newGame" name="button">Restart</button>
-    <score-card :scoreCard="scoreCard"></score-card>
+    <button v-if="!this.gameStatus && !this.selectScoresPage" v-on:click="newGame" name="button">Play Again?</button>
+    <button v-if="this.gameStatus && !this.selectScoresPage" v-on:click="newGame" name="button">Restart</button>
+    <score-card v-if="!this.selectScoresPage" :scoreCard="scoreCard"></score-card>
     <button v-on:click="startNextHole" v-if="checkIfHoleFinished">Next Round</button>
-    <button v-if="!this.gameStatus" name="button">Leaderboard</button>
-    <intro-screen :viewLeaderboard="viewLeaderboard"></intro-screen>
+    <leaderboard-container v-if="!this.gameStatus" :selectScoresPage="selectScoresPage"></leaderboard-container/>
   </div>
 </template>
 
@@ -14,25 +13,31 @@ import ScoreCard from './ScoreCard.vue';
 import {eventBus} from '../main.js';
 import ScoresPage from './ScoresPage.vue';
 import IntroScreen from './IntroScreen.vue';
+import LeaderboardContainer from './LeaderboardContainer.vue';
 
 export default {
   name: "game-header",
   props: ['gameStatus', 'scoreCard', 'lockedCards', 'counter', 'currentHole'],
   data(){
     return {
-      selectScoresPage: false.
-      newGame
+      selectScoresPage: false
     }
-  }
+  },
 
   components: {
     "score-card": ScoreCard,
-    "intro-screen", IntroScreen
+    "intro-screen": IntroScreen,
+    "leaderboard-container": LeaderboardContainer
+  },
+  mounted() {
+    eventBus.$on('view-leaderboard', () => {
+      this.selectScoresPage = !this.selectScoresPage;
+    })
   },
 
   computed: {
     checkIfHoleFinished(){
-      return ((this.currentHole >= 1 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
+      return ((this.currentHole >= 1 && (this.counter===4 || this.lockedCards.length === 4) && this.gameStatus === true) ? true : false);
   }
 },
   methods: {

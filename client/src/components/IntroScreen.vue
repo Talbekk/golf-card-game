@@ -12,9 +12,10 @@
     <button v-if='newGame' v-on:click='clickedDealCards'>Tee Off</button>
   </div>
   <div id="score-container">
-  <scores-page v-if='selectScoresPage'></scores-page>
+    <leaderboard-container :selectScoresPage="selectScoresPage"></leaderboard-container>
+  <!-- <scores-page v-if='selectScoresPage'></scores-page>
   <button v-if="!selectScoresPage" v-on:click="seeScoresPage">Leaderboard</button>
-  <button v-if="selectScoresPage" v-on:click="seeScoresPage">Back</button>
+  <button v-if="selectScoresPage" v-on:click="seeScoresPage">Back</button> -->
   </div>
     </div>
 </template>
@@ -23,6 +24,7 @@
 import {eventBus} from '../main.js';
 import ScoresPage from './ScoresPage.vue';
 import GameRules from './GameRules.vue';
+import LeaderboardContainer from './LeaderboardContainer.vue';
 
 export default {
   name: 'intro-screen',
@@ -36,7 +38,13 @@ export default {
   },
   components: {
     "scores-page": ScoresPage,
-    "game-rules": GameRules
+    "game-rules": GameRules,
+    "leaderboard-container": LeaderboardContainer
+  },
+  mounted() {
+    eventBus.$on('view-leaderboard', () => {
+      this.selectScoresPage = !this.selectScoresPage;
+    })
   },
   methods: {
     clickedNewGame(){
@@ -45,10 +53,10 @@ export default {
     handleClick(){
       eventBus.$emit('username-selected', this.userName);
       this.clickedNewGame();
-    },
-    seeScoresPage(){
-      this.selectScoresPage = !this.selectScoresPage;
     }
+    // seeScoresPage(){
+    //   this.selectScoresPage = !this.selectScoresPage;
+    // }
   }
 }
 </script>

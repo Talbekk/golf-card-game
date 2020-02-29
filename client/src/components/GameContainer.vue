@@ -3,13 +3,13 @@
     <div id="header">
       <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole"></game-header>
     </div>
-    <div id="board-one">
+    <div v-if="!viewLeaderBoard" id="board-one">
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
       <card-deck :topCardStatus='topCardStatus'></card-deck>
       <top-card v-if='topCard' :topCard='topCard'></top-card>
       <info-box></info-box>
     </div>
-    <div v-if="playerCards">
+    <div v-if="playerCards && !viewLeaderBoard">
       <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards'></player-cards>
     </div>
   </div>
@@ -44,7 +44,8 @@ export default {
       scoreCard: [], //game
       discardPile: [], //round
       drawnCard: false, //round
-      topCardStatus: false
+      topCardStatus: false,
+      viewLeaderBoard: false
     }
   },
   components: {
@@ -98,6 +99,9 @@ export default {
     }),
     eventBus.$on('start=new-game', () => {
       this.setupNewGame();
+    }),
+    eventBus.$on('view-leaderboard', () => {
+      this.viewLeaderBoard = !this.viewLeaderBoard;
     })
   },
   watch: {
