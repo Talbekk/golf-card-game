@@ -1,10 +1,10 @@
 <template lang="html">
   <div id="leaderboard-container">
+    <button type="button" v-on:click="setFilter" name="button">{{this.filter ? "Show All Scores" : "Show Best Scores"}}</button>
     <leaderboard v-if="sortedLeaderBoard" :scores='this.sortedLeaderBoard' :title='newTitle'></leaderboard>
     <leaderboard v-if="sortedScores" :scores='this.sortedScores' :title='title'></leaderboard>
   </div>
 </template>
-
 <script>
 
 import {db} from '../firebase.js';
@@ -19,7 +19,8 @@ export default {
       leaderBoard: {},
       sortedLeaderBoard: [],
       title: "Legacy",
-      newTitle: "Current"
+      newTitle: "Current",
+      filter: true,
     }
   },
   components: {
@@ -39,12 +40,40 @@ export default {
       })
     },
     leaderBoard(){
+      this.fillLeaderboard();
+      this.filterView();
+    },
+    filter(){
+      if (this.filter === true){
+        console.log("true");
+        this.filterView();
+      } else {
+        console.log("false");
+        this.fillLeaderboard();
+      }
+    }
+  },
+  methods: {
+    filterView(){
+        const array = [...this.sortedLeaderBoard];
+        console.log("array", array);
+        const filteredArray = array.filter((elem, index, self) =>
+          self.findIndex((t) => {
+            return (t.golfer === elem.golfer)
+          }) === index)
+        this.sortedLeaderBoard = filteredArray;
+        console.log("filteredArray", filteredArray);
+    },
+    fillLeaderboard(){
       this.sortedLeaderBoard = Object.keys(this.leaderBoard).map(key => {
         return this.leaderBoard[key];
       })
       this.sortedLeaderBoard.sort(function(a,b){
         return a.score-b.score;
       })
+    },
+    setFilter(){
+      this.filter = !this.filter;
     }
   }
  }
