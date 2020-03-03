@@ -1,9 +1,9 @@
 <template lang="html">
   <div id="game-header">
-    <button v-if="!this.gameStatus && !this.selectScoresPage" v-on:click="newGame" name="button">Play Again?</button>
-    <button v-if="this.gameStatus && !this.selectScoresPage" v-on:click="newGame" name="button">Restart</button>
+    <b-button pill v-if="!this.gameStatus && !this.selectScoresPage" v-on:click="newGame" name="button">Play Again?</b-button>
+    <b-button pill v-if="this.gameStatus && !this.selectScoresPage" v-on:click="newGame" name="button">Restart</b-button>
     <score-card v-if="!this.selectScoresPage" :scoreCard="scoreCard"></score-card>
-    <button v-on:click="startNextHole" v-if="checkIfHoleFinished">Next Round</button>
+    <b-button pill v-on:click="startNextHole" v-if="checkIfHoleFinished">Next Round</b-button>
     <leaderboard-container v-if="!this.gameStatus" :selectScoresPage="selectScoresPage"></leaderboard-container/>
   </div>
 </template>
@@ -62,16 +62,16 @@ export default {
   width: 75%;
 }
 
-button {
-  color: #fff !important;
+b-button {
+  /* color: #fff !important;
   text-transform: uppercase;
   text-decoration: none;
-  background: #60a3bc;
+  background: #60a3bc; */
   padding: 15px;
   border-radius: 75px;
   display: inline-block;
-  border: none;
-  transition: all 0.4s ease 0s;
+  /* border: none;
+  transition: all 0.4s ease 0s; */
 }
 
 </style>

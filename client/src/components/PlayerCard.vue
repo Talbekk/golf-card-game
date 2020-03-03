@@ -3,8 +3,8 @@
     <img class="card-icon" v-if="hidden" v-on:click="showCard" src="../assets/CardBack.png"/>
     <img class="card-icon" v-if="!hidden" :src="this.playerCard.image"/>
     <div id="button-container" v-if="!lockedIn">
-      <button type="button" v-on:click="lockCard" name="button">LOCK IN</button>
-      <button type="button" v-on:click="switchCard" name="button">SWITCH</button>
+      <b-button pill type="button" v-on:click="lockCard" name="button">LOCK</b-button>
+      <b-button pill type="button" v-on:click="switchCard" name="button">SWITCH</b-button>
     </div>
   </li>
 </template>
@@ -78,9 +78,8 @@ li {
   margin-left: auto;
   margin-right: auto;
   display: grid;
-  grid-template-columns: 75px 75px;
+  grid-template-columns: 80px 80px;
   grid-gap: 10px;
-
 }
 
 .card-icon {
