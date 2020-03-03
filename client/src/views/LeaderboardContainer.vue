@@ -25,4 +25,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#score-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 5px 12px 5px;
+  max-width: 600px;
+  font-size: 13px;
+}
+
 </style>

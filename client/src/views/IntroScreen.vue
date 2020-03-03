@@ -11,10 +11,6 @@
      </b-form>
   </div>
   </div>
-  <div id="score-container">
-    <b-button pill to="/leaderboard">Leaderboard</b-button>
-    <!-- <leaderboard-container :selectScoresPage="selectScoresPage"></leaderboard-container> -->
-  </div>
     </div>
 </template>
 
@@ -97,14 +93,6 @@ h4 {
   margin-left: auto;
   margin-right: auto;
 
-}
-
-#score-container {
-  margin-left: auto;
-  margin-right: auto;
-  padding: 8px 5px 12px 5px;
-  max-width: 600px;
-  font-size: 13px;
 }
 
 #username{
