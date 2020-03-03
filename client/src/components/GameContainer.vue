@@ -97,7 +97,7 @@ export default {
     eventBus.$on('start-next-hole', () => {
       this.nextHole();
     }),
-    eventBus.$on('start=new-game', () => {
+    eventBus.$on('start-new-game', () => {
       this.setupNewGame();
     }),
     eventBus.$on('view-leaderboard', () => {
