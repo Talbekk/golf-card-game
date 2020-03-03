@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
   <div id="intro-screen" v-if="!selectScoresPage">
-    <game-rules></game-rules>
+    <!-- <game-rules></game-rules> -->
    <div id="name-box" v-if="!newGame">
      <b-form id="user-name" v-on:submit.prevent="handleClick">
        <b-form-group id="username" label="Enter the name of your golfer:">
@@ -12,7 +12,8 @@
   </div>
   </div>
   <div id="score-container">
-    <leaderboard-container :selectScoresPage="selectScoresPage"></leaderboard-container>
+    <b-button pill to="/leaderboard">Leaderboard</b-button>
+    <!-- <leaderboard-container :selectScoresPage="selectScoresPage"></leaderboard-container> -->
   </div>
     </div>
 </template>
@@ -20,8 +21,8 @@
 <script>
 import {eventBus} from '../main.js';
 import ScoresPage from '../components/ScoresPage.vue';
-import GameRules from '../components/GameRules.vue';
-import LeaderboardContainer from '../components/LeaderboardContainer.vue';
+// import GameRules from './GameRules.vue';
+import LeaderboardContainer from './LeaderboardContainer.vue';
 
 export default {
   name: 'intro-screen',
@@ -35,7 +36,7 @@ export default {
   },
   components: {
     "scores-page": ScoresPage,
-    "game-rules": GameRules,
+    // "game-rules": GameRules,
     "leaderboard-container": LeaderboardContainer
   },
   mounted() {

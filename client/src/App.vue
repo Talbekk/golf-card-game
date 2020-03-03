@@ -1,10 +1,13 @@
 <template>
   <div id="app">
     <logo-header :tutorialStatus="tutorialStatus"></logo-header>
-    <div id="intro-container">
-      <intro-screen v-if="!tutorialStatus"></intro-screen>
+    <router-view></router-view>
+    <!-- <div id="intro-container">
+      <intro-screen v-if="!tutorialStatus">
+      </intro-screen>
     </div>
-    <game v-if="tutorialStatus" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></game>
+    <game v-if="tutorialStatus" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus">
+    </game> -->
   </div>
 </template>
 

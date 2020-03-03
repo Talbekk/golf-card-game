@@ -1,7 +1,6 @@
 <template lang="html">
   <div id="game-header">
     <b-button pill v-if="!this.gameStatus && !this.selectScoresPage" v-on:click="newGame" name="button">Play Again?</b-button>
-    <!-- <b-button pill v-if="this.gameStatus && !this.selectScoresPage" v-on:click="newGame" name="button">Restart</b-button> -->
     <score-card v-if="!this.selectScoresPage" :scoreCard="scoreCard"></score-card>
     <b-button pill v-on:click="startNextHole" v-if="checkIfHoleFinished">Next Round</b-button>
     <leaderboard-container v-if="!this.gameStatus" :selectScoresPage="selectScoresPage"></leaderboard-container/>
@@ -13,7 +12,7 @@ import ScoreCard from './ScoreCard.vue';
 import {eventBus} from '../main.js';
 import ScoresPage from './ScoresPage.vue';
 import IntroScreen from '../views/IntroScreen.vue';
-import LeaderboardContainer from './LeaderboardContainer.vue';
+import LeaderboardContainer from '../views/LeaderboardContainer.vue';
 
 export default {
   name: "game-header",
