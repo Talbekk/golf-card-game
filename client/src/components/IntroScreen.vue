@@ -3,19 +3,16 @@
   <div id="intro-screen" v-if="!selectScoresPage">
     <game-rules></game-rules>
    <div id="name-box" v-if="!newGame">
-     <h4>Please enter the name of your golfer:</h4>
-     <form id="user-name" v-on:submit.prevent="handleClick">
-       <input id="username" type="text" name="username" v-model='userName' required>
-       <input id="submit" type="submit" value="Tee Off">
-      </form>
+     <b-form id="user-name" v-on:submit.prevent="handleClick">
+       <b-form-group id="username" label="Enter the name of your golfer:">
+         <b-form-input id="username" type="text" name="username" v-model='userName' required placeholder="Enter name"/>
+       </b-form-group>
+       <b-button id="submit" type="submit">Tee Off</b-button>
+     </b-form>
   </div>
-    <button v-if='newGame' v-on:click='clickedDealCards'>Tee Off</button>
   </div>
   <div id="score-container">
     <leaderboard-container :selectScoresPage="selectScoresPage"></leaderboard-container>
-  <!-- <scores-page v-if='selectScoresPage'></scores-page>
-  <button v-if="!selectScoresPage" v-on:click="seeScoresPage">Leaderboard</button>
-  <button v-if="selectScoresPage" v-on:click="seeScoresPage">Back</button> -->
   </div>
     </div>
 </template>
@@ -82,11 +79,8 @@ h4 {
   text-decoration: underline;
 }
 #submit {
-  color: #fff !important;
-  text-transform: uppercase;
   text-decoration: none;
-  background: #60a3bc;
-  padding: 20px;
+  padding: 15px;
   border-radius: 75px;
   display: inline-block;
   border: none;
