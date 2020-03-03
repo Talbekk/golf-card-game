@@ -13,9 +13,6 @@
   </div>
   <div id="score-container">
     <leaderboard-container :selectScoresPage="selectScoresPage"></leaderboard-container>
-  <!-- <scores-page v-if='selectScoresPage'></scores-page>
-  <button v-if="!selectScoresPage" v-on:click="seeScoresPage">Leaderboard</button>
-  <button v-if="selectScoresPage" v-on:click="seeScoresPage">Back</button> -->
   </div>
     </div>
 </template>
@@ -54,9 +51,6 @@ export default {
       eventBus.$emit('username-selected', this.userName);
       this.clickedNewGame();
     }
-    // seeScoresPage(){
-    //   this.selectScoresPage = !this.selectScoresPage;
-    // }
   }
 }
 </script>

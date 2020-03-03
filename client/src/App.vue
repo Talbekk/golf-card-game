@@ -40,7 +40,6 @@ export default {
     .then(res => res.json())
     .then(deckData => this.deck = deckData)
     .then(setTimeout( () => {this.getDeck() }, 1000)),
-    console.log("deck", this.deck);
 
     eventBus.$on('clicked-new-game', () => {
       setTimeout( () => {eventBus.$emit('get-cards')}, 500)
@@ -75,10 +74,10 @@ export default {
   flex-wrap: wrap;
 }
 
-/* html, body {
+html, body {
   height: 100%;
-  background-color: ;
-} */
+  background-color: #55cc44;
+}
 
 button {
   color: #fff !important;
