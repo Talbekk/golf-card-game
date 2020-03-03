@@ -19,9 +19,9 @@
 
 <script>
 import {eventBus} from '../main.js';
-import ScoresPage from './ScoresPage.vue';
-import GameRules from './GameRules.vue';
-import LeaderboardContainer from './LeaderboardContainer.vue';
+import ScoresPage from '../components/ScoresPage.vue';
+import GameRules from '../components/GameRules.vue';
+import LeaderboardContainer from '../components/LeaderboardContainer.vue';
 
 export default {
   name: 'intro-screen',

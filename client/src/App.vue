@@ -10,7 +10,7 @@
 
 <script>
 
-import IntroScreen from './components/IntroScreen.vue';
+import IntroScreen from './views/IntroScreen.vue';
 import {eventBus} from './main.js';
 import {scoreRef} from './firebase.js';
 import LogoHeader from './components/LogoHeader.vue';

@@ -12,7 +12,7 @@
 import ScoreCard from './ScoreCard.vue';
 import {eventBus} from '../main.js';
 import ScoresPage from './ScoresPage.vue';
-import IntroScreen from './IntroScreen.vue';
+import IntroScreen from '../views/IntroScreen.vue';
 import LeaderboardContainer from './LeaderboardContainer.vue';
 
 export default {
