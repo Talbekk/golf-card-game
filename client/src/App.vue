@@ -4,7 +4,7 @@
     <div id="intro-container">
       <intro-screen v-if="!tutorialStatus"></intro-screen>
     </div>
-    <game-container v-if="tutorialStatus" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></game-container>
+    <game v-if="tutorialStatus" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></game>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ import IntroScreen from './components/IntroScreen.vue';
 import {eventBus} from './main.js';
 import {scoreRef} from './firebase.js';
 import LogoHeader from './components/LogoHeader.vue';
-import GameContainer from './components/GameContainer.vue';
+import Game from './views/Game.vue';
 
 export default {
   name: 'app',
@@ -30,7 +30,7 @@ export default {
   components: {
     "intro-screen": IntroScreen,
     "logo-header": LogoHeader,
-    "game-container": GameContainer
+    "Game": Game
   },
   mounted(){
 

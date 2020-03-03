@@ -17,19 +17,19 @@
 
 <script>
 
-import DiscardPile from './DiscardPile.vue';
-import TopCard from './TopCard.vue';
-import PlayerCards from './PlayerCards.vue';
-import GameHeader from './GameHeader.vue';
-import ScoreCard from './ScoreCard.vue';
-import CardDeck from './CardDeck.vue';
-import InfoBox from './InfoBox.vue';
+import DiscardPile from '../components/DiscardPile.vue';
+import TopCard from '../components/TopCard.vue';
+import PlayerCards from '../components/PlayerCards.vue';
+import GameHeader from '../components/GameHeader.vue';
+import ScoreCard from '../components/ScoreCard.vue';
+import CardDeck from '../components/CardDeck.vue';
+import InfoBox from '../components/InfoBox.vue';
 import {eventBus} from '../main.js';
 import {scoreRef} from '../firebase.js';
 import {leaderboardRef} from '../firebase.js';
 
 export default {
-  name: "game-container",
+  name: "game",
   props: ['gameDeck', 'userName', 'gameStatus'],
   data(){
     return {
