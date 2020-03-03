@@ -74,10 +74,10 @@ export default {
   flex-direction: column;
   flex-wrap: wrap;
 }
-
-/* html, body {
+/* 
+html, body {
   height: 100%;
-  background-color: ;
+  background-color: #55cc44;
 } */
 
 button {

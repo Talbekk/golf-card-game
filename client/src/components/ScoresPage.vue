@@ -1,8 +1,11 @@
 <template lang="html">
   <div id="leaderboard-container">
-    <button type="button" v-on:click="setFilter" name="button">{{this.filter ? "Show All Scores" : "Show Best Scores"}}</button>
-    <leaderboard v-if="sortedLeaderBoard" :scores='this.sortedLeaderBoard' :title='newTitle'></leaderboard>
-    <leaderboard v-if="sortedScores" :scores='this.sortedScores' :title='title'></leaderboard>
+    <div id="views-container">
+      <b-button pill type="button" v-on:click="setFilter" name="button">{{this.filter ? "Show All Scores" : "Show Best Scores"}}</b-button>
+      <b-button pill type="button" v-on:click="seeTable" name="button">{{this.tableFilter ? "Show Legacy" : "Show Current"}}</b-button>
+    </div>
+    <leaderboard v-if="sortedLeaderBoard && tableFilter" :scores='this.sortedLeaderBoard' :title='newTitle'></leaderboard>
+    <leaderboard v-if="sortedScores && !tableFilter" :scores='this.sortedScores' :title='title'></leaderboard>
   </div>
 </template>
 <script>
@@ -21,6 +24,7 @@ export default {
       title: "Legacy",
       newTitle: "Current",
       filter: true,
+      tableFilter: true
     }
   },
   components: {
@@ -45,10 +49,8 @@ export default {
     },
     filter(){
       if (this.filter === true){
-        console.log("true");
         this.filterView();
       } else {
-        console.log("false");
         this.fillLeaderboard();
       }
     }
@@ -56,13 +58,11 @@ export default {
   methods: {
     filterView(){
         const array = [...this.sortedLeaderBoard];
-        console.log("array", array);
         const filteredArray = array.filter((elem, index, self) =>
           self.findIndex((t) => {
             return (t.golfer === elem.golfer)
           }) === index)
         this.sortedLeaderBoard = filteredArray;
-        console.log("filteredArray", filteredArray);
     },
     fillLeaderboard(){
       this.sortedLeaderBoard = Object.keys(this.leaderBoard).map(key => {
@@ -74,6 +74,9 @@ export default {
     },
     setFilter(){
       this.filter = !this.filter;
+    },
+    seeTable(){
+      this.tableFilter = !this.tableFilter;
     }
   }
  }
@@ -84,11 +87,18 @@ export default {
 #leaderboard-container{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   padding: 8px 5px 12px 5px;
   font-size: 13px;
   margin-left: auto;
   margin-right: auto;
+}
+
+#views-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 50px;
 }
 
 
