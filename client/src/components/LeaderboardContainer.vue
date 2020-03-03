@@ -1,8 +1,8 @@
 <template lang="html">
   <div id="score-container">
   <scores-page v-if='selectScoresPage'></scores-page>
-  <button v-if="!selectScoresPage" v-on:click="seeScoresPage">Leaderboard</button>
-  <button v-if="selectScoresPage" v-on:click="seeScoresPage">Back</button>
+  <b-button pill v-if="!selectScoresPage" v-on:click="seeScoresPage">Leaderboard</b-button>
+  <b-button pill v-if="selectScoresPage" v-on:click="seeScoresPage">Back</b-button>
   </div>
 </template>
 

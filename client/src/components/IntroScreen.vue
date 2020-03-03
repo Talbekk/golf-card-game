@@ -85,7 +85,7 @@ h4 {
   display: inline-block;
   border: none;
   transition: all 0.4s ease 0s;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 #user-name {
