@@ -1,6 +1,15 @@
 <template lang="html">
   <div id="game-header">
-    <img class="game-logo" src="../assets/GameLogo.svg"/>
+    <b-navbar toggleable="lg" variant="faded" type="light">
+      <b-navbar-brand href="#">
+        <img src="../assets/GameLogo.svg" height="75" alt=""/>
+      </b-navbar-brand>
+      <b-navbar-nav>
+      <b-nav-item href="#">Home</b-nav-item>
+      <b-nav-item href="#">Leaderboard</b-nav-item>
+      <b-nav-item href="#">Rules</b-nav-item>
+      </b-navbar-nav>
+    </b-navbar>
   </div>
 </template>
 

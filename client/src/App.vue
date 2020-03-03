@@ -74,7 +74,7 @@ export default {
   flex-direction: column;
   flex-wrap: wrap;
 }
-/* 
+/*
 html, body {
   height: 100%;
   background-color: #55cc44;
@@ -99,7 +99,6 @@ button {
   font-weight: bold;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 #header {
