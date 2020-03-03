@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <logo-header></logo-header>
+    <logo-header :tutorialStatus="tutorialStatus"></logo-header>
     <div id="intro-container">
       <intro-screen v-if="!tutorialStatus"></intro-screen>
     </div>

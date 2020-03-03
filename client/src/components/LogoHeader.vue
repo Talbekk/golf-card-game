@@ -8,14 +8,23 @@
       <b-nav-item href="#">Home</b-nav-item>
       <b-nav-item href="#">Leaderboard</b-nav-item>
       <b-nav-item href="#">Rules</b-nav-item>
+      <b-nav-item v-if="tutorialStatus" v-on:click="newGame" href="#">Restart Game</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
   </div>
 </template>
 
 <script>
+import {eventBus} from '../main.js';
+
 export default {
-  name: "logo-header"
+  name: "logo-header",
+  props:['tutorialStatus'],
+  methods: {
+    newGame(){
+      eventBus.$emit('start-new-game');
+    }
+  }
 }
 </script>
 
