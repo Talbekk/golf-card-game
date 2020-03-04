@@ -4,8 +4,8 @@
       <b-button pill type="button" v-on:click="setFilter" name="button">{{this.filter ? "Show All Scores" : "Show Best Scores"}}</b-button>
       <b-button pill type="button" v-on:click="seeTable" name="button">{{this.tableFilter ? "Show Legacy" : "Show Current"}}</b-button>
     </div>
-    <leaderboard v-if="sortedLeaderBoard && tableFilter" :scores='this.sortedLeaderBoard' :title='newTitle'></leaderboard>
-    <leaderboard v-if="sortedScores && !tableFilter" :scores='this.sortedScores' :title='title'></leaderboard>
+    <leaderboard v-if="sortedLeaderBoard && tableFilter" :scores='this.sortedLeaderBoard' :title='newTitle' :gameStatus="gameStatus"></leaderboard>
+    <leaderboard v-if="sortedScores && !tableFilter" :scores='this.sortedScores' :title='title' :gameStatus="gameStatus"></leaderboard>
   </div>
 </template>
 <script>
@@ -15,6 +15,7 @@ import LeaderBoard from './LeaderBoard.vue';
 
 export default {
   name: "playerScores",
+  props:['gameStatus'],
   data(){
     return {
       scores: {},

@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <h3>{{title}} Leaderboard:</h3>
+    <h3 v-if="!gameStatus">{{title}} Leaderboard:</h3>
     <table>
   <tr>
     <th>#</th>
@@ -19,7 +19,7 @@
 <script>
 export default {
   name: "leaderBoard",
-  props: ['scores', 'title']
+  props: ['scores', 'title', 'gameStatus']
 }
 </script>
 

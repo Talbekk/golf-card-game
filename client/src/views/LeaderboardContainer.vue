@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="score-container">
-  <scores-page></scores-page>
+  <scores-page :gameStatus="gameStatus"></scores-page>
   </div>
 </template>
 
@@ -11,6 +11,7 @@ import {eventBus} from '../main.js';
 
 export default {
   name: 'leaderboard-container',
+  props:['gameStatus'],
   components: {
     "scores-page": ScoresPage
   },
