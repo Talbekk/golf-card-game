@@ -41,7 +41,7 @@ export default {
 ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  max-width: 75%;
+  max-width: 50%;
   margin-left: auto;
   margin-right: auto;
   grid-row-gap: 10px;

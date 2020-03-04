@@ -1,21 +1,20 @@
 <template lang="html">
   <div id="my-container">
-  <li>
-    <img class="card-icon" v-if="hidden" v-on:click="showCard" src="../assets/CardBack.png"/>
+    <li>
+    <img class="card-icon" v-if="hidden" v-on:click="showCard" v-on:dblclick="lockCard" src="../assets/CardBack.png"/>
     <img class="card-icon" v-if="!hidden" :src="this.playerCard.image"/>
     <div id="button-container" v-if="!lockedIn">
-      <b-button pill type="button" v-on:click="lockCard" name="button">LOCK</b-button>
+      <!-- <b-button pill type="button" v-on:click="lockCard" name="button">LOCK</b-button> -->
       <b-button pill type="button" v-on:click="switchCard" name="button">SWITCH</b-button>
-      <div class="my-3">
+      <!-- <div class="my-3">
       <b-button
       v-bind:id="`popover-reactive-${index}`"
       variant="primary"
       ref="button"
-      >Popover</b-button>
+      >Options</b-button>
+    </div> -->
     </div>
-    </div>
-  </li>
-
+    </li>
   <b-popover
       v-bind:target="`popover-reactive-${index}`"
       triggers="click"
@@ -23,18 +22,17 @@
       placement="right"
       container="my-container"
       ref="popover"
-      @hidden="onHidden"
     >
     <template v-slot:title>
         <b-button @click="onClose" class="close" aria-label="Close">
           <span class="d-inline-block" aria-hidden="true">&times;</span>
         </b-button>
-        Interactive Content
+        Pick One:
       </template>
-      <div>
-        <b-button @click="lockCard" size="sm" variant="danger">LOCK</b-button>
-        <b-button @click="switchCard" size="sm" variant="danger">SWITCH</b-button>
-    </div>
+      <div id="choice-container">
+        <b-button @click="lockCard" size="sm" variant="primary">LOCK</b-button>
+        <b-button @click="switchCard" size="sm" variant="primary">SWITCH</b-button>
+      </div>
   </b-popover>
 </div>
 </template>
@@ -100,22 +98,22 @@ export default {
       console.log(this.index);
         this.popoverShow = false;
       },
-      onHidden() {
-      // Called just after the popover has finished hiding
-      // Bring focus back to the button
-      this.focusRef(this.$refs.button);
-    },
-    focusRef(ref) {
-        // Some references may be a component, functional component, or plain element
-        // This handles that check before focusing, assuming a `focus()` method exists
-        // We do this in a double `$nextTick()` to ensure components have
-        // updated & popover positioned first
-        this.$nextTick(() => {
-          this.$nextTick(() => {
-            ;(ref.$el || ref).focus()
-          })
-        })
-      },
+    //   onHidden() {
+    //   // Called just after the popover has finished hiding
+    //   // Bring focus back to the button
+    //   this.focusRef(this.$refs.button);
+    // },
+    // focusRef(ref) {
+    //     // Some references may be a component, functional component, or plain element
+    //     // This handles that check before focusing, assuming a `focus()` method exists
+    //     // We do this in a double `$nextTick()` to ensure components have
+    //     // updated & popover positioned first
+    //     this.$nextTick(() => {
+    //       this.$nextTick(() => {
+    //         ;(ref.$el || ref).focus()
+    //       })
+    //     })
+    //   },
       getID(){
         return `popover-reactive-${this.index+1}`;
       }
@@ -133,9 +131,9 @@ li {
 #button-container {
   margin-left: auto;
   margin-right: auto;
-  display: grid;
+  /* display: grid;
   grid-template-columns: 80px 80px;
-  grid-gap: 10px;
+  grid-gap: 10px; */
 }
 
 .card-icon {
@@ -144,7 +142,17 @@ li {
   max-width: 8em;
   max-height: 10em;
   padding: 1.5em;
+}
 
+#choice-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+b-button {
+  padding: 10px;
 }
 
 </style>
