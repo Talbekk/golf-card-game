@@ -32,7 +32,8 @@
         Interactive Content
       </template>
       <div>
-        <b-button @click="onClose" size="sm" variant="danger">Cancel</b-button>
+        <b-button @click="lockCard" size="sm" variant="danger">LOCK</b-button>
+        <b-button @click="switchCard" size="sm" variant="danger">SWITCH</b-button>
     </div>
   </b-popover>
 </div>
@@ -83,11 +84,13 @@ export default {
       eventBus.$emit('card-value', this.playerCard)
       this.lockedIn = true;
       this.revealCard();
+      this.onClose();
     },
     switchCard() {
       eventBus.$emit('player-card', this.playerCard)
       this.lockedIn = true;
       this.revealCard();
+      this.onClose();
     },
     resetCard(){
       this.hidden = true;
