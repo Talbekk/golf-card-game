@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <logo-header :tutorialStatus="tutorialStatus"></logo-header>
-    <router-view></router-view>
+    <router-view :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
     <!-- <div id="intro-container">
       <intro-screen v-if="!tutorialStatus">
       </intro-screen>
@@ -46,7 +46,7 @@ export default {
     console.log("deck", this.deck);
 
     eventBus.$on('clicked-new-game', () => {
-      setTimeout( () => {eventBus.$emit('get-cards')}, 500)
+      setTimeout( () => {eventBus.$emit('get-cards')}, 1000)
       this.tutorialStatus = true;
     }),
     eventBus.$on('username-selected', (name) => {

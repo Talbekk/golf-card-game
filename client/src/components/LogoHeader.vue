@@ -7,7 +7,7 @@
       <b-navbar-nav>
       <b-nav-item to="/">Home</b-nav-item>
       <b-nav-item to="/leaderboard">Leaderboard</b-nav-item>
-      <b-nav-item href="#">Rules</b-nav-item>
+      <b-nav-item to="/rules">Rules</b-nav-item>
       <b-nav-item v-if="tutorialStatus" v-on:click="newGame" href="#" right>Restart Game</b-nav-item>
       </b-navbar-nav>
     </b-navbar>

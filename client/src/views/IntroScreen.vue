@@ -3,7 +3,7 @@
   <div id="intro-screen" v-if="!selectScoresPage">
     <!-- <game-rules></game-rules> -->
    <div id="name-box" v-if="!newGame">
-     <b-form id="user-name" v-on:submit.prevent="handleClick">
+     <b-form id="user-name" v-on:submit="handleClick">
        <b-form-group id="username" label="Enter the name of your golfer:">
          <b-form-input id="username" type="text" name="username" v-model='userName' required placeholder="Enter name"/>
        </b-form-group>
@@ -35,6 +35,13 @@ export default {
     // "game-rules": GameRules,
     "leaderboard-container": LeaderboardContainer
   },
+  watch : {
+    userName(){
+      console.log("handleclick", this.userName);
+      eventBus.$emit('username-selected', this.userName);
+      this.clickedNewGame();
+    }
+  },
   mounted() {
     eventBus.$on('view-leaderboard', () => {
       this.selectScoresPage = !this.selectScoresPage;
@@ -45,6 +52,7 @@ export default {
       eventBus.$emit('clicked-new-game');
     },
     handleClick(){
+      console.log("handleclick", handleclick);
       eventBus.$emit('username-selected', this.userName);
       this.clickedNewGame();
     }
