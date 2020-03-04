@@ -110,7 +110,6 @@ export default {
       let cardValue = this.currentCard.value;
       let amount = this.calculateScore(cardValue);
       let matchingCardValues = this.lockedCards.filter(card => cardValue === card)
-      console.log("cardvalues", matchingCardValues);
       if (matchingCardValues.length === 3){
           this.runningTotal = -30;
       }
@@ -133,6 +132,7 @@ export default {
   counter(){
     if (this.counter === 4){
       this.scoreCard.push(this.runningTotal);
+      eventBus.$emit("score-card", this.scoreCard);
     }
   },
   //game

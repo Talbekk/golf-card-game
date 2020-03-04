@@ -9,18 +9,26 @@
       <b-nav-item v-if="!gameStatus" to="/leaderboard">Leaderboard</b-nav-item>
       <div>
         <b-nav-item v-if="gameStatus" v-b-modal.modal-1>Leaderboard</b-nav-item>
-        <b-modal id="modal-1" scrollable title="Leaderboard">
+        <b-modal id="modal-1" scrollable title="Leaderboard" ok-only>
           <scores-page/>
         </b-modal>
         </div>
       <b-nav-item v-if="!gameStatus" to="/rules">Rules</b-nav-item>
       <div>
         <b-nav-item v-if="gameStatus" v-b-modal.modal-2>Rules</b-nav-item>
-          <b-modal id="modal-2" scrollable title="Rules">
+          <b-modal id="modal-2" scrollable title="Rules" ok-only>
             <game-rules/>
           </b-modal>
         </div>
-      <b-nav-item v-if="gameStatus" v-on:click="newGame" href="#" right>Restart Game</b-nav-item>
+      </b-navbar-nav>
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item v-if="gameStatus" v-on:click="newGame" href="#" right>Restart Game</b-nav-item>
+        <div>
+          <b-nav-item v-if="gameStatus" v-b-modal.modal-3>Score Card</b-nav-item>
+            <b-modal id="modal-3" scrollable title="Score Card" ok-only>
+              <score-card :scoreCard="scoreCard"/></score-card>
+            </b-modal>
+          </div>
       </b-navbar-nav>
     </b-navbar>
   </div>
@@ -30,15 +38,17 @@
 
 import {eventBus} from '../main.js';
 
-import ScoresPage from '../components/ScoresPage.vue';
+import ScoresPage from './ScoresPage.vue';
 import GameRules from '../views/GameRules.vue';
+import ScoreCard from './ScoreCard.vue';
 
 export default {
   name: "logo-header",
-  props:['gameStatus'],
+  props:['gameStatus', 'scoreCard'],
   components: {
     'scores-page': ScoresPage,
-    'game-rules': GameRules
+    'game-rules': GameRules,
+    'score-card': ScoreCard
   },
   methods: {
     newGame(){
