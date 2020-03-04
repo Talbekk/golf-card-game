@@ -95,7 +95,6 @@ export default {
       this.lockedIn = false;
     },
     onClose() {
-      console.log(this.index);
         this.popoverShow = false;
       },
     //   onHidden() {

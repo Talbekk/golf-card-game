@@ -26,8 +26,6 @@ export default {
     }
   },
   mounted(){
-    console.log("scorecard", this.scoreCard);
-    console.log("scores", this.scores);
     for ( let hole = 1; hole <= 9; hole++){
       this.holes.push(hole);
     }
@@ -38,16 +36,14 @@ export default {
   },
     watch: {
       scoreCard() {
-        console.log("watch");
 
         if (this.scoreCard.length === 0){
-          console.log("fail");
+
           this.scores = [];
           for (let score = 1; score <= 9; score++){
             this.scores.push("");
           }
         } else {
-          console.log("pass");
         let counter = 0;
         for (const currentScore of this.scoreCard){
         this.scores.splice(counter, 1, currentScore);
@@ -72,16 +68,13 @@ export default {
   },
   methods:{
     getScores(){
-      console.log("watch");
 
       if (this.scoreCard.length === 0){
-        console.log("fail");
         this.scores = [];
         for (let score = 1; score <= 9; score++){
           this.scores.push("");
         }
       } else {
-        console.log("pass");
       let counter = 0;
       for (const currentScore of this.scoreCard){
       this.scores.splice(counter, 1, currentScore);

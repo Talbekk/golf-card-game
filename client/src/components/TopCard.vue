@@ -1,7 +1,8 @@
 <template lang="html">
   <div id="top-card">
     <h4>Top Card:</h4>
-    <img class="card-icon" :src="this.topCard.image"/>
+    <img class="card-icon"
+    :src="this.topCard.image"/>
   </div>
 </template>
 
@@ -12,7 +13,7 @@ import {eventBus} from '../main.js';
 export default {
   name: "topCard",
   props: ['topCard']
-  }
+}
 </script>
 
 <style lang="css" scoped>
