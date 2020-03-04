@@ -53,6 +53,7 @@ export default {
       this.gameStatus = false;
       this.tutorialStatus = false;
       this.userName = null;
+      this.scoreCard = [];
     }),
     eventBus.$on('score-card', (card) => {
       this.scoreCard = card;

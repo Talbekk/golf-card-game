@@ -1,7 +1,7 @@
 <template lang="html">
-  <div>
+  <div id="cards-container">
     <ul>
-      <player-card v-for="(playerCard, index) in playerCards" :playerCard='playerCard' :key='index' :shownCards='shownCards' :lockedCards='lockedCards' :counter='counter'></player-card>
+      <player-card v-for="(playerCard, index) in playerCards" :playerCard='playerCard' :key='index' :index='index' :shownCards='shownCards' :lockedCards='lockedCards' :counter='counter'></player-card>
     </ul>
   </div>
 </template>
@@ -39,17 +39,12 @@ export default {
 <style lang="css" scoped>
 
 ul {
-  /* display: grid;
+  display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-column-gap: 100px; */
   max-width: 75%;
   margin-left: auto;
   margin-right: auto;
-  /* grid-row-gap: 5px; */
-  display: flex;
-  flex-direction: center;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  grid-row-gap: 10px;
 }
 
 </style>

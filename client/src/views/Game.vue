@@ -9,7 +9,7 @@
       <top-card v-if='topCard' :topCard='topCard'></top-card>
       <info-box></info-box>
     </div>
-    <div v-if="playerCards && !viewLeaderBoard">
+    <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
       <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards'></player-cards>
     </div>
   </div>
@@ -226,6 +226,7 @@ checkIfHoleFinished(){
     setupNewGame(){
       this.setupGame();
       this.scoreCard = [];
+      eventBus.$emit("score-card", this.scoreCard);
       this.counter = 0;
       this.currentHole = 1;
       this.roundDeck = [];
