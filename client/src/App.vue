@@ -1,13 +1,7 @@
 <template>
   <div id="app">
-    <logo-header :tutorialStatus="tutorialStatus"></logo-header>
+    <logo-header :gameStatus="gameStatus"></logo-header>
     <router-view :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
-    <!-- <div id="intro-container">
-      <intro-screen v-if="!tutorialStatus">
-      </intro-screen>
-    </div>
-    <game v-if="tutorialStatus" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus">
-    </game> -->
   </div>
 </template>
 
@@ -25,7 +19,7 @@ export default {
     return {
       deck: [],
       gameDeck: [], //game
-      gameStatus: true, //game
+      gameStatus: false, //game
       tutorialStatus: false,
       userName: null //game
     }
@@ -43,10 +37,9 @@ export default {
     .then(res => res.json())
     .then(deckData => this.deck = deckData)
     .then(setTimeout( () => {this.getDeck() }, 1000)),
-    console.log("deck", this.deck);
 
     eventBus.$on('clicked-new-game', () => {
-      setTimeout( () => {eventBus.$emit('get-cards')}, 1000)
+      setTimeout( () => {eventBus.$emit('start-new-game')}, 1000)
       this.tutorialStatus = true;
     }),
     eventBus.$on('username-selected', (name) => {
@@ -54,6 +47,11 @@ export default {
     }),
     eventBus.$on('game-status', (value) => {
       this.gameStatus=value;
+    }),
+    eventBus.$on('reset-app', () => {
+      this.gameStatus = false;
+      this.tutorialStatus = false;
+      this.userName = null;
     })
   },
   methods: {

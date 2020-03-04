@@ -1,7 +1,6 @@
 <template lang="html">
   <div class="">
   <div id="intro-screen" v-if="!selectScoresPage">
-    <!-- <game-rules></game-rules> -->
    <div id="name-box" v-if="!newGame">
      <b-form id="user-name" v-on:submit="handleClick">
        <b-form-group id="username" label="Enter the name of your golfer:">
@@ -17,7 +16,6 @@
 <script>
 import {eventBus} from '../main.js';
 import ScoresPage from '../components/ScoresPage.vue';
-// import GameRules from './GameRules.vue';
 import LeaderboardContainer from './LeaderboardContainer.vue';
 
 export default {
@@ -32,7 +30,6 @@ export default {
   },
   components: {
     "scores-page": ScoresPage,
-    // "game-rules": GameRules,
     "leaderboard-container": LeaderboardContainer
   },
   watch : {
@@ -56,9 +53,6 @@ export default {
       eventBus.$emit('username-selected', this.userName);
       this.clickedNewGame();
     }
-    // seeScoresPage(){
-    //   this.selectScoresPage = !this.selectScoresPage;
-    // }
   }
 }
 </script>

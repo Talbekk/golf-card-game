@@ -231,7 +231,6 @@ checkIfHoleFinished(){
       this.roundDeck = [];
       this.getCards();
       eventBus.$emit('game-status', true);
-      // this.gameStatus = true;
       this.topCardStatus = false;
     },
     // round

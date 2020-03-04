@@ -5,10 +5,10 @@
         <img src="../assets/GameLogo.svg" height="75" alt=""/>
       </b-navbar-brand>
       <b-navbar-nav>
-      <b-nav-item to="/">Home</b-nav-item>
+      <b-nav-item to="/" v-on:click="reset">Home</b-nav-item>
       <b-nav-item to="/leaderboard">Leaderboard</b-nav-item>
       <b-nav-item to="/rules">Rules</b-nav-item>
-      <b-nav-item v-if="tutorialStatus" v-on:click="newGame" href="#" right>Restart Game</b-nav-item>
+      <b-nav-item v-if="gameStatus" v-on:click="newGame" href="#" right>Restart Game</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
   </div>
@@ -19,10 +19,13 @@ import {eventBus} from '../main.js';
 
 export default {
   name: "logo-header",
-  props:['tutorialStatus'],
+  props:['gameStatus'],
   methods: {
     newGame(){
       eventBus.$emit('start-new-game');
+    },
+    reset(){
+      eventBus.$emit('reset-app');
     }
   }
 }

@@ -1,8 +1,6 @@
 <template lang="html">
   <div id="score-container">
-  <b-button pill to="/" v-on:click="seeScoresPage">Back</b-button>
   <scores-page></scores-page>
-  <!-- <b-button pill v-if="!selectScoresPage" v-on:click="seeScoresPage">Leaderboard</b-button> -->
   </div>
 </template>
 

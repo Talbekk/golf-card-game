@@ -3,7 +3,6 @@
     <b-button pill v-if="!this.gameStatus && !this.selectScoresPage" v-on:click="newGame" name="button">Play Again?</b-button>
     <score-card v-if="!this.selectScoresPage" :scoreCard="scoreCard"></score-card>
     <b-button pill v-on:click="startNextHole" v-if="checkIfHoleFinished">Next Round</b-button>
-    <!-- <leaderboard-container v-if="!this.gameStatus" :selectScoresPage="selectScoresPage"></leaderboard-container/> -->
   </div>
 </template>
 
