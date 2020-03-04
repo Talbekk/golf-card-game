@@ -7,7 +7,7 @@
        <b-form-group id="username" label="Enter the name of your golfer:">
          <b-form-input id="username" type="text" name="username" v-model='userName' required placeholder="Enter name"/>
        </b-form-group>
-       <b-button id="submit" type="submit">Tee Off</b-button>
+       <b-button to="/game" id="submit" type="submit">Tee Off</b-button>
      </b-form>
   </div>
   </div>
