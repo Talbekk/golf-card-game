@@ -9,12 +9,17 @@
       <b-nav-item v-if="!gameStatus" to="/leaderboard">Leaderboard</b-nav-item>
       <div>
         <b-nav-item v-if="gameStatus" v-b-modal.modal-1>Leaderboard</b-nav-item>
-          <b-modal id="modal-1" scrollable title="Leaderboard">
-            <scores-page/>
-          </b-modal>
+        <b-modal id="modal-1" scrollable title="Leaderboard">
+          <scores-page/>
+        </b-modal>
         </div>
       <b-nav-item v-if="!gameStatus" to="/rules">Rules</b-nav-item>
-      <b-nav-item v-if="gameStatus" href="#">Rules</b-nav-item>
+      <div>
+        <b-nav-item v-if="gameStatus" v-b-modal.modal-2>Rules</b-nav-item>
+          <b-modal id="modal-2" scrollable title="Rules">
+            <game-rules/>
+          </b-modal>
+        </div>
       <b-nav-item v-if="gameStatus" v-on:click="newGame" href="#" right>Restart Game</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
