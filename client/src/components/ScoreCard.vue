@@ -50,7 +50,10 @@ export default {
         counter +=1;
       }
     }
-      }
+  },
+  totalScore(){
+    eventBus.$emit('total', this.totalScore);
+  }
     },
     scores() {
       if (this.scores.length === 9){

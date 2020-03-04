@@ -75,9 +75,11 @@ export default {
   methods: {
     newGame(){
       eventBus.$emit('start-new-game');
+      this.score = 0;
     },
     reset(){
       eventBus.$emit('reset-app');
+      this.score= 0;
     }
   }
 }
