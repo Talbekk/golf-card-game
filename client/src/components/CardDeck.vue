@@ -30,14 +30,14 @@ export default {
 <style lang="css" scoped>
 
 .card-icon-original {
-  max-width: 10em;
-  max-height: 10em;
+  max-width: 12em;
+  max-height: 14em;
   padding: 1.5em;
 }
 
 .card-icon-greyed {
-  max-width: 10em;
-  max-height: 10em;
+  max-width: 12em;
+  max-height: 14em;
   padding: 1.5em;
   filter: grayscale(75%);
 }

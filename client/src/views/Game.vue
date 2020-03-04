@@ -7,7 +7,7 @@
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
       <card-deck :topCardStatus='topCardStatus'></card-deck>
       <top-card v-if='topCard' :topCard='topCard'></top-card>
-      <info-box></info-box>
+      <!-- <info-box></info-box> -->
     </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
       <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards'></player-cards>

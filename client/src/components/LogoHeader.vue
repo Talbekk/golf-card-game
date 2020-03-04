@@ -22,6 +22,7 @@
         </div>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
+        <b-nav-item v-if="gameStatus" right>Current Score: {{this.score}}</b-nav-item>
         <b-nav-item v-if="gameStatus" v-on:click="newGame" href="#" right>Restart Game</b-nav-item>
         <div>
           <b-nav-item v-if="gameStatus" v-b-modal.modal-3>Score Card</b-nav-item>
@@ -44,11 +45,32 @@ import ScoreCard from './ScoreCard.vue';
 
 export default {
   name: "logo-header",
+  data(){
+    return{
+      score: 0
+    }
+  },
   props:['gameStatus', 'scoreCard'],
   components: {
     'scores-page': ScoresPage,
     'game-rules': GameRules,
     'score-card': ScoreCard
+  },
+  mounted(){
+    eventBus.$on('total', (total) => {
+      this.score = total;
+    })
+  },
+  watch: {
+    scoreCard(){
+      let amount = 0;
+      if(this.scoreCard.length > 0){
+        this.scoreCard.forEach((score) => {
+          amount += score;
+        })
+        this.score = amount;
+      }
+    }
   },
   methods: {
     newGame(){

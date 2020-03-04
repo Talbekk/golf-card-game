@@ -56,6 +56,10 @@ export default {
       if (this.scores.length === 9){
         eventBus.$emit('total-score', this.score);
       }
+
+    if (this.scores.length >= 1){
+        eventBus.$emit('total', this.total);
+    }
     },
     computed: {
       totalScore: function () {
@@ -64,6 +68,7 @@ export default {
           total += currentScore;
         }
         return total;
+          eventBus.$emit('total', this.total);
     }
   },
   methods:{

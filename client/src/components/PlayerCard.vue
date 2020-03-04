@@ -138,8 +138,8 @@ li {
 .card-icon {
   margin-left: auto;
   margin-right: auto;
-  max-width: 8em;
-  max-height: 10em;
+  max-width: 12em;
+  max-height: 14em;
   padding: 1.5em;
 }
 
