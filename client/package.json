@@ -12,6 +12,7 @@
     "firebase": "^7.7.0",
     "vue": "^2.6.10",
     "vue-router": "^3.1.6",
+    "vuedraggable": "^2.23.2",
     "vuefire": "^2.2.1"
   },
   "devDependencies": {

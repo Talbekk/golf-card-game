@@ -6,15 +6,18 @@
     <div v-if="!viewLeaderBoard" id="board-one">
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
       <card-deck :topCardStatus='topCardStatus'></card-deck>
+      <draggable id="topCard" :list="topCard" group="cards" @change="log">
       <top-card v-if='topCard' :topCard='topCard'></top-card>
+      </draggable>
       <!-- <info-box></info-box> -->
     </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
+      <draggable id="playerCards" :list="playerCards" group="cards" @change="log">
       <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards'></player-cards>
+    </draggable>
     </div>
   </div>
 </template>
-
 <script>
 
 import DiscardPile from '../components/DiscardPile.vue';
@@ -27,6 +30,7 @@ import InfoBox from '../components/InfoBox.vue';
 import {eventBus} from '../main.js';
 import {scoreRef} from '../firebase.js';
 import {leaderboardRef} from '../firebase.js';
+import draggable from 'vuedraggable';
 
 export default {
   name: "game",
@@ -55,7 +59,8 @@ export default {
     "discard-pile": DiscardPile,
     "card-deck": CardDeck,
     "info-box": InfoBox,
-    "game-header": GameHeader
+    "game-header": GameHeader,
+    draggable
   },
   mounted(){
     eventBus.$on('player-card', (card) => {
@@ -264,8 +269,10 @@ checkIfHoleFinished(){
        counter += score;
     })
     return counter;
-  }
-
+  },
+  log: function (evt) {
+  window.console.log(evt);
+}
   }
 }
 </script>
