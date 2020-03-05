@@ -7,7 +7,7 @@
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
       <card-deck :topCardStatus='topCardStatus'></card-deck>
       <draggable id="topCard" :list="topCard" group="cards" @change="log">
-      <top-card v-if='topCard' :topCard='topCard'></top-card>
+      <top-card v-if='topCard' :playerCards="playerCards" :topCard='topCard'></top-card>
       </draggable>
       <!-- <info-box></info-box> -->
     </div>

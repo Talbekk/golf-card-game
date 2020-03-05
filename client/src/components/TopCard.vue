@@ -12,7 +12,19 @@ import {eventBus} from '../main.js';
 
 export default {
   name: "topCard",
-  props: ['topCard']
+  props: ['topCard', 'playerCards'],
+  watch: {
+  topCard(){
+    if(this.topCard.length > 1){
+    const switchedCard = this.topCard.pop();
+    const index = this.playerCards.indexOf(switchedCard);
+    console.log("index", index);
+    eventBus.$emit('player-card', switchedCard);
+    eventBus.$emit('switched-card');
+    console.log("batman");
+  }
+  }
+}
 }
 </script>
 

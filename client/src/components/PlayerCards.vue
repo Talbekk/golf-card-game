@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="cards-container">
-      <draggable id="player-cards" :list="playerCards" group="cards" @change="log">
-      <player-card v-for="(playerCard, index) in playerCards" :playerCard='playerCard' :key='index' :index='index' :shownCards='shownCards' :lockedCards='lockedCards' :counter='counter'></player-card>
+      <draggable id="player-cards" :list="playerCards" :group="{ name: 'cards', pull: 'clone', put: false }" @change="log">
+        <player-card v-for="(playerCard, index) in playerCards" :key='index' :playerCard='playerCard' :index='index' :shownCards='shownCards' :lockedCards='lockedCards' :counter='counter'></player-card>
       </draggable>
   </div>
 </template>

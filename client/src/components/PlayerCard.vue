@@ -51,6 +51,11 @@ export default {
       popoverShow: false
     }
   },
+  mounted(){
+    eventBus.$on('switched-card', () => {
+      this.switchedCard();
+    });
+  },
   watch: {
     lockedCards(){
       if (this.lockedCards.length === 0){
@@ -86,6 +91,11 @@ export default {
     },
     switchCard() {
       eventBus.$emit('player-card', this.playerCard)
+      this.lockedIn = true;
+      this.revealCard();
+      this.onClose();
+    },
+    switchedCard(){
       this.lockedIn = true;
       this.revealCard();
       this.onClose();
