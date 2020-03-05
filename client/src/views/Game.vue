@@ -35,7 +35,7 @@ export default {
     return {
       roundDeck: [], //round
       playerCards: null, //round
-      topCard: null, //round
+      topCard: [], //round
       currentCard: null, //round
       runningTotal: 0, //round
       counter: 0, //round
@@ -60,7 +60,7 @@ export default {
   mounted(){
     eventBus.$on('player-card', (card) => {
       let index = this.playerCards.indexOf(card);
-      let currentTopCard = this.topCard;
+      let currentTopCard = this.topCard[0];
       let switchedCard = this.playerCards.splice(index, 1, currentTopCard);
       let matchingCardValues = this.lockedCards.filter(card =>
         currentTopCard.value === card)
@@ -124,7 +124,7 @@ export default {
     },
     //round
     playerCards(){
-      if (this.topCard === null) {
+      if (this.topCard.length === 0) {
       this.drawTopCard();
     }
   },
@@ -190,7 +190,9 @@ checkIfHoleFinished(){
     //round
     drawTopCard(){
       if (this.playerCards) {
-        this.topCard = this.roundDeck.shift();
+        const newCard = this.roundDeck.shift();
+
+        this.topCard = [newCard];
       }
     },
     //round
@@ -217,7 +219,7 @@ checkIfHoleFinished(){
     },
     setupGame(){
       this.playerCards = null;
-      this.topCard = null;
+      this.topCard = [];
       this.runningTotal = 0;
       this.lockedCards = [];
       this.discardPile = [];

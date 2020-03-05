@@ -2,7 +2,7 @@
   <div id="top-card">
     <h4>Top Card:</h4>
     <img class="card-icon"
-    :src="this.topCard.image"/>
+    :src="this.topCard[0].image"/>
   </div>
 </template>
 
