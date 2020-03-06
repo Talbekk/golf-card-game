@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="cards-container">
     <ul>
-      <player-card v-for="(playerCard, index) in playerCards" :playerCard='playerCard' :key='index' :index='index' :shownCards='shownCards' :lockedCards='lockedCards' :counter='counter'></player-card>
+      <player-card v-for="(playerCard, index) in playerCards" :playerCard='playerCard' :key='index' :index='index' :shownCards='shownCards' :lockedCards='lockedCards' :counter='counter' :topCardSelected='topCardSelected'></player-card>
     </ul>
   </div>
 </template>
@@ -12,7 +12,7 @@ import PlayerCard from './PlayerCard.vue';
 
 export default {
   name: 'players-cards',
-  props: ['playerCards', 'lockedCards', 'counter'],
+  props: ['playerCards', 'lockedCards', 'counter', 'topCardSelected'],
   data () {
     return {
       shownCards: 0
@@ -41,10 +41,11 @@ export default {
 ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  max-width: 50%;
+  /* max-width: 50%; */
   margin-left: auto;
   margin-right: auto;
-  grid-row-gap: 10px;
+  grid-row-gap: 2px;
+  padding-inline-start: 0px;
 }
 
 </style>

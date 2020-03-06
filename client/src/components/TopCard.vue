@@ -1,8 +1,8 @@
 <template lang="html">
   <div id="top-card">
-    <h4>Top Card:</h4>
+    <p>Top Card:</p>
     <img class="card-icon"
-    :src="this.topCard.image"/>
+    :src="this.topCard.image" v-on:click="handleClick"/>
   </div>
 </template>
 
@@ -12,21 +12,30 @@ import {eventBus} from '../main.js';
 
 export default {
   name: "topCard",
-  props: ['topCard']
-}
+  props: ['topCard'],
+  methods: {
+    handleClick(){
+    eventBus.$emit('top-card-selected');
+    }
+  }
+  }
 </script>
 
 <style lang="css" scoped>
 
 .card-icon {
-  max-width: 12em;
-  max-height: 14em;
-  padding: 1.5em;
+  max-width: 11em;
+  max-height: 11em;
+  padding: 0.5em;
 }
 
 h4 {
   margin-top: 10px;
   margin-bottom: 0;
+}
+
+p {
+  margin-bottom: 0px
 }
 
 </style>

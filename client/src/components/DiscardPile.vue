@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="discard-pile" v-if="this.discardPile.length > 0">
-    <h4>Discard Pile:</h4>
+    <p>Discard Pile:</p>
     <img class="card-icon" :src="this.discardPile[this.discardPile.length-1][0].image"/>
   </div>
 </template>
@@ -16,14 +16,18 @@ export default {
 <style lang="css" scoped>
 
 .card-icon {
-  max-width: 12em;
-  max-height: 14em;
-  padding: 1.5em;
+  max-width: 11em;
+  max-height: 11em;
+  padding: 0.5em;
 }
 
 h4 {
   margin-top: 10px;
   margin-bottom: 0;
+}
+
+p {
+margin-bottom: 0px;
 }
 
 </style>

@@ -7,10 +7,9 @@
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
       <card-deck :topCardStatus='topCardStatus'></card-deck>
       <top-card v-if='topCard' :topCard='topCard'></top-card>
-      <!-- <info-box></info-box> -->
     </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
-      <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards'></player-cards>
+      <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected"></player-cards>
     </div>
   </div>
 </template>
@@ -45,7 +44,8 @@ export default {
       discardPile: [], //round
       drawnCard: false, //round
       topCardStatus: false,
-      viewLeaderBoard: false
+      viewLeaderBoard: false,
+      topCardSelected: false
     }
   },
   components: {
@@ -76,6 +76,7 @@ export default {
       this.nextRound(currentTopCard.value);
       this.discardPile.push(switchedCard);
       this.counter += 1;
+      this.topCardSelected = false;
     }),
     //round
     eventBus.$on('card-value', (card) => {
@@ -102,6 +103,9 @@ export default {
     }),
     eventBus.$on('view-leaderboard', () => {
       this.viewLeaderBoard = !this.viewLeaderBoard;
+    }),
+    eventBus.$on('top-card-selected', () => {
+      this.topCardSelected = true;
     })
   },
   watch: {
@@ -281,6 +285,9 @@ checkIfHoleFinished(){
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1.5em;
 }
 
 .card-icon {
@@ -299,6 +306,14 @@ button {
   display: inline-block;
   border: none;
   transition: all 0.4s ease 0s;
+}
+
+#hand-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 </style>

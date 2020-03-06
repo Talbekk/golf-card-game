@@ -1,11 +1,11 @@
 <template lang="html">
   <div id="my-container">
     <li>
-    <img class="card-icon" v-if="hidden" v-on:click="showCard" v-on:dblclick="lockCard" src="../assets/CardBack.png"/>
+    <img class="card-icon" v-if="hidden" v-on:click="handleClick" v-on:dblclick="lockCard" src="../assets/CardBack.png"/>
     <img class="card-icon" v-if="!hidden" :src="this.playerCard.image"/>
     <div id="button-container" v-if="!lockedIn">
       <!-- <b-button pill type="button" v-on:click="lockCard" name="button">LOCK</b-button> -->
-      <b-button pill type="button" v-on:click="switchCard" name="button">SWITCH</b-button>
+      <!-- <b-button pill type="button" v-on:click="switchCard" name="button">SWITCH</b-button> -->
       <!-- <div class="my-3">
       <b-button
       v-bind:id="`popover-reactive-${index}`"
@@ -43,12 +43,12 @@ import {eventBus} from '../main.js';
 
 export default {
   name: 'player-card',
-  props: ['playerCard', 'shownCards', 'lockedCards', 'counter', 'index'],
+  props: ['playerCard', 'shownCards', 'lockedCards', 'counter', 'index', 'topCardSelected'],
   data () {
     return {
       hidden: true,
       lockedIn: false,
-      popoverShow: false
+      popoverShow: false,
     }
   },
   watch: {
@@ -59,12 +59,18 @@ export default {
     }
   },
   methods: {
+    handleClick(){
+      if(this.shownCards < 2 && this.counter === 0){
+      this.showCard();
+    }
+    if(this.shownCards === 2 && this.topCardSelected === true){
+      this.switchCard();
+    }
+    },
     showCard() {
-      if (this.shownCards < 2 && this.counter === 0){
         this.hidden = false;
         setTimeout(()=> { this.hideCard() },2000);
         eventBus.$emit('shown-a-card', 1);
-      }
     },
     revealCard() {
       if(this.lockedIn === false){
@@ -138,9 +144,9 @@ li {
 .card-icon {
   margin-left: auto;
   margin-right: auto;
-  max-width: 12em;
-  max-height: 14em;
-  padding: 1.5em;
+  max-width: 11em;
+  max-height: 11em;
+  padding: 0.5em;
 }
 
 #choice-container {
