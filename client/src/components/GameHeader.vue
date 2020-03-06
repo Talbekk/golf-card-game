@@ -53,11 +53,10 @@ export default {
 <style lang="css" scoped>
 
 #game-header {
+  padding: 0.5em;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 75%;
+  flex-direction: column;
+  justify-content: center;
 }
 
 b-button {
@@ -65,8 +64,8 @@ b-button {
   text-transform: uppercase;
   text-decoration: none;
   background: #60a3bc; */
-  padding: 15px;
-  border-radius: 75px;
+  padding: 0.5px;
+
   display: inline-block;
   /* border: none;
   transition: all 0.4s ease 0s; */

@@ -18,7 +18,7 @@ export default {
 .card-icon {
   max-width: 11em;
   max-height: 11em;
-  padding: 0.5em;
+  padding: 0.7em;
 }
 
 h4 {

@@ -1,12 +1,13 @@
 <template lang="html">
   <div id="game_container">
-    <div id="header">
+    <!-- <div id="header">
       <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole"></game-header>
-    </div>
+    </div> -->
     <div v-if="!viewLeaderBoard" id="board-one">
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
       <card-deck :topCardStatus='topCardStatus'></card-deck>
       <top-card v-if='topCard' :topCard='topCard'></top-card>
+      <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole"></game-header>
     </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
       <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected"></player-cards>
@@ -274,7 +275,7 @@ checkIfHoleFinished(){
 
 <style lang="css" scoped>
 
-#header {
+#game-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -293,7 +294,7 @@ checkIfHoleFinished(){
 .card-icon {
   max-width: 11em;
   max-height: 11em;
-  padding: 2em;
+  padding: 0.5em;
 }
 
 button {

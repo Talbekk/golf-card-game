@@ -32,13 +32,14 @@ export default {
 .card-icon-original {
   max-width: 11em;
   max-height: 11em;
-  padding: 0.5em;
+  padding: 0.7em;
+  padding-left: 1.5em;
 }
 
 .card-icon-greyed {
   max-width: 11em;
   max-height: 11em;
-  padding: 0.5em;
+  padding: 0.7em;
   filter: grayscale(75%);
 }
 
