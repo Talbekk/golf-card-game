@@ -1,6 +1,5 @@
 <template lang="html">
   <div>
-    <!-- <h3 v-if="!gameStatus">{{title}} Leaderboard:</h3> -->
     <table>
   <tr>
     <th>#</th>

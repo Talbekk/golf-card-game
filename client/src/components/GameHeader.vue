@@ -1,7 +1,6 @@
 <template lang="html">
   <div id="game-header">
     <b-button pill v-if="!this.gameStatus && !this.selectScoresPage" v-on:click="newGame" name="button">Play Again?</b-button>
-    <!-- <score-card v-if="!this.selectScoresPage" :scoreCard="scoreCard"></score-card> -->
     <b-button pill v-on:click="startNextHole" v-if="checkIfHoleFinished">Next Round</b-button>
   </div>
 </template>
@@ -60,15 +59,8 @@ export default {
 }
 
 b-button {
-  /* color: #fff !important;
-  text-transform: uppercase;
-  text-decoration: none;
-  background: #60a3bc; */
   padding: 0.5px;
-
   display: inline-block;
-  /* border: none;
-  transition: all 0.4s ease 0s; */
 }
 
 </style>
