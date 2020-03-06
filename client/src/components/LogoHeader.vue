@@ -47,6 +47,7 @@ export default {
   name: "logo-header",
   data(){
     return{
+      loggedIn: false,
       score: 0
     }
   },

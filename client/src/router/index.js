@@ -4,6 +4,7 @@ import Game from '../views/Game.vue';
 import IntroScreen from '../views/IntroScreen.vue';
 import Leaderboard from '../views/LeaderboardContainer.vue';
 import Rules from '../views/GameRules.vue';
+import Login from '../views/Login.vue';
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ const routes = [
   path: '/rules',
   name: 'rules',
   component: Rules
+},
+{
+path: '/login',
+name: 'login',
+component: Login
 }
 ]
 
