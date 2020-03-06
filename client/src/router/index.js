@@ -5,6 +5,7 @@ import IntroScreen from '../views/IntroScreen.vue';
 import Leaderboard from '../views/LeaderboardContainer.vue';
 import Rules from '../views/GameRules.vue';
 import Login from '../views/Login.vue';
+import {firebase} from '../firebase.js';
 
 Vue.use(Router)
 
@@ -12,7 +13,8 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: IntroScreen
+    component: IntroScreen,
+    meta: {requiresAuth: true}
   },
   {
     path: '/game',
@@ -39,5 +41,15 @@ component: Login
 const router = new Router({
   routes
 });
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const isAuthenticated = firebase.auth().currentUser;
+  if (requiresAuth && !isAuthenticated){
+    next("/login");
+  } else {
+    next();
+  }
+})
 
 export default router;
