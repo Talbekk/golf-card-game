@@ -64,6 +64,7 @@ export default {
   },
   mounted(){
     eventBus.$on('player-card', (card) => {
+      if(card.hasOwnProperty('value')){
       let index = this.playerCards.indexOf(card);
       let currentTopCard = this.topCard[0];
       let switchedCard = this.playerCards.splice(index, 1, currentTopCard);
@@ -81,6 +82,7 @@ export default {
       this.nextRound(currentTopCard.value);
       this.discardPile.push(switchedCard);
       this.counter += 1;
+    }
     }),
     //round
     eventBus.$on('card-value', (card) => {

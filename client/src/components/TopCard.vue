@@ -18,10 +18,8 @@ export default {
     if(this.topCard.length > 1){
     const switchedCard = this.topCard.pop();
     const index = this.playerCards.indexOf(switchedCard);
-    console.log("index", index);
     eventBus.$emit('player-card', switchedCard);
-    eventBus.$emit('switched-card');
-    console.log("batman");
+    eventBus.$emit('switched-card', index);
   }
   }
 }

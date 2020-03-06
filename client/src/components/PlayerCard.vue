@@ -5,7 +5,7 @@
     <img class="card-icon" v-if="!hidden" :src="this.playerCard.image"/>
     <div id="button-container" v-if="!lockedIn">
       <!-- <b-button pill type="button" v-on:click="lockCard" name="button">LOCK</b-button> -->
-      <b-button pill type="button" v-on:click="switchCard" name="button">SWITCH</b-button>
+      <!-- <b-button pill type="button" v-on:click="switchCard" name="button">SWITCH</b-button> -->
       <!-- <div class="my-3">
       <b-button
       v-bind:id="`popover-reactive-${index}`"
@@ -52,8 +52,10 @@ export default {
     }
   },
   mounted(){
-    eventBus.$on('switched-card', () => {
+    eventBus.$on('switched-card', (position) => {
+      if(this.index === position){
       this.switchedCard();
+    }
     });
   },
   watch: {
