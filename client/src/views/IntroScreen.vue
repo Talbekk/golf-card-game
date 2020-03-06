@@ -2,11 +2,12 @@
   <div class="">
   <div id="intro-screen" v-if="!selectScoresPage">
    <div id="name-box" v-if="!newGame">
+     <p>Hi {{this.userData.username}}</p>
      <b-form id="user-name" v-on:submit="handleClick">
-       <b-form-group id="username" label="Enter the name of your golfer:">
+       <!-- <b-form-group id="username" label="Enter the name of your golfer:">
          <b-form-input id="username" type="text" name="username" v-model='userName' required placeholder="Enter name"/>
-       </b-form-group>
-       <b-button to="/game" id="submit" type="submit">Tee Off</b-button>
+       </b-form-group> -->
+       <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
      </b-form>
      <b-button id="submit" v-on:click="signOut" v-if="loggedIn">Sign Out</b-button>
   </div>
@@ -16,7 +17,7 @@
 
 <script>
 import {eventBus} from '../main.js';
-import {firebase} from '../firebase.js';
+import {firebase, auth, db} from '../firebase.js';
 import ScoresPage from '../components/ScoresPage.vue';
 import LeaderboardContainer from './LeaderboardContainer.vue';
 
@@ -28,7 +29,8 @@ export default {
       newGame: false,
       userName: null,
       selectScoresPage: false,
-      loggedIn: false
+      loggedIn: false,
+      userData: {}
     }
   },
   components: {
@@ -39,6 +41,7 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       if(user){
         this.loggedIn = true;
+        this.getUserData();
       } else {
         this.loggedIn = false;
       }
@@ -51,6 +54,9 @@ export default {
       this.clickedNewGame();
     }
   },
+    userData(){
+        this.userName = this.userData.username;
+    },
   mounted() {
     eventBus.$on('view-leaderboard', () => {
       this.selectScoresPage = !this.selectScoresPage;
@@ -58,7 +64,8 @@ export default {
   },
   methods: {
     clickedNewGame(){
-      eventBus.$emit('clicked-new-game');
+      console.log("start-new-game");
+      eventBus.$emit('start-new-game');
     },
     handleClick(){
       eventBus.$emit('username-selected', this.userName);
@@ -74,8 +81,14 @@ export default {
       console.log("fail");
     }
 
-    }
+  },
+    getUserData(){
+    const uid = auth.currentUser.uid;
+    db.ref().child('users').child(uid).once("value", (snapshot) => {
+    this.userData = snapshot.val();
+  })
   }
+}
 }
 </script>
 

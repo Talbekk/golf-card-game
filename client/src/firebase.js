@@ -15,5 +15,5 @@ export const db = app.database();
 export const firebase = app;
 export const scoreRef = db.ref('scores');
 export const leaderboardRef = db.ref('leaderboard');
-
+export const auth = firebase.auth();
 export const firstScoreRef = db.ref('scores/-LzbcOnDQ_isE4pJ0ylY').toJSON();

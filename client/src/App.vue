@@ -31,7 +31,6 @@ export default {
     "Game": Game
   },
   mounted(){
-
     this.getDeck();
 
     fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
