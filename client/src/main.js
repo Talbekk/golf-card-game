@@ -12,7 +12,7 @@ Vue.use(BootStrapVue);
 
 export const eventBus = new Vue();
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   router,

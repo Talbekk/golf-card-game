@@ -8,6 +8,7 @@
        </b-form-group>
        <b-button to="/game" id="submit" type="submit">Tee Off</b-button>
      </b-form>
+     <b-button id="submit" v-on:click="signOut" v-if="loggedIn">Sign Out</b-button>
   </div>
   </div>
     </div>
@@ -15,6 +16,7 @@
 
 <script>
 import {eventBus} from '../main.js';
+import {firebase} from '../firebase.js';
 import ScoresPage from '../components/ScoresPage.vue';
 import LeaderboardContainer from './LeaderboardContainer.vue';
 
@@ -25,12 +27,22 @@ export default {
     return {
       newGame: false,
       userName: null,
-      selectScoresPage: false
+      selectScoresPage: false,
+      loggedIn: false
     }
   },
   components: {
     "scores-page": ScoresPage,
     "leaderboard-container": LeaderboardContainer
+  },
+  created(){
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+        this.loggedIn = true;
+      } else {
+        this.loggedIn = false;
+      }
+    })
   },
   watch : {
     userName(){
@@ -49,9 +61,19 @@ export default {
       eventBus.$emit('clicked-new-game');
     },
     handleClick(){
-      console.log("handleclick", handleclick);
       eventBus.$emit('username-selected', this.userName);
       this.clickedNewGame();
+    },
+    async signOut(){
+      try{
+      const data = await firebase.auth().signOut();
+      this.$router.replace({name: 'login'});
+      console.log("success log out", data);
+    } catch(err) {
+      console.log(err);
+      console.log("fail");
+    }
+
     }
   }
 }

@@ -3,7 +3,7 @@
     <div v-if="error" class="error">{{error.message}}</div>
     <form @submit.prevent="handleSubmit">
       <div class="email">
-        <input type="email" v-bind="email" placeholder="email">
+        <input type="email" v-model="email" placeholder="email">
       </div>
       <div class="password">
         <input type="password" v-model="password" placeholder="password">
