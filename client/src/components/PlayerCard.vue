@@ -1,7 +1,9 @@
 <template lang="html">
   <div id="my-container">
+    <li>
     <img class="card-icon" v-if="hidden" v-on:click="handleClick" v-on:dblclick="lockCard" src="../assets/CardBack.png"/>
     <img class="card-icon" v-if="!hidden" :src="this.playerCard.image"/>
+  </li>
 </div>
 </template>
 

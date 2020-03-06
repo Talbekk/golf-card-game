@@ -1,8 +1,5 @@
 <template lang="html">
   <div id="game_container">
-    <!-- <div id="header">
-      <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole"></game-header>
-    </div> -->
     <div v-if="!viewLeaderBoard" id="board-one">
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
       <card-deck :topCardStatus='topCardStatus'></card-deck>

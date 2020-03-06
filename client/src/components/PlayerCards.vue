@@ -46,6 +46,7 @@ ul {
   margin-right: auto;
   grid-row-gap: 2px;
   padding-inline-start: 0px;
+  list-style-type: none;
 }
 
 </style>
