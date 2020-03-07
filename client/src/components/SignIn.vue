@@ -34,6 +34,7 @@ export default {
       console.log("log in success", val);
       this.$router.replace({name: 'home'});
     } catch(err) {
+      window.alert("Please try entering your details again!");
       console.log("fail", err);
     }
     }
