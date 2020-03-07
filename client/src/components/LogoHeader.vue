@@ -99,4 +99,10 @@ export default {
   padding-bottom: 2em;
 }
 
+#modal-3___BV_modal_body_{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 </style>

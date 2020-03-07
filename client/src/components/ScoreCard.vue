@@ -101,7 +101,7 @@ table {
   empty-cells: show;
   border-collapse: collapse;
   table-layout: auto;
-  width: 400px;
+  width: 80%;
 }
 
 table, tr, th {

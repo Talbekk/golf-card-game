@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div id="main-container">
     <p>Welcome to Golf: The Card Game</p>
     <div id="login-container">
     <register></register>
@@ -23,6 +23,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#main-container{
+    max-width: 95%;
+}
 
 #login-container {
   display: flex;
