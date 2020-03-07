@@ -76,7 +76,7 @@ export default {
           amount += score;
         })
         this.score = amount;
-        this.currentHole = this.scoreCard.length()+1;
+        this.currentHole = this.scoreCard.length+1;
       }
     }
   },

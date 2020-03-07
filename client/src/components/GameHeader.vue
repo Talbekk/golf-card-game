@@ -1,5 +1,6 @@
 <template lang="html">
   <div id="game-header">
+    <!-- <score-card v-if="!this.gameStatus && currentHole !== 1" :scoreCard="scoreCard"/></score-card> -->
     <b-button pill v-if="!this.gameStatus && !this.selectScoresPage" v-on:click="newGame" name="button">Play Again?</b-button>
     <b-button pill v-on:click="startNextHole" v-if="checkIfHoleFinished">Next Round</b-button>
   </div>

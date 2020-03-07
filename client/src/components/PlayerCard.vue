@@ -58,13 +58,11 @@ export default {
       eventBus.$emit('card-value', this.playerCard)
       this.lockedIn = true;
       this.revealCard();
-      this.onClose();
     },
     switchCard() {
       eventBus.$emit('player-card', this.playerCard)
       this.lockedIn = true;
       this.revealCard();
-      this.onClose();
     },
     resetCard(){
       this.hidden = true;
