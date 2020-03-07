@@ -71,6 +71,11 @@ export default {
       // if(this.scoreCard.length > 1){
       this.currentHole+=1;
     // }
+    }),
+    eventBus.$on('start-new-game', () => {
+      console.log("pick-up");
+      this.currentHole = 1;
+      this.score = 0;
     })
   },
   watch: {
