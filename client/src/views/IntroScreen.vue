@@ -11,7 +11,7 @@
       <p><b>One Player Mode:</b></p>
       <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
     </div>
-    <div id="last-game-container">
+    <div v-if="this.userData.games"id="last-game-container">
       <p><b>Last Match:</b></p>
       <p><b>Played:</b> {{this.lastMatch.date.date}} @ {{this.lastMatch.date.time}}</p>
       <p><b>Score:</b> {{this.lastMatch.score}}</p>
