@@ -1,18 +1,19 @@
 <template lang="html">
   <div id="intro-screen" v-if="!selectScoresPage">
    <div id="profile-container" v-if="!newGame">
-     <p><b>Profile:</b></p>
+     <h5><b>Profile:</b></h5>
      <p><b>Golfer Name:</b> {{this.userData.username}}</p>
      <p><b>Games Played:</b> {{this.gamesPlayed}}</p>
      <p><b>Total Score:</b> {{this.totalScore}}</p>
      <b-button id="submit" v-on:click="signOut" v-if="loggedIn">Sign Out</b-button>
    </div>
     <div id="new-game-container">
-      <p>One Player Mode:</p>
+      <p><b>One Player Mode:</b></p>
       <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
     </div>
     <div id="last-game-container">
       <p><b>Last Match:</b></p>
+      <p><b>Played:</b> {{this.lastMatch.date.date}} @ {{this.lastMatch.date.time}}</p>
       <p><b>Score:</b> {{this.lastMatch.score}}</p>
       <p><b>Scorecard:</b></p>
       <score-card :scoreCard="chosenScoreCard"/>
