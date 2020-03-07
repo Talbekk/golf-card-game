@@ -50,8 +50,9 @@ export default {
     return{
       loggedIn: false,
       score: 0,
-      currentHole: 1,
-    }
+      currentHole: 0,
+    }|
+    
   },
   props:['gameStatus', 'scoreCard'],
   components: {
