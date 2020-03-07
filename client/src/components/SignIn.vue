@@ -46,6 +46,7 @@ export default {
 #sign-in-container{
   padding: 1em;
   border: solid black 1px;
+  margin: 1em;
 }
 
 </style>
