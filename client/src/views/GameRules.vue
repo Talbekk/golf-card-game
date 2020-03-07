@@ -10,6 +10,12 @@
     </p>
       Beginning with the player to the dealer's left, players take turns drawing single cards from either the stock or discard piles. The drawn card may either be swapped for one of that player's 4 cards, or discarded. If the card is swapped for one of the face down cards, the card swapped in remains face up. If the player choose not to take the card, they must turn over one of their own. The round ends when all of a player's cards are face-up.
     </p>
+    <h4>Gameplay:</h4>
+    <ul>
+      <li>Once cards have been dealt and at the beginning of the round, click a card to reveal it for a short time.</li>
+      <li>To lock in a card: Double click the chosen card.</li>
+      <li>To swap a card: Click the face up card you want and then click the card in your hand that you want to switch.</li>
+    </ul>
     <h4>Special Cards & Combinations:</h4>
     <ul>
       <li><b>King:</b> 0</li>

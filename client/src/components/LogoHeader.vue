@@ -22,6 +22,7 @@
         </div>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
+        <b-nav-item v-if="gameStatus" right>Hole: {{this.currentHole}}</b-nav-item>
         <b-nav-item v-if="gameStatus" right>Current Score: {{this.score}}</b-nav-item>
         <b-nav-item v-if="gameStatus" v-on:click="newGame" href="#" right>Restart Game</b-nav-item>
         <div>
@@ -48,7 +49,8 @@ export default {
   data(){
     return{
       loggedIn: false,
-      score: 0
+      score: 0,
+      currentHole: 1,
     }
   },
   props:['gameStatus', 'scoreCard'],
@@ -60,6 +62,9 @@ export default {
   mounted(){
     eventBus.$on('total', (total) => {
       this.score = total;
+    }),
+    eventBus.$on('finished-hole', () => {
+      this.currentHole+=1;
     })
   },
   watch: {
