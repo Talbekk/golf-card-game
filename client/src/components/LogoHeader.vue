@@ -63,9 +63,14 @@ export default {
     eventBus.$on('total', (total) => {
       this.score = total;
     }),
-    eventBus.$on('finished-hole', (hole) => {
-      console.log("finished hole", hole);
-      this.currentHole = hole;
+    // eventBus.$on('finished-hole', (hole) => {
+    //   console.log("finished hole", hole);
+    //   this.currentHole = hole;
+    // })
+    eventBus.$on('start-next-hole', () => {
+      // if(this.scoreCard.length > 1){
+      this.currentHole+=1;
+    // }
     })
   },
   watch: {
@@ -76,7 +81,6 @@ export default {
           amount += score;
         })
         this.score = amount;
-        this.currentHole = this.scoreCard.length+1;
       }
     }
   },
