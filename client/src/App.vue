@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <logo-header :gameStatus="gameStatus" :scoreCard="scoreCard"></logo-header>
-    <router-view :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
+    <router-view :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
   </div>
 </template>
 
@@ -22,7 +22,8 @@ export default {
       gameStatus: false, //game
       tutorialStatus: false,
       userName: null, //game,
-      scoreCard: []
+      scoreCard: [],
+      userData: {}
     }
   },
   components: {
@@ -54,6 +55,9 @@ export default {
       this.userName = null;
       this.scoreCard = [];
     }),
+    eventBus.$on('user-data', (data) => {
+      this.userData = data;
+    })
     eventBus.$on('score-card', (card) => {
       this.scoreCard = card;
     })  },

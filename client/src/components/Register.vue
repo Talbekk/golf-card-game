@@ -1,18 +1,19 @@
 <template lang="html">
-  <div>
+  <div id="register-container">
+    <h4>Register a user:</h4>
     <div v-if="error" class="error">{{error.message}}</div>
-    <form @submit.prevent="handleSubmit">
-      <div class="email">
-        <input type="email" v-model="email" placeholder="email">
-      </div>
-      <div class="username">
-        <input type="text" v-model="username" placeholder="username">
-      </div>
-      <div class="password">
-        <input type="password" v-model="password" placeholder="password">
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
+    <b-form @submit.prevent="handleSubmit">
+      <b-form-group id="email" label="Email:">
+        <b-form-input type="email" v-model="email" required placeholder="email"/>
+      </b-form-group>
+      <b-form-group id="username" label="Golfer's Name:">
+        <b-form-input type="text" v-model="username" required placeholder="username"/>
+      </b-form-group>
+      <b-form-group id="password" label="Password:">
+        <b-form-input type="password" v-model="password" required placeholder="password"/>
+        </b-form-group>
+      <b-button type="submit">Sign Up</b-button>
+    </b-form>
   </div>
 </template>
 
@@ -54,4 +55,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#register-container{
+  padding: 1em;
+  border: solid black 1px;
+}
+
 </style>

@@ -22,12 +22,12 @@ import ScoreCard from '../components/ScoreCard.vue';
 import CardDeck from '../components/CardDeck.vue';
 import InfoBox from '../components/InfoBox.vue';
 import {eventBus} from '../main.js';
-import {scoreRef} from '../firebase.js';
+import {scoreRef, db} from '../firebase.js';
 import {leaderboardRef} from '../firebase.js';
 
 export default {
   name: "game",
-  props: ['gameDeck', 'userName', 'gameStatus'],
+  props: ['gameDeck', 'userName', 'gameStatus', 'userData'],
   data(){
     return {
       roundDeck: [], //round
@@ -141,12 +141,19 @@ export default {
   scoreCard(){
     if (this.scoreCard.length === 9){
       let gameTotal = this.getTotalScore();
-      leaderboardRef.push({golfer: this.userName, score: gameTotal, card: this.scoreCard, edit: false});
+      leaderboardRef.push({golfer: this.userData.username, score: gameTotal, card: this.scoreCard, edit: false});
       // this.gameStatus = false;
       eventBus.$emit('game-status', false);
+      try {
+      db.ref('users/' + this.userData.userID).child('games').push({
+        golfer: this.userData.username, score: gameTotal, card: this.scoreCard, date: this.getDate(), edit: false});
+        console.log("upload success");
+      } catch(err){
+        console.log("fail", err);
+      }
+      }
     }
-  }
-},
+  },
 computed: {
   //game
   holesCompleted(){
@@ -264,6 +271,13 @@ checkIfHoleFinished(){
        counter += score;
     })
     return counter;
+  },
+  getDate() {
+  const today = new Date();
+  const date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+  const time = today.getHours() + ":" + today.getMinutes();
+  const dateTime = {date: date, time: time};
+  return dateTime;
   }
 
   }

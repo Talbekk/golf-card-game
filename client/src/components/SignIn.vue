@@ -1,14 +1,15 @@
 <template lang="html">
-  <div>
-    <form @submit.prevent="handleSignIn">
-      <div class="sign-in">
-        <input type="email" v-model="email" placeholder="sign in">
-      </div>
-      <div class="password">
-        <input type="password" v-model="password" placeholder="password">
-      </div>
-      <button type="submit">Sign In</button>
-    </form>
+  <div id="sign-in-container">
+    <h4>Sign in:</h4>
+    <b-form @submit.prevent="handleSignIn">
+      <b-form-group id="sign-in" label="Email:">
+        <b-form-input type="email" v-model="email" placeholder="sign in"/>
+      </b-form-group>
+      <b-form-group id="password" label="Password:">
+        <b-form-input type="password" v-model="password" placeholder="password"/>
+      </b-form-group>
+        <b-button type="submit">Sign In</b-button>
+    </b-form>
     <div class="error" v-if="error">{{error.message}}</div>
   </div>
 </template>
@@ -41,4 +42,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#sign-in-container{
+  padding: 1em;
+  border: solid black 1px;
+}
+
 </style>

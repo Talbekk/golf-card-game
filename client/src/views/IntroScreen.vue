@@ -10,6 +10,7 @@
        <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
      </b-form>
      <b-button id="submit" v-on:click="signOut" v-if="loggedIn">Sign Out</b-button>
+     <p>{{this.lastMatch.score}}</p>
   </div>
   </div>
     </div>
@@ -30,7 +31,8 @@ export default {
       userName: null,
       selectScoresPage: false,
       loggedIn: false,
-      userData: {}
+      userData: {},
+      lastMatch: {}
     }
   },
   components: {
@@ -39,6 +41,7 @@ export default {
   },
   created(){
     firebase.auth().onAuthStateChanged((user) => {
+      console.log("created");
       if(user){
         this.loggedIn = true;
         this.getUserData();
@@ -55,7 +58,12 @@ export default {
     }
   },
     userData(){
-        this.userName = this.userData.username;
+        eventBus.$emit('user-data', this.userData)
+        .then(() => {
+          console.log("hi");
+          this.getLastGame();
+        })
+        console.log("outside");
     },
   mounted() {
     eventBus.$on('view-leaderboard', () => {
@@ -83,10 +91,32 @@ export default {
 
   },
     getUserData(){
+    if(auth.currentUser){
+      console.log("getuserData");
     const uid = auth.currentUser.uid;
     db.ref().child('users').child(uid).once("value", (snapshot) => {
     this.userData = snapshot.val();
   })
+  .then(() => {
+    eventBus.$emit('user-data', this.userData);
+    this.getLastGame();
+  })
+  }
+},
+  getLastGame(){
+    const matches = Object.values(this.userData.games);
+    this.lastMatch = matches[0];
+    const today = this.getDate();
+    console.log("today", today);
+    console.log("matches", matches);
+    console.log("lastMatch", this.lastMatch);
+  },
+  getDate() {
+  const today = new Date();
+  const date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+  const time = today.getHours() + ":" + today.getMinutes();
+  const dateTime = {date: date, time: time};
+  return dateTime;
   }
 }
 }
