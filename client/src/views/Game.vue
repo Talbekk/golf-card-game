@@ -256,7 +256,7 @@ checkIfHoleFinished(){
       this.getCards();
       this.discardPile = [];
       this.topCardStatus = false;
-      eventBus.$emit('finished-hole');
+      eventBus.$emit('finished-hole', this.currentHole);
     },
     nextRound(value){
       this.drawTopCard();

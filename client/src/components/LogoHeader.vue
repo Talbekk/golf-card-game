@@ -50,7 +50,7 @@ export default {
     return{
       loggedIn: false,
       score: 0,
-      currentHole: 0,
+      currentHole: 1,
     }
   },
   props:['gameStatus', 'scoreCard'],
@@ -63,8 +63,9 @@ export default {
     eventBus.$on('total', (total) => {
       this.score = total;
     }),
-    eventBus.$on('finished-hole', () => {
-      this.currentHole+=1;
+    eventBus.$on('finished-hole', (hole) => {
+      console.log("finished hole", hole);
+      this.currentHole = hole;
     })
   },
   watch: {
@@ -75,6 +76,7 @@ export default {
           amount += score;
         })
         this.score = amount;
+        this.currentHole = this.scoreCard.length()+1;
       }
     }
   },
@@ -82,10 +84,12 @@ export default {
     newGame(){
       eventBus.$emit('start-new-game');
       this.score = 0;
+      this.currentHole = 1;
     },
     reset(){
       eventBus.$emit('reset-app');
       this.score= 0;
+      this.currentHole = 1;
     }
   }
 }
