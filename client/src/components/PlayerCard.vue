@@ -79,8 +79,8 @@ export default {
 .card-icon {
   margin-left: auto;
   margin-right: auto;
-  max-width: 11em;
-  max-height: 11em;
+  max-width: 10em;
+  max-height: 10em;
   padding: 0.5em;
 }
 

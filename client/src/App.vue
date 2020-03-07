@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <logo-header :gameStatus="gameStatus" :scoreCard="scoreCard"></logo-header>
+    <logo-header id="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard"></logo-header>
     <router-view :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
   </div>
 </template>
@@ -126,6 +126,10 @@ button {
   max-width: 11em;
   max-height: 11em;
   padding: 2em;
+}
+
+#nav-bar{
+  margin-bottom: 0;
 }
 
 </style>

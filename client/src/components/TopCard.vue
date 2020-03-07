@@ -24,9 +24,9 @@ export default {
 <style lang="css" scoped>
 
 .card-icon {
-  max-width: 11em;
-  max-height: 10.8em;
-  padding: 0.7em;
+  max-width: 10em;
+  max-height: 10em;
+  padding: 0.5em;
 }
 
 h4 {
