@@ -9,7 +9,7 @@
 
 import IntroScreen from './views/IntroScreen.vue';
 import {eventBus} from './main.js';
-import {scoreRef} from './firebase.js';
+import {scoreRef, auth, db} from './firebase.js';
 import LogoHeader from './components/LogoHeader.vue';
 import Game from './views/Game.vue';
 
@@ -39,6 +39,8 @@ export default {
     .then(deckData => this.deck = deckData)
     .then(setTimeout( () => {this.getDeck() }, 1000)),
 
+    this.getUserData();
+
     eventBus.$on('clicked-new-game', () => {
       setTimeout( () => {eventBus.$emit('start-new-game')}, 1000)
       this.tutorialStatus = true;
@@ -54,9 +56,6 @@ export default {
       this.tutorialStatus = false;
       this.userName = null;
       this.scoreCard = [];
-    }),
-    eventBus.$on('user-data', (data) => {
-      this.userData = data;
     })
     eventBus.$on('score-card', (card) => {
       this.scoreCard = card;
@@ -68,8 +67,18 @@ export default {
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=52`)
         .then(res => res.json())
         .then(cardData => this.gameDeck = cardData)
-    }
-  }
+    },
+    getUserData(){
+    if(auth.currentUser){
+      console.log("getuserData", auth.currentUser);
+    const uid = auth.currentUser.uid;
+    db.ref().child('users').child(uid).once("value", (snapshot) => {
+    this.userData = snapshot.val();
+    console.log("this user data", this.userData);
+  })
+}
+}
+}
 }
 
 </script>
