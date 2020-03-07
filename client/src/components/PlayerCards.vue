@@ -39,7 +39,7 @@ export default {
 <style lang="css" scoped>
 
 ul {
-<<<<<<< HEAD
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   /* max-width: 50%; */
@@ -48,15 +48,7 @@ ul {
   grid-row-gap: 2px;
   padding-inline-start: 0px;
   list-style-type: none;
-=======
-  max-width: 75%;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: center;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
->>>>>>> master
+
 }
 
 </style>
