@@ -43,9 +43,7 @@ export default {
           userID: uid
         })
         eventBus.$emit("register-user");
-        console.log("uid", uid);
       }).then(() => {
-        console.log("success", user);
         this.$router.replace({name: "home"});
       })
     } catch(err){

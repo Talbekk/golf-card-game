@@ -31,7 +31,6 @@ export default {
     async handleSignIn(){
       try {
       const val = await firebase.auth().signInWithEmailAndPassword(this.email, this.password);
-      console.log("log in success", val);
       this.$router.replace({name: 'home'});
     } catch(err) {
       window.alert("Please try entering your details again!");

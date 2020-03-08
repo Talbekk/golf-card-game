@@ -20,11 +20,9 @@ let app;
 let userData;
 
 firebase.auth().onAuthStateChanged((user) => {
-  console.log("loggedIn", user);
   if(user) {
   db.ref().child('users').child(user.uid).once("value", (snapshot) => {
   userData = snapshot.val();
-  console.log("userdata first", userData);
   })
 }
   if(!app) {

@@ -10,7 +10,7 @@
 import ScoreCard from './ScoreCard.vue';
 
 export default {
-  name: 'end-game',
+  name: "end-game",
   props:['scoreCard', 'gameStatus'],
   data(){
     return {

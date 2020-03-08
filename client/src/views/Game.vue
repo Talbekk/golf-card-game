@@ -151,7 +151,6 @@ export default {
       try {
       db.ref('users/' + this.userData.userID).child('games').push({
         golfer: this.userData.username, score: gameTotal, card: this.scoreCard, date: this.getDate(), edit: false});
-        console.log("upload success");
       } catch(err){
         console.log("fail", err);
       }

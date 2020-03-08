@@ -51,7 +51,6 @@ export default {
   },
   created(){
     firebase.auth().onAuthStateChanged((user) => {
-      console.log("created");
       if(user){
         this.loggedIn = true;
         this.getUserData();
@@ -62,7 +61,6 @@ export default {
   },
   watch : {
     userName(){
-      console.log("handleclick", this.userName);
       eventBus.$emit('username-selected', this.userName);
       this.clickedNewGame();
     }
@@ -70,10 +68,8 @@ export default {
     userData(){
         eventBus.$emit('user-data', this.userData)
         .then(() => {
-          console.log("hi");
           this.getLastGame();
         })
-        console.log("outside");
     },
   mounted() {
     eventBus.$on('view-leaderboard', () => {
@@ -85,7 +81,6 @@ export default {
   },
   methods: {
     clickedNewGame(){
-      console.log("start-new-game");
       eventBus.$emit('start-new-game');
     },
     handleClick(){
@@ -96,18 +91,15 @@ export default {
       try{
       const data = await firebase.auth().signOut();
       this.$router.replace({name: 'login'});
-      console.log("success log out", data);
       eventBus.$emit("signed-out");
       this.userData = {};
     } catch(err) {
       console.log(err);
-      console.log("fail");
     }
 
   },
     getUserData(){
     if(auth.currentUser){
-      console.log("getuserData");
     const uid = auth.currentUser.uid;
     db.ref().child('users').child(uid).once("value", (snapshot) => {
     this.userData = snapshot.val();
@@ -127,9 +119,6 @@ export default {
     this.lastMatch = matches.pop();
     const today = this.getDate();
     this.chosenScoreCard = this.lastMatch.card;
-    console.log("today", today);
-    console.log("matches", matches);
-    console.log("lastMatch", this.lastMatch);
   },
   getDate() {
     const today = new Date();
@@ -139,7 +128,6 @@ export default {
     return dateTime;
   },
   getGamesPlayed(){
-    console.log("count started");
     const matches = Object.values(this.userData.games);
     this.gamesPlayed = matches.length;
   },

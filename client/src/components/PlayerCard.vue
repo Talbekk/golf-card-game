@@ -13,7 +13,7 @@ import {eventBus} from '../main.js';
 
 export default {
   name: 'player-card',
-  props: ['playerCard', 'shownCards', 'lockedCards', 'counter', 'index', 'topCardSelected'],
+  props: ['playerCard', 'shownCards', 'lockedCards', 'counter', 'topCardSelected'],
   data () {
     return {
       hidden: true,

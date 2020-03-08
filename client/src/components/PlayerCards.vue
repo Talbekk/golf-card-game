@@ -39,16 +39,13 @@ export default {
 <style lang="css" scoped>
 
 ul {
-
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* max-width: 50%; */
   margin-left: auto;
   margin-right: auto;
   grid-row-gap: 2px;
   padding-inline-start: 0px;
   list-style-type: none;
-
 }
 
 </style>
