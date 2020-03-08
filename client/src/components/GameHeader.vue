@@ -1,7 +1,12 @@
 <template lang="html">
   <div id="game-header">
     <!-- <score-card v-if="!this.gameStatus && currentHole !== 1" :scoreCard="scoreCard"/></score-card> -->
-    <b-button pill v-if="!this.gameStatus && !this.selectScoresPage" v-on:click="newGame" name="button">Play Again?</b-button>
+    <div>
+      <b-modal v-model="modalShow" id="my-modal" centered title="Game Result:" ok-only>
+        <score-card :scoreCard="scoreCard"/>
+      </b-modal>
+    </div>
+    <b-button pill v-if="!this.gameStatus" v-on:click="newGame" name="button">Play Again?</b-button>
     <b-button pill v-on:click="startNextHole" v-if="checkIfHoleFinished">Next Round</b-button>
   </div>
 </template>
@@ -18,7 +23,8 @@ export default {
   props: ['gameStatus', 'scoreCard', 'lockedCards', 'counter', 'currentHole'],
   data(){
     return {
-      selectScoresPage: false
+      selectScoresPage: false,
+      modalShow: true
     }
   },
 
@@ -32,7 +38,13 @@ export default {
       this.selectScoresPage = !this.selectScoresPage;
     })
   },
-
+  watch: {
+    gameStatus(){
+      if(!this.gameStatus){
+        this.modalShow = true;
+      }
+    }
+  },
   computed: {
     checkIfHoleFinished(){
       return ((this.currentHole >= 1 && (this.counter===4 || this.lockedCards.length === 4) && this.gameStatus === true) ? true : false);
@@ -44,7 +56,13 @@ export default {
     },
     newGame(){
       eventBus.$emit('start-new-game');
-    }
+    },
+    showModal() {
+     this.$refs['my-modal'].show()
+   },
+   hideModal() {
+     this.$refs['my-modal'].hide()
+   },
 
   }
 }
