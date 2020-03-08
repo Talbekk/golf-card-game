@@ -1,22 +1,14 @@
 <template lang="html">
   <div id="game-header">
-    <!-- <score-card v-if="!this.gameStatus && currentHole !== 1" :scoreCard="scoreCard"/></score-card> -->
-    <div>
-      <b-modal v-model="modalShow" id="my-modal" centered title="Game Result:" ok-only>
-        <score-card :scoreCard="scoreCard"/>
-      </b-modal>
-    </div>
+    <end-game :scoreCard='scoreCard' :gameStatus='gameStatus'/>
     <b-button pill v-if="!this.gameStatus" v-on:click="newGame" name="button">Play Again?</b-button>
     <b-button pill v-on:click="startNextHole" v-if="checkIfHoleFinished">Next Round</b-button>
   </div>
 </template>
 
 <script>
-import ScoreCard from './ScoreCard.vue';
+import EndGame from './EndGame.vue';
 import {eventBus} from '../main.js';
-import ScoresPage from './ScoresPage.vue';
-import IntroScreen from '../views/IntroScreen.vue';
-import LeaderboardContainer from '../views/LeaderboardContainer.vue';
 
 export default {
   name: "game-header",
@@ -24,14 +16,12 @@ export default {
   data(){
     return {
       selectScoresPage: false,
-      modalShow: true
+      modalShow: false
     }
   },
 
   components: {
-    "score-card": ScoreCard,
-    "intro-screen": IntroScreen,
-    "leaderboard-container": LeaderboardContainer
+    "end-game": EndGame
   },
   mounted() {
     eventBus.$on('view-leaderboard', () => {
@@ -56,14 +46,7 @@ export default {
     },
     newGame(){
       eventBus.$emit('start-new-game');
-    },
-    showModal() {
-     this.$refs['my-modal'].show()
-   },
-   hideModal() {
-     this.$refs['my-modal'].hide()
-   },
-
+    }
   }
 }
 </script>
