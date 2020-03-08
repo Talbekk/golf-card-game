@@ -19,6 +19,7 @@
 
 <script>
 import {firebase, db, auth} from '../firebase.js';
+import {eventBus} from '../main.js';
 
 export default {
   data(){
@@ -41,6 +42,7 @@ export default {
           games: {},
           userID: uid
         })
+        eventBus.$emit("register-user");
         console.log("uid", uid);
       }).then(() => {
         console.log("success", user);

@@ -56,7 +56,13 @@ export default {
       this.tutorialStatus = false;
       this.userName = null;
       this.scoreCard = [];
-    })
+    }),
+    eventBus.$on('signed-out', () => {
+      this.userData = {};
+    }),
+    eventBus.$on('register-user', () => {
+      this.getUserData();
+    }),
     eventBus.$on('score-card', (card) => {
       this.scoreCard = card;
     })  },

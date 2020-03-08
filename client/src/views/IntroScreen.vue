@@ -78,6 +78,9 @@ export default {
   mounted() {
     eventBus.$on('view-leaderboard', () => {
       this.selectScoresPage = !this.selectScoresPage;
+    }),
+    eventBus.$on('register-user', () => {
+      this.getUserData();
     })
   },
   methods: {
@@ -94,6 +97,8 @@ export default {
       const data = await firebase.auth().signOut();
       this.$router.replace({name: 'login'});
       console.log("success log out", data);
+      eventBus.$emit("signed-out");
+      this.userData = {};
     } catch(err) {
       console.log(err);
       console.log("fail");
