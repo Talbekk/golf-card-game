@@ -17,6 +17,7 @@
 <script>
 
 import {firebase} from '../firebase.js';
+import {eventBus} from '../main.js';
 
 export default {
   name: 'sign-in',
@@ -32,6 +33,7 @@ export default {
       try {
       const val = await firebase.auth().signInWithEmailAndPassword(this.email, this.password);
       this.$router.replace({name: 'home'});
+      eventBus.$emit("signed-in");
     } catch(err) {
       window.alert("Please try entering your details again!");
       console.log("fail", err);

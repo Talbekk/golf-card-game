@@ -63,6 +63,9 @@ export default {
     eventBus.$on('register-user', () => {
       this.getUserData();
     }),
+    eventBus.$on('signed-in', () => {
+      this.getUserData();
+    }),
     eventBus.$on('score-card', (card) => {
       this.scoreCard = card;
     })  },
