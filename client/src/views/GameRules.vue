@@ -4,7 +4,7 @@
     <p>
       Each player is dealt 4 cards face down from the deck. The remainder of the cards are placed face down, and the top card is turned up to start the discard pile beside it. Players arrange their 4 cards in a row face down. At the start of a round, the player can look at two cards but only for a short time.
     </p>
-    <h4>GamePlay:</h4>
+    <h4>The Game:</h4>
     <p>
       The object is for players to have the lowest value of the cards in front of them by either swapping them for lesser value cards or by pairing them up with cards of equal rank. A game is nine "holes" (deals), and the player with the lowest total score is the winner.
     </p>
@@ -15,6 +15,7 @@
       <li>Once cards have been dealt and at the beginning of the round, click a card to reveal it for a short time.</li>
       <li>To lock in a card: Double click the chosen card.</li>
       <li>To swap a card: Click the face up card you want and then click the card in your hand that you want to switch.</li>
+      <li>If you change your mind after selecting the top card from the pile, just click it again to cancel the swap.</li>
     </ul>
     <h4>Special Cards & Combinations:</h4>
     <ul>

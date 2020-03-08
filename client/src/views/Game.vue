@@ -107,7 +107,7 @@ export default {
       this.viewLeaderBoard = !this.viewLeaderBoard;
     }),
     eventBus.$on('top-card-selected', () => {
-      this.topCardSelected = true;
+      this.topCardSelected = !this.topCardSelected;
     })
   },
   watch: {
