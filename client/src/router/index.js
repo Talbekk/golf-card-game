@@ -19,7 +19,8 @@ const routes = [
   {
     path: '/game',
     name: 'game',
-    component: Game
+    component: Game,
+    meta: {requiresAuth: true}
   },
   {
     path: '/leaderboard',
