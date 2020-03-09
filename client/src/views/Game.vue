@@ -11,7 +11,7 @@
     </div>
   </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
-      <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected"></player-cards>
+      <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player-cards>
     </div>
   </div>
 </template>
