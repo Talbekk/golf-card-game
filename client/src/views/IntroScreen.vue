@@ -12,13 +12,10 @@
       <p><b>One Player Mode:</b></p>
       <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
     </div>
-    <div v-if="this.userData.games"id="last-game-container">
-      <p><b>Last Match:</b></p>
-      <p><b>Played:</b> {{this.lastMatch.date.date}} @ {{this.lastMatch.date.time}}</p>
-      <p><b>Score:</b> {{this.lastMatch.score}}</p>
-      <p><b>Scorecard:</b></p>
-      <score-card :scoreCard="chosenScoreCard"/>
-    </div>
+      <match-details
+      v-if="this.userData.games"
+      :match='this.lastMatch'
+      :chosenScoreCard='chosenScoreCard'/>
   </div>
 </template>
 
@@ -28,6 +25,7 @@ import {firebase, auth, db} from '../firebase.js';
 import ScoresPage from '../components/ScoresPage.vue';
 import LeaderboardContainer from './LeaderboardContainer.vue';
 import ScoreCard from '../components/ScoreCard.vue';
+import MatchDetails from '../components/MatchDetails.vue';
 
 export default {
   name: 'intro-screen',
@@ -49,7 +47,8 @@ export default {
   components: {
     "scores-page": ScoresPage,
     "leaderboard-container": LeaderboardContainer,
-    "score-card": ScoreCard
+    "score-card": ScoreCard,
+    "match-details": MatchDetails
   },
   created(){
     firebase.auth().onAuthStateChanged((user) => {
