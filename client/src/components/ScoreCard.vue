@@ -109,4 +109,8 @@ table, tr, th {
 
 }
 
+th {
+  padding: 1em;
+}
+
 </style>
