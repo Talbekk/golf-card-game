@@ -1,10 +1,10 @@
 <template lang="html">
   <div id="match-details-container">
-    <p><b>Last Match:</b></p>
+    <!-- <p><b>Last Match:</b></p> -->
     <p><b>Played:</b> {{this.match.date.date}} @ {{this.match.date.time}}</p>
     <p><b>Score:</b> {{this.match.score}}</p>
     <p><b>Scorecard:</b></p>
-    <score-card :scoreCard="chosenScoreCard"/>
+    <score-card :scoreCard="this.match.card"/>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
 
 <style lang="css" scoped>
 
-#match-details-container{
+/* #match-details-container{
   border: solid black 1px;
   padding: 2em;
   border-radius: 10%;
@@ -32,5 +32,5 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
   margin: 2em;
-}
+} */
 </style>

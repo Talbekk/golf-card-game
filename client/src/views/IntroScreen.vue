@@ -12,10 +12,14 @@
       <p><b>One Player Mode:</b></p>
       <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
     </div>
+    <div id="last-game-container">
+      <p><b>Last Match:</b></p>
       <match-details
       v-if="this.userData.games"
       :match='this.lastMatch'
       :chosenScoreCard='chosenScoreCard'/>
+    </div>
+      <match-list :matches='matches'/>
   </div>
 </template>
 
@@ -26,6 +30,7 @@ import ScoresPage from '../components/ScoresPage.vue';
 import LeaderboardContainer from './LeaderboardContainer.vue';
 import ScoreCard from '../components/ScoreCard.vue';
 import MatchDetails from '../components/MatchDetails.vue';
+import MatchList from '../components/MatchList.vue';
 
 export default {
   name: 'intro-screen',
@@ -41,14 +46,16 @@ export default {
       chosenScoreCard: [],
       gamesPlayed: 0,
       totalScore: 0,
-      averageScore: 0
+      averageScore: 0,
+      matches: []
     }
   },
   components: {
     "scores-page": ScoresPage,
     "leaderboard-container": LeaderboardContainer,
     "score-card": ScoreCard,
-    "match-details": MatchDetails
+    "match-details": MatchDetails,
+    "match-list": MatchList
   },
   created(){
     firebase.auth().onAuthStateChanged((user) => {
@@ -117,8 +124,10 @@ export default {
   }
 },
   getLastGame(){
-    const matches = Object.values(this.userData.games);
-    this.lastMatch = matches.pop();
+    const matchesList = Object.values(this.userData.games);
+    this.matches = matchesList;
+    const matchesCopy = [...matchesList];
+    this.lastMatch = matchesCopy.pop();
     const today = this.getDate();
     this.chosenScoreCard = this.lastMatch.card;
   },
