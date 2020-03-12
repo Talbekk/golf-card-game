@@ -5,6 +5,7 @@
      <p><b>Golfer Name:</b> {{this.userData.username}}</p>
      <p><b>Games Played:</b> {{this.gamesPlayed}}</p>
      <p><b>Total Score:</b> {{this.totalScore}}</p>
+     <p><b>Average Score:</b> {{this.averageScore}}</p>
      <b-button id="submit" v-on:click="signOut" v-if="loggedIn">Sign Out</b-button>
    </div>
     <div id="new-game-container">
@@ -41,7 +42,8 @@ export default {
       lastMatch: {},
       chosenScoreCard: [],
       gamesPlayed: 0,
-      totalScore: 0
+      totalScore: 0,
+      averageScore: 0
     }
   },
   components: {
@@ -110,6 +112,7 @@ export default {
     this.getLastGame();
     this.getGamesPlayed();
     this.getTotalScore();
+    this.getAverageScore();
   }
   })
   }
@@ -138,6 +141,12 @@ export default {
       total+= match.score;
     })
     this.totalScore = total;
+  },
+  getAverageScore(){
+    const totalGames = this.gamesPlayed;
+    const totalScore = this.totalScore;
+    const average = totalScore / totalGames;
+    this.averageScore = Math.floor(average);
   }
 
 }
