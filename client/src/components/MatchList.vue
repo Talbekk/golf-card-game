@@ -33,10 +33,12 @@ export default {
 <style lang="css" scoped>
 
 #match-list{
-  display: flex;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(5rem, 1fr));
+  /* display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: flex-start; */
 }
 
 #list-item{
@@ -57,8 +59,8 @@ export default {
 
 ul{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   grid-gap: 3em;
-  max-width: 80%;
+  max-width: 100%;
 }
 </style>
