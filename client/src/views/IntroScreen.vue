@@ -170,7 +170,7 @@ export default {
   font-size: 12px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   max-width: 95%;
 
 }

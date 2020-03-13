@@ -73,7 +73,6 @@ export default {
     // }
     }),
     eventBus.$on('start-new-game', () => {
-      console.log("pick-up");
       this.currentHole = 1;
       this.score = 0;
     })

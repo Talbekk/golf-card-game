@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="end-game-modal">
-    <b-modal v-model="modalShow" id="my-modal" centered title="Game Result:" ok-only>
+    <b-modal v-model="modalShow" size="lg" id="my-modal" centered title="Game Result:" ok-only>
       <score-card :scoreCard="scoreCard"/>
     </b-modal>
   </div>

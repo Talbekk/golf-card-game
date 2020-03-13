@@ -23,14 +23,12 @@ export default {
 
 <style lang="css" scoped>
 
-/* #match-details-container{
-  border: solid black 1px;
-  padding: 2em;
-  border-radius: 10%;
+#match-details-container{
+  padding: 0.5em;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin: 2em;
-} */
+  margin: 0.5em;
+}
 </style>

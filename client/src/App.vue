@@ -79,11 +79,9 @@ export default {
     },
     getUserData(){
     if(auth.currentUser){
-      console.log("getuserData", auth.currentUser);
     const uid = auth.currentUser.uid;
     db.ref().child('users').child(uid).once("value", (snapshot) => {
     this.userData = snapshot.val();
-    console.log("this user data", this.userData);
   })
 }
 }
