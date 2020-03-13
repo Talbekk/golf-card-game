@@ -1,24 +1,26 @@
 <template lang="html">
   <div id="intro-screen" v-if="!selectScoresPage">
-   <div id="profile-container" v-if="!newGame">
-     <h5><b>Profile:</b></h5>
-     <p><b>Golfer Name:</b> {{this.userData.username}}</p>
-     <p><b>Games Played:</b> {{this.gamesPlayed}}</p>
-     <p><b>Total Score:</b> {{this.totalScore}}</p>
-     <p><b>Average Score:</b> {{this.averageScore}}</p>
-     <b-button id="submit" v-on:click="signOut" v-if="loggedIn">Sign Out</b-button>
-   </div>
-    <div id="new-game-container">
-      <p><b>One Player Mode:</b></p>
-      <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
-    </div>
-    <div id="last-game-container">
-      <p><b>Last Match:</b></p>
-      <match-details
-      v-if="this.userData.games"
-      :match='this.lastMatch'
-      :chosenScoreCard='chosenScoreCard'/>
-    </div>
+    <div id="top-container">
+      <div id="profile-container" v-if="!newGame">
+        <h5><b>Profile:</b></h5>
+        <p><b>Golfer Name:</b> {{this.userData.username}}</p>
+        <p><b>Games Played:</b> {{this.gamesPlayed}}</p>
+        <p><b>Total Score:</b> {{this.totalScore}}</p>
+        <p><b>Average Score:</b> {{this.averageScore}}</p>
+        <b-button id="submit" v-on:click="signOut" v-if="loggedIn">Sign Out</b-button>
+      </div>
+      <div id="new-game-container">
+        <p><b>One Player Mode:</b></p>
+        <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
+      </div>
+      </div>
+      <div id="last-game-container">
+        <p><b>Last Match:</b></p>
+        <match-details
+        v-if="this.userData.games"
+        :match='this.lastMatch'
+        :chosenScoreCard='chosenScoreCard'/>
+      </div>
       <match-list :matches='matches'/>
   </div>
 </template>
@@ -168,17 +170,28 @@ export default {
   margin-right: auto;
   padding: 8px 5px 12px 5px;
   font-size: 12px;
+  display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(25rem, 1fr));
+  /* justify-content: space-evenly; */
+  /* max-width: 95%; */
+}
+
+#top-container{
   display: flex;
   flex-direction: row;
-  /* justify-content: space-evenly; */
-  max-width: 95%;
-
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  /* grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 1em; */
+  /* grid-auto-rows: minmax(100px, auto);
+  grid-auto-columns: minmax(100px, auto); */
+  width: 75%;
 }
 
 #profile-container{
   border: solid black 1px;
   padding: 2em;
-  border-radius: 10%;
+  /* border-radius: 10%; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -189,7 +202,7 @@ export default {
 #new-game-container{
   border: solid black 1px;
   padding: 2em;
-  border-radius: 10%;
+  /* border-radius: 10%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -199,12 +212,16 @@ export default {
 #last-game-container{
   border: solid black 1px;
   padding: 2em;
-  border-radius: 10%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  /* border-radius: 10%; */
   margin: 2em;
+  max-width: 70%;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); */
+  /* grid-gap: 1em;
+  grid-auto-rows: minmax(100px, auto);
+  grid-auto-columns: minmax(100px, auto);
+  width: 50%;
+  margin: 2em; */
 }
 
 #name-box {

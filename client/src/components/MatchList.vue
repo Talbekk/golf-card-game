@@ -40,11 +40,25 @@ export default {
 }
 
 #list-item{
+  /* border: solid black 1px;
+  padding: 2em;
+  border-radius: 10%;
+  margin: 2em;
+  max-width: 70%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
   border: solid black 1px;
-  margin: 2em;
+  margin: 2em; */
+  border: solid black 1px;
+  list-style: none;
+}
+
+ul{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-gap: 3em;
+  max-width: 80%;
 }
 </style>

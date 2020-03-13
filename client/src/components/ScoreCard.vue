@@ -110,7 +110,7 @@ table, tr, th {
 }
 
 th {
-  padding: 1em;
+  padding: 0.5em;
 }
 
 </style>
