@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <logo-header id="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard"></logo-header>
-    <router-view :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
+    <router-view :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
   </div>
 </template>
 
@@ -23,7 +23,8 @@ export default {
       tutorialStatus: false,
       userName: null, //game,
       scoreCard: [],
-      userData: {}
+      userData: {},
+      gameMode: null
     }
   },
   components: {
@@ -45,6 +46,9 @@ export default {
       setTimeout( () => {eventBus.$emit('start-new-game')}, 1000)
       this.tutorialStatus = true;
     }),
+    eventBus.$on('start-new-game', () => {
+      this.gameMode = "single-player";
+    })
     eventBus.$on('username-selected', (name) => {
       this.userName = name;
     }),
