@@ -46,9 +46,9 @@ export default {
       setTimeout( () => {eventBus.$emit('start-new-game')}, 1000)
       this.tutorialStatus = true;
     }),
-    eventBus.$on('start-new-game', () => {
-      this.gameMode = "single-player";
-    })
+    eventBus.$on('start-new-game', (mode) => {
+      this.gameMode = mode;
+    }),
     eventBus.$on('username-selected', (name) => {
       this.userName = name;
     }),

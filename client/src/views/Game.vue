@@ -12,6 +12,7 @@
   </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
       <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player-cards>
+      <player-cards v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player-cards>
     </div>
   </div>
 </template>
@@ -31,7 +32,7 @@ import {leaderboardRef} from '../firebase.js';
 
 export default {
   name: "game",
-  props: ['gameDeck', 'userName', 'gameStatus', 'userData'],
+  props: ['gameDeck', 'userName', 'gameStatus', 'userData', 'gameMode'],
   data(){
     return {
       roundDeck: [], //round

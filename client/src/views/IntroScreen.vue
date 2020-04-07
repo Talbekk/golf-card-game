@@ -13,7 +13,7 @@
         <p><b>One Player:</b></p>
         <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
          <p><b>Face The Computer:</b></p>
-        <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
+        <b-button to="/game" v-on:click="clickedNewGameComputer" id="submit" type="submit">Tee Off</b-button>
       </div>
       </div>
       <div id="last-game-container">
@@ -93,7 +93,10 @@ export default {
   },
   methods: {
     clickedNewGame(){
-      eventBus.$emit('start-new-game');
+      eventBus.$emit('start-new-game', "single-player");
+    },
+     clickedNewGameComputer(){
+      eventBus.$emit('start-new-game', "versus-computer");
     },
     handleClick(){
       eventBus.$emit('username-selected', this.userName);
