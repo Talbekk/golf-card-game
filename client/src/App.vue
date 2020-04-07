@@ -59,6 +59,7 @@ export default {
       this.gameStatus = false;
       this.tutorialStatus = false;
       this.userName = null;
+      this.gameMode = null;
       this.scoreCard = [];
     }),
     eventBus.$on('signed-out', () => {
