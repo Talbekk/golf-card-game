@@ -10,7 +10,9 @@
         <b-button id="submit" v-on:click="signOut" v-if="loggedIn">Sign Out</b-button>
       </div>
       <div id="new-game-container">
-        <p><b>One Player Mode:</b></p>
+        <p><b>One Player:</b></p>
+        <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
+         <p><b>Face The Computer:</b></p>
         <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
       </div>
       </div>
@@ -205,7 +207,7 @@ export default {
   /* border-radius: 10%; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   margin: 2em;
 }
 
