@@ -105,11 +105,12 @@ export default {
 html { scroll-behavior: smooth; }
 
 html, body {
-  font-family: 'Lato', 'Arial', sans-serif;
+
   height: 100%;
   background-color: #fff;
   color: #555555;
   font-size: 16px;
+  font-weight: 400;
   background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/LoginCover.jpg');
   background-size: cover;
   height: 100vh;
@@ -117,22 +118,12 @@ html, body {
   background-attachment: fixed;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+
 }
 
-/* #app {
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  color: #2c3e50;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/LoginCover.jpg');
-  background-size: cover;
-  height: 100vh;
-  background-position: center;
-  background-attachment: fixed;
-} */
+#app {
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
 
 #intro-screen{
   max-width: 100%;
