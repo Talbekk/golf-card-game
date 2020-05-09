@@ -40,6 +40,8 @@ h2 {
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 </style>

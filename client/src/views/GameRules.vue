@@ -48,8 +48,14 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
   text-align: left;
-  margin-left: 2%;
-  margin-top: 5%;
+  margin: 2%;
+  padding: 15px 30px;
+  border: solid #4b8a4a 1px;
+  border-radius: 5px;
+  background-color: #4b8a4a;
+  background-size: cover;
+  color: #333;
+  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
 }
 
 </style>
