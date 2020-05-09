@@ -149,6 +149,7 @@ html, body {
   margin-bottom: 0;
   /* background-color: #333; */
   background-size: cover;
+  font-size: 150%;
 }
 
 /* BUTTONS */
