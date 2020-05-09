@@ -29,7 +29,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
   padding: 8px 5px 12px 5px;
-  max-width: 600px;
+  max-width: 800px;
   font-size: 120%;
 }
 
