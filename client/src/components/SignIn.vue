@@ -49,10 +49,8 @@ export default {
   padding: 1em;
   border: solid black 1px;
   margin: 1em;
-  background-color: #fff;
-  background-size: cover;
   border-radius: 5px;
-  background-color: #1a682a;
+  background-color: #4b8a4a;
   background-size: cover;
 }
 

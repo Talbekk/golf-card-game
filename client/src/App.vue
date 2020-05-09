@@ -128,6 +128,11 @@ button {
   font-weight: bold;
   text-align: center;
   color: #2c3e50;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/LoginCover.jpg');
+  background-size: cover;
+  height: 150vh;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 #header {
@@ -143,15 +148,15 @@ button {
   justify-content: center;
 }
 
-.card-icon {
+/* .card-icon {
   max-width: 11em;
-  max-height: 11em;
+  max-height: 5em;
   padding: 2em;
-}
+} */
 
 #nav-bar{
   margin-bottom: 0;
-  background-color: #1a682a;
+  /* background-color: #333; */
   background-size: cover;
 }
 
