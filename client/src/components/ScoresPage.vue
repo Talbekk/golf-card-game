@@ -1,11 +1,13 @@
 <template lang="html">
   <div id="leaderboard-container">
     <div id="views-container">
-      <b-button pill type="button" v-on:click="setFilter" name="button">{{this.filter ? "Show All Scores" : "Show Best Scores"}}</b-button>
-      <b-button pill type="button" v-on:click="seeTable" name="button">{{this.tableFilter ? "Show Legacy" : "Show Current"}}</b-button>
+      <b-button id="btn-main" type="button" v-on:click="setFilter" name="button">{{this.filter ? "Show All Scores" : "Show Best Scores"}}</b-button>
+      <b-button id="btn-main" type="button" v-on:click="seeTable" name="button">{{this.tableFilter ? "Show Legacy" : "Show Current"}}</b-button>
     </div>
+    <div id="scoreboard-container">
     <leaderboard v-if="sortedLeaderBoard && tableFilter" :scores='this.sortedLeaderBoard' :title='newTitle' :gameStatus="gameStatus"></leaderboard>
     <leaderboard v-if="sortedScores && !tableFilter" :scores='this.sortedScores' :title='title' :gameStatus="gameStatus"></leaderboard>
+  </div>
   </div>
 </template>
 <script>
@@ -102,6 +104,17 @@ export default {
   padding-bottom: 50px;
 }
 
+#scoreboard-container {
+  padding: 15px 30px;
+  border: solid #4b8a4a 1px;
+  border-radius: 5px;
+  background-color: #4b8a4a;
+  background-size: cover;
+  color: #333;
+  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
+  font-size: 120%;
+  font-weight: 400;
+}
 
 
 </style>

@@ -30,7 +30,7 @@ export default {
   margin-right: auto;
   padding: 8px 5px 12px 5px;
   max-width: 600px;
-  font-size: 13px;
+  font-size: 120%;
 }
 
 </style>
