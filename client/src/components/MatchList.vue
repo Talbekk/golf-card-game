@@ -33,8 +33,16 @@ export default {
 <style lang="css" scoped>
 
 #match-list{
+  padding: 1em;
+  margin: 2em;
   display: grid;
   grid-template-rows: repeat(auto-fill, minmax(5rem, 1fr));
+  /* border: solid #4b8a4a 1px;
+  border-radius: 5px;
+  background-color: #4b8a4a;
+  background-size: cover;
+  color: #333;
+  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8); */
   /* display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -53,7 +61,12 @@ export default {
   align-items: flex-start;
   border: solid black 1px;
   margin: 2em; */
-  border: solid black 1px;
+  border: solid #4b8a4a 1px;
+  border-radius: 5px;
+  background-color: #4b8a4a;
+  background-size: cover;
+  color: #333;
+  box-shadow: 0 5px 15px 0px rgb(0,0,0,0.7);
   list-style: none;
 }
 

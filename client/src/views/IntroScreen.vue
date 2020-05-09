@@ -7,13 +7,13 @@
         <p><b>Games Played:</b> {{this.gamesPlayed}}</p>
         <p><b>Total Score:</b> {{this.totalScore}}</p>
         <p><b>Average Score:</b> {{this.averageScore}}</p>
-        <b-button id="submit" v-on:click="signOut" v-if="loggedIn">Sign Out</b-button>
+        <b-button id="btn-main" v-on:click="signOut" v-if="loggedIn">Sign Out</b-button>
       </div>
       <div id="new-game-container">
         <p><b>One Player:</b></p>
-        <b-button to="/game" v-on:click="clickedNewGame" id="submit" type="submit">Tee Off</b-button>
+        <b-button to="/game" v-on:click="clickedNewGame" id="btn-main" type="submit">Tee Off</b-button>
          <p><b>Face The Computer:</b></p>
-        <b-button to="/game" v-on:click="clickedNewGameComputer" id="submit" type="submit">Tee Off</b-button>
+        <b-button to="/game" v-on:click="clickedNewGameComputer" id="btn-main" type="submit">Tee Off</b-button>
       </div>
       </div>
       <div id="last-game-container">
@@ -190,36 +190,50 @@ export default {
   grid-gap: 1em; */
   /* grid-auto-rows: minmax(100px, auto);
   grid-auto-columns: minmax(100px, auto); */
-  width: 75%;
+  width: 100%;
 }
 
-#profile-container{
-  border: solid black 1px;
+#profile-container {
   padding: 2em;
-  /* border-radius: 10%; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   margin: 2em;
+  border: solid #4b8a4a 1px;
+  border-radius: 5px;
+  background-color: #4b8a4a;
+  background-size: cover;
+  color: #333;
+  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
+  width: 60%;
 }
 
 #new-game-container{
-  border: solid black 1px;
   padding: 2em;
-  /* border-radius: 10%; */
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   margin: 2em;
+  border: solid #4b8a4a 1px;
+  border-radius: 5px;
+  background-color: #4b8a4a;
+  background-size: cover;
+  color: #333;
+  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
+  width: 25%;
 }
 
 #last-game-container{
-  border: solid black 1px;
   padding: 2em;
-  /* border-radius: 10%; */
   margin: 2em;
   max-width: 70%;
+  border: solid #4b8a4a 1px;
+  border-radius: 5px;
+  background-color: #4b8a4a;
+  background-size: cover;
+  color: #333;
+  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
   /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); */
   /* grid-gap: 1em;

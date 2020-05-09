@@ -175,7 +175,44 @@ html, body {
   justify-content: center;
 }
 
+.modal-content {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/CourseBackground.jpg');
+  /* background-size: cover; */
+  /* height: 100vh; */
+  background-position: center;
+  background-attachment: fixed;
+  text-rendering: optimizeLegibility;
+  /* overflow-x: hidden; */
+  background-color: #4b8a4a;
+  border: none;
+}
 
+.modal-header {
+  border-bottom: none !important;
+  background: #777;
+}
+
+.modal-footer {
+  border-top: none !important;
+  background: #777;
+}
+
+.btn-primary {
+
+}
+
+.btn-primary ,
+.btn-primary :link,
+.btn-primary :visited {
+  background: #444 !important;
+  border: 1px solid #444 !important;
+}
+
+.btn-primary :hover,
+.btn-primary :active {
+  background: #555 !important;
+  border: 1px solid #444 !important;
+}
 
 
 
