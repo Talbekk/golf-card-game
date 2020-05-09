@@ -125,7 +125,7 @@ html, body {
   font-family: Merriweather;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
   color: #2c3e50;
