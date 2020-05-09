@@ -25,7 +25,12 @@ export default {
 <style lang="css" scoped>
 
 #main-container{
-    max-width: 95%;
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/LoginCover.jpg');
+    background-size: cover;
+    height: 100vh;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 #login-container {
