@@ -33,10 +33,9 @@ export default {
 }
 
 h2 {
-  padding-top: 10px;
   font-weight: bold;
   color: #333;
-  padding-bottom: 12px;
+  padding-bottom: 20px;
   margin: auto 0;
   display: flex;
   justify-content: center;

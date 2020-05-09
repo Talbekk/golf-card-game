@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="register-container">
     <h4 id="login-heading">Register a user:</h4>
-    <div v-if="error" class="error">{{error.message}}</div>
+    <div id="register-form" v-if="error" class="error">{{error.message}}</div>
     <b-form @submit.prevent="handleSubmit">
       <b-form-group id="email" label="Email:">
         <b-form-input type="email" v-model="email" required placeholder="email"/>
@@ -66,4 +66,4 @@ export default {
   color: #333;
 }
 
-</style>
+  </style>
