@@ -111,10 +111,6 @@ export default {
   padding-bottom: 2em;
 }
 
-#game-header{
-  padding-bottom: 0;
-}
-
 #modal-3___BV_modal_body_{
   display: flex;
   flex-direction: row;

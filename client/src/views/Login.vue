@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="main-container">
-    <p>Welcome to Golf: The Card Game</p>
+    <h2>Welcome to Golf: The Card Game</h2>
     <div id="login-container">
     <register></register>
     <sign-in></sign-in>
@@ -24,9 +24,8 @@ export default {
 
 <style lang="css" scoped>
 
-#main-container{
-
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/LoginCover.jpg');
+#main-container {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('../assets/LoginCover.jpg');
     background-size: cover;
     height: 100vh;
     background-position: center;
@@ -41,5 +40,9 @@ export default {
   flex-wrap: wrap;
 }
 
+h2 {
+  padding-top: 15px;
+  font-weight: bold;
+}
 
 </style>

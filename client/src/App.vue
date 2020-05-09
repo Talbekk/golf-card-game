@@ -151,6 +151,8 @@ button {
 
 #nav-bar{
   margin-bottom: 0;
+  background-color: #1a682a;
+  background-size: cover;
 }
 
 </style>
