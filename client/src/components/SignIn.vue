@@ -47,12 +47,13 @@ export default {
 
 #sign-in-container{
   padding: 1em;
-  border: solid black 1px;
+  border: solid #4b8a4a 1px;
   margin: 1em;
   border-radius: 5px;
   background-color: #4b8a4a;
   background-size: cover;
   color: #333;
+  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
 }
 
 </style>
