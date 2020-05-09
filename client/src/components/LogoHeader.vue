@@ -39,7 +39,6 @@
 <script>
 
 import {eventBus} from '../main.js';
-
 import ScoresPage from './ScoresPage.vue';
 import GameRules from '../views/GameRules.vue';
 import ScoreCard from './ScoreCard.vue';
@@ -105,20 +104,10 @@ export default {
 
 <style lang="css" scoped>
 
-.game-logo {
-  max-width: 5em;
-  max-height: 5em;
-  padding-bottom: 2em;
-}
-
 #modal-3___BV_modal_body_{
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-
-#logo-header {
-  font-size: 150%;
 }
 
 .nav-item,
