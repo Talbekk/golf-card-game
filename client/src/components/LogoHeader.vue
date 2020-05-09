@@ -121,4 +121,15 @@ export default {
   font-size: 120%;
 }
 
+.nav-item,
+.nav-item:link,
+.nav-item:visited {
+  font-weight: 700;
+}
+
+.nav-item:hover,
+.nav-item:active {
+  font-weight: 700;
+}
+
 </style>

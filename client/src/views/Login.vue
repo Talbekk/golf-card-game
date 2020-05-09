@@ -34,12 +34,12 @@ export default {
 
 h2 {
   font-weight: bold;
-  color: #333;
+  font-size: 250%;
+  color: #222;
   padding-bottom: 20px;
-  margin: auto 0;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
-
 }
 
 </style>

@@ -111,7 +111,7 @@ html, body {
   color: #555555;
   font-size: 16px;
   font-weight: 400;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/LoginCover.jpg');
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/CourseBackground.jpg');
   background-size: cover;
   height: 100vh;
   background-position: center;
@@ -170,6 +170,8 @@ html, body {
 
 #login-heading {
   font-size: 200%;
+  display: flex;
+  justify-content: center;
 }
 
 
