@@ -39,6 +39,7 @@ export default {
 h2 {
   padding-top: 15px;
   font-weight: bold;
+  color: #333;
 }
 
 </style>

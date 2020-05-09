@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="register-container">
-    <h4>Register a user:</h4>
+    <h4 id="login-heading">Register a user:</h4>
     <div v-if="error" class="error">{{error.message}}</div>
     <b-form @submit.prevent="handleSubmit">
       <b-form-group id="email" label="Email:">
@@ -12,7 +12,7 @@
       <b-form-group id="password" label="Password:">
         <b-form-input type="password" v-model="password" required placeholder="password"/>
         </b-form-group>
-      <b-button type="submit">Sign Up</b-button>
+      <b-button id="btn-main" type="submit">Sign Up</b-button>
     </b-form>
   </div>
 </template>
@@ -23,7 +23,7 @@ import {eventBus} from '../main.js';
 
 export default {
   data(){
-    return{
+    return {
       email: "",
       password: '',
       username: "",
@@ -63,6 +63,7 @@ export default {
   border-radius: 5px;
   background-color: #4b8a4a;
   background-size: cover;
+  color: #333;
 }
 
 </style>

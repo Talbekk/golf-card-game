@@ -109,7 +109,7 @@ html, body {
   background-color: #55cc44;
 } */
 
-button {
+/* button {
   color: #fff !important;
   text-transform: uppercase;
   text-decoration: none;
@@ -119,12 +119,13 @@ button {
   display: inline-block;
   border: none;
   transition: all 0.4s ease 0s;
-}
+} */
 
 #app {
   font-family: Merriweather;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
   color: #2c3e50;
@@ -148,16 +149,35 @@ button {
   justify-content: center;
 }
 
-/* .card-icon {
-  max-width: 11em;
-  max-height: 5em;
-  padding: 2em;
-} */
-
 #nav-bar{
   margin-bottom: 0;
   /* background-color: #333; */
   background-size: cover;
 }
+
+/* BUTTONS */
+
+#btn-main,
+#btn-main:link,
+#btn-main:visited {
+  background: #444;
+  border: 1px solid #444;
+}
+
+#btn-main:hover,
+#btn-main:active {
+  background: #555;
+  border: 1px solid #444;
+}
+
+/* HEADINGS */
+
+#login-heading {
+  font-size: 200%;
+}
+
+
+
+
 
 </style>

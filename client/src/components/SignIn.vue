@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="sign-in-container">
-    <h4>Sign in:</h4>
+    <h4 id="login-heading">Sign in:</h4>
     <b-form @submit.prevent="handleSignIn">
       <b-form-group id="sign-in" label="Email:">
         <b-form-input type="email" v-model="email" placeholder="sign in"/>
@@ -8,7 +8,7 @@
       <b-form-group id="password" label="Password:">
         <b-form-input type="password" v-model="password" placeholder="password"/>
       </b-form-group>
-        <b-button type="submit">Sign In</b-button>
+        <b-button id="btn-main" type="submit">Sign In</b-button>
     </b-form>
     <div class="error" v-if="error">{{error.message}}</div>
   </div>
@@ -52,6 +52,7 @@ export default {
   border-radius: 5px;
   background-color: #4b8a4a;
   background-size: cover;
+  color: #333;
 }
 
 </style>
