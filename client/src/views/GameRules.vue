@@ -58,4 +58,16 @@ export default {
   box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
 }
 
+a,
+a:link,
+a:visited {
+  color: #02419e;
+}
+
+a:hover,
+a:active {
+  color: #004dbf;
+  text-decoration: none;
+}
+
 </style>
