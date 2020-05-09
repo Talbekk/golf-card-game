@@ -1,8 +1,8 @@
 <template lang="html">
-  <div id="game-header">
+  <div id="logo-header">
     <b-navbar toggleable="lg" variant="faded" type="light">
       <b-navbar-brand href="#">
-        <img src="../assets/GameLogo.svg" height="60" alt=""/>
+        <img src="../assets/GameLogo.svg" height="70" alt=""/>
       </b-navbar-brand>
       <b-navbar-nav>
       <b-nav-item to="/" v-on:click="reset">Home</b-nav-item>
@@ -115,6 +115,10 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+#logo-header {
+  font-size: 120%;
 }
 
 </style>

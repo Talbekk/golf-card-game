@@ -24,10 +24,6 @@ export default {
 
 <style lang="css" scoped>
 
-#main-container {
-
-}
-
 #login-container {
   display: flex;
   flex-direction: row;
@@ -37,10 +33,14 @@ export default {
 }
 
 h2 {
-  padding-top: 15px;
+  padding-top: 10px;
   font-weight: bold;
   color: #333;
-  padding-bottom: 15px;
+  padding-bottom: 12px;
+  margin: auto 0;
+  display: flex;
+  justify-content: center;
+
 }
 
 </style>

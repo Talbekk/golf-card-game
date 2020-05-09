@@ -97,32 +97,30 @@ export default {
 
 <style>
 
-#intro-screen{
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-/*
+html { scroll-behavior: smooth; }
+
 html, body {
+  font-family: 'Lato', 'Arial', sans-serif;
   height: 100%;
-  background-color: #55cc44;
-} */
+  background-color: #fff;
+  color: #555555;
+  font-size: 16px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/LoginCover.jpg');
+  background-size: cover;
+  height: 100vh;
+  background-position: center;
+  background-attachment: fixed;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
 
-/* button {
-  color: #fff !important;
-  text-transform: uppercase;
-  text-decoration: none;
-  background: #60a3bc;
-  padding: 15px;
-  border-radius: 75px;
-  display: inline-block;
-  border: none;
-  transition: all 0.4s ease 0s;
-} */
+/* #app {
 
-#app {
-  font-family: Merriweather;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
@@ -131,9 +129,16 @@ html, body {
   color: #2c3e50;
   background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/LoginCover.jpg');
   background-size: cover;
-  height: 150vh;
+  height: 100vh;
   background-position: center;
   background-attachment: fixed;
+} */
+
+#intro-screen{
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 #header {
