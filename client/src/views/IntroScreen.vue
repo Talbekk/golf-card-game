@@ -207,6 +207,7 @@ export default {
   color: #333;
   box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
   width: 60%;
+  font-size: 150%;
 }
 
 #new-game-container{
