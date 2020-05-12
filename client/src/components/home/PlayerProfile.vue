@@ -98,6 +98,7 @@ export default {
   border-radius: 5px;
   background-color: #555;
   color: #fff;
+  padding: 10px;
 }
 
 #button-row #btn-main:last-child {
