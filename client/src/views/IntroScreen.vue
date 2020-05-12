@@ -1,14 +1,7 @@
 <template lang="html">
   <div id="intro-screen" v-if="!selectScoresPage">
     <div id="top-container">
-      <div id="profile-container" v-if="!newGame">
-        <h5><b>Profile:</b></h5>
-        <p><b>Golfer Name:</b> {{this.userData.username}}</p>
-        <p><b>Games Played:</b> {{this.gamesPlayed}}</p>
-        <p><b>Total Score:</b> {{this.totalScore}}</p>
-        <p><b>Average Score:</b> {{this.averageScore}}</p>
-        <b-button id="btn-main" v-on:click="signOut" v-if="loggedIn">Sign Out</b-button>
-      </div>
+      <player-profile v-if="!newGame" :userData='userData' :gamesPlayed='gamesPlayed' :totalScore='totalScore' :averageScore='averageScore'/>
     </div>
     <div id="game-modes-container">
       <div id="new-game-container">
@@ -37,6 +30,7 @@ import LeaderboardContainer from './LeaderboardContainer.vue';
 import ScoreCard from '../components/ScoreCard.vue';
 import MatchDetails from '../components/MatchDetails.vue';
 import MatchList from '../components/MatchList.vue';
+import PlayerProfile from '../components/home/PlayerProfile.vue';
 
 export default {
   name: 'intro-screen',
@@ -61,7 +55,8 @@ export default {
     "leaderboard-container": LeaderboardContainer,
     "score-card": ScoreCard,
     "match-details": MatchDetails,
-    "match-list": MatchList
+    "match-list": MatchList,
+    "player-profile": PlayerProfile
   },
   created(){
     firebase.auth().onAuthStateChanged((user) => {
@@ -104,17 +99,6 @@ export default {
       eventBus.$emit('username-selected', this.userName);
       this.clickedNewGame();
     },
-    async signOut(){
-      try{
-      const data = await firebase.auth().signOut();
-      this.$router.replace({name: 'login'});
-      eventBus.$emit("signed-out");
-      this.userData = {};
-    } catch(err) {
-      console.log(err);
-    }
-
-  },
     getUserData(){
     if(auth.currentUser){
     const uid = auth.currentUser.uid;
