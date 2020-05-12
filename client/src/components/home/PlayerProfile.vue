@@ -74,31 +74,33 @@ export default {
 #information-row {
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: row;
-  justify-content: flex-start; */
   width: 100%;
+  padding: 5px 10px;
 }
 
 #profile-info-box {
   width: 100%;
-  padding: 0 20px;
-  flex: 4;
+  /* padding: 0 20px; */
+  display: flex;
+  flex-direction: column;
+  flex: 8;
+  align-items: stretch;
 }
 
 #profile-info-box-title {
   border: 1px solid black;
-  border-radius: 5px;
   padding: 5px;
   color: #fff;
   background-color: #000;
+  flex-grow: 1;
 }
 
 #profile-info-box-data {
   border: 1px solid #000;
-  border-radius: 5px;
   background-color: #555;
   color: #fff;
   padding: 10px;
+  flex-grow: 2;
 }
 
 #button-row #btn-main:last-child {
