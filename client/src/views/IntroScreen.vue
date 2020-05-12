@@ -9,13 +9,15 @@
         <p><b>Average Score:</b> {{this.averageScore}}</p>
         <b-button id="btn-main" v-on:click="signOut" v-if="loggedIn">Sign Out</b-button>
       </div>
+    </div>
+    <div id="game-modes-container">
       <div id="new-game-container">
         <p><b>One Player:</b></p>
         <b-button to="/game" v-on:click="clickedNewGame" id="btn-main" type="submit">Tee Off</b-button>
          <p><b>Face The Computer:</b></p>
         <b-button to="/game" v-on:click="clickedNewGameComputer" id="btn-main" type="submit">Tee Off</b-button>
       </div>
-      </div>
+    </div>
       <div id="last-game-container">
         <p><b>Last Match:</b></p>
         <match-details
@@ -181,15 +183,11 @@ export default {
   /* max-width: 95%; */
 }
 
-#top-container{
+#top-container {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  /* grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-  grid-gap: 1em; */
-  /* grid-auto-rows: minmax(100px, auto);
-  grid-auto-columns: minmax(100px, auto); */
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
 }
 
