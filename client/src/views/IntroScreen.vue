@@ -175,23 +175,6 @@ export default {
   width: 100%;
 }
 
-#profile-container {
-  padding: 2em;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin: 2em;
-  border: solid #4b8a4a 1px;
-  border-radius: 5px;
-  background-color: #4b8a4a;
-  background-size: cover;
-  color: #333;
-  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
-  width: 60%;
-  font-size: 150%;
-}
-
 #new-game-container{
   padding: 2em;
   display: flex;
