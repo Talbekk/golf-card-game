@@ -170,9 +170,7 @@ export default {
 #top-container {
   display: flex;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+  max-width: 1400px;
 }
 
 #new-game-container{
