@@ -13,10 +13,10 @@
         <h2><b>{{this.userData.username}}</b></h2>
       </div>
       <div id="profile-info-box-data">
-    <p class="record-box top-left"><b>Games Played: </b>{{this.gamesPlayed}}</p>
-    <p class="record-box top-right"><b>Total Score: </b>{{this.totalScore}}</p>
-    <p class="record-box bot-left"><b>Average Score: </b>{{this.averageScore}}</p>
-    <p class="record-box bot-right"><b>Best Score: </b>{{this.bestScore}}</p>
+    <p class="record-box top-left">Games Played: {{this.gamesPlayed}}</p>
+    <p class="record-box top-right">Total Score: {{this.totalScore}}</p>
+    <p class="record-box bot-left">Average Score: {{this.averageScore}}</p>
+    <p class="record-box bot-right">Best Score: {{this.bestScore}}</p>
       </div>
     </div>
   </div>
