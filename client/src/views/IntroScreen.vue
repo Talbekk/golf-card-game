@@ -9,16 +9,7 @@
       <ul v-for="(game, index) in gameModes">
         <li>
         <game-mode :game="game"/>
-      <!-- <game-mode :gameMode="single-player"/>
-      <div id="new-game-container">
-        <p><b>Single Player:</b></p>
-        <b-button to="/game" v-on:click="clickedNewGame" id="btn-main" type="submit">Tee Off</b-button>
-      </div>
-      <div id="new-game-container">
-         <p><b>Face The Computer:</b></p>
-        <b-button to="/game" v-on:click="clickedNewGameComputer" id="btn-main" type="submit">Tee Off</b-button>
-      </div> -->
-    </li>
+        </li>
     </ul>
     </div>
       <!-- <div id="last-game-container">

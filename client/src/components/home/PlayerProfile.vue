@@ -127,7 +127,7 @@ export default {
   align-items: center;
   margin-bottom: 0;
   font-size: 75%;
-  padding: 1em;
+  padding: 1.5em 2.5em;
 }
 
 .record-box.top-left {
