@@ -13,10 +13,10 @@
         <h2><b>{{this.userData.username}}</b></h2>
       </div>
       <div id="profile-info-box-data">
-    <p><b>Games Played:</b> {{this.gamesPlayed}}</p>
-    <p><b>Total Score:</b> {{this.totalScore}}</p>
-    <p><b>Average Score:</b> {{this.averageScore}}</p>
-    <p><b>Best Score:</b> {{this.bestScore}}</p>
+    <p class="record-box top-left"><b>Games Played: </b>{{this.gamesPlayed}}</p>
+    <p class="record-box top-right"><b>Total Score: </b>{{this.totalScore}}</p>
+    <p class="record-box bot-left"><b>Average Score: </b>{{this.averageScore}}</p>
+    <p class="record-box bot-right"><b>Best Score: </b>{{this.bestScore}}</p>
       </div>
     </div>
   </div>
@@ -101,6 +101,9 @@ export default {
   color: #fff;
   padding: 10px;
   flex-grow: 2;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
 }
 
 #button-row #btn-main:last-child {
@@ -115,6 +118,34 @@ export default {
   height: 300px;
   width: 200px;
   border: 5px solid black;
+}
+
+.record-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.record-box.top-left {
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.record-box.top-right {
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.record-box.bot-left {
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+}
+
+.record-box.bot-right {
+  border-left: 1px solid black;
+  border-top: 1px solid black;
 }
 
 
