@@ -4,6 +4,8 @@
 
 <script>
 export default {
+  name: 'game-mode',
+  props: ['gameMode']
 }
 </script>
 

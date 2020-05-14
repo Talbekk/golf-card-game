@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="intro-screen" v-if="!selectScoresPage">
     <div id="top-container">
-      <player-profile v-if="!newGame" :userData='userData' :gamesPlayed='gamesPlayed' :totalScore='totalScore' :averageScore='averageScore'/>
+      <player-profile v-if="!newGame" :userData='userData' :gamesPlayed='gamesPlayed' :totalScore='totalScore' :averageScore='averageScore' :bestScore='bestScore'/>
     </div>
     <div id="game-modes-container">
       <div id="new-game-container">
@@ -49,7 +49,8 @@ export default {
       gamesPlayed: 0,
       totalScore: 0,
       averageScore: 0,
-      matches: []
+      matches: [],
+      bestScore: 0
     }
   },
   components: {
@@ -114,6 +115,7 @@ export default {
     this.getGamesPlayed();
     this.getTotalScore();
     this.getAverageScore();
+    this.getBestScore();
   }
   })
   }
@@ -150,6 +152,16 @@ export default {
     const totalScore = this.totalScore;
     const average = totalScore / totalGames;
     this.averageScore = Math.floor(average);
+  },
+  getBestScore(){
+    let record = 150;
+    const matches = Object.values(this.userData.games);
+    matches.forEach((match) => {
+      if (match.score < record) {
+        record = match.score;
+      }
+    })
+    this.bestScore = record;
   }
 
 }

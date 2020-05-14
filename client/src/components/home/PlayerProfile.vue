@@ -16,6 +16,7 @@
     <p><b>Games Played:</b> {{this.gamesPlayed}}</p>
     <p><b>Total Score:</b> {{this.totalScore}}</p>
     <p><b>Average Score:</b> {{this.averageScore}}</p>
+    <p><b>Best Score:</b> {{this.bestScore}}</p>
       </div>
     </div>
   </div>
@@ -28,7 +29,7 @@ import {firebase, auth} from '../../firebase.js';
 
 export default {
   name: 'player-profile',
-  props: ['userData', 'gamesPlayed', 'totalScore', 'averageScore'],
+  props: ['userData', 'gamesPlayed', 'totalScore', 'averageScore', 'bestScore'],
   methods: {
     async signOut(){
       try{
@@ -80,7 +81,6 @@ export default {
 
 #profile-info-box {
   width: 100%;
-  /* padding: 0 20px; */
   display: flex;
   flex-direction: column;
   flex: 8;
