@@ -1,9 +1,14 @@
 <template lang="html">
   <div id="intro-screen" v-if="!selectScoresPage">
+    <h2>Player Profile:</h2>
     <div id="top-container">
       <player-profile v-if="!newGame" :userData='userData' :gamesPlayed='gamesPlayed' :totalScore='totalScore' :averageScore='averageScore' :bestScore='bestScore'/>
     </div>
+    <h2>Game Modes:</h2>
     <div id="game-modes-container">
+      <ul v-for="(game, index) in gameModes">
+        <game-mode :game="game"/>
+      <!-- <game-mode :gameMode="single-player"/>
       <div id="new-game-container">
         <p><b>Single Player:</b></p>
         <b-button to="/game" v-on:click="clickedNewGame" id="btn-main" type="submit">Tee Off</b-button>
@@ -11,7 +16,8 @@
       <div id="new-game-container">
          <p><b>Face The Computer:</b></p>
         <b-button to="/game" v-on:click="clickedNewGameComputer" id="btn-main" type="submit">Tee Off</b-button>
-      </div>
+      </div> -->
+    </ul>
     </div>
       <!-- <div id="last-game-container">
         <p><b>Last Match:</b></p>
@@ -33,6 +39,7 @@ import ScoreCard from '../components/ScoreCard.vue';
 import MatchDetails from '../components/MatchDetails.vue';
 import MatchList from '../components/MatchList.vue';
 import PlayerProfile from '../components/home/PlayerProfile.vue';
+import GameMode from '../components/home/GameMode.vue';
 
 export default {
   name: 'intro-screen',
@@ -50,8 +57,11 @@ export default {
       totalScore: 0,
       averageScore: 0,
       matches: [],
-      bestScore: 0
-    }
+      bestScore: 0,
+      gameModes: [{ mode: "Single Player", holes: [3, 9, 18] },
+                  { mode: "Versus Computer", difficulty: ["easy", "intermediate", "pro"], holes: [3, 9, 18]},
+                  { mode: "Multiplayer"}]
+        }
   },
   components: {
     "scores-page": ScoresPage,
@@ -59,7 +69,8 @@ export default {
     "score-card": ScoreCard,
     "match-details": MatchDetails,
     "match-list": MatchList,
-    "player-profile": PlayerProfile
+    "player-profile": PlayerProfile,
+    "game-mode": GameMode
   },
   created(){
     firebase.auth().onAuthStateChanged((user) => {
@@ -175,8 +186,8 @@ export default {
   margin-right: auto; */
   padding: 8px 5px 12px 5px;
   font-size: 12px;
-  display: grid;
-  grid-template-rows: repeat(auto-fit, minmax(25rem, 1fr));
+  /* display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(25rem, 1fr)); */
   /* justify-content: space-evenly; */
   /* max-width: 95%; */
 }
@@ -189,22 +200,9 @@ export default {
 
 #game-modes-container {
   display: flex;
+  justify-content: center;
 }
 
-#new-game-container {
-  padding: 2em;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin: 2em;
-  border: solid #4b8a4a 1px;
-  border-radius: 5px;
-  background-color: #4b8a4a;
-  background-size: cover;
-  color: #333;
-  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
-  width: 25%;
-}
 
 #last-game-container{
   padding: 2em;
@@ -235,6 +233,12 @@ h4 {
   font-weight: bolder;
   text-decoration: underline;
 }
+
+h2 {
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
 #submit {
   text-decoration: none;
   padding: 15px;
