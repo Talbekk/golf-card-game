@@ -5,7 +5,7 @@
     </div>
     <div id="game-modes-container">
       <div id="new-game-container">
-        <p><b>One Player:</b></p>
+        <p><b>Single Player:</b></p>
         <b-button to="/game" v-on:click="clickedNewGame" id="btn-main" type="submit">Tee Off</b-button>
       </div>
       <div id="new-game-container">
@@ -13,14 +13,14 @@
         <b-button to="/game" v-on:click="clickedNewGameComputer" id="btn-main" type="submit">Tee Off</b-button>
       </div>
     </div>
-      <div id="last-game-container">
+      <!-- <div id="last-game-container">
         <p><b>Last Match:</b></p>
         <match-details
         v-if="this.userData.games"
         :match='this.lastMatch'
         :chosenScoreCard='chosenScoreCard'/>
       </div>
-      <match-list :matches='matches'/>
+      <match-list :matches='matches'/> -->
   </div>
 </template>
 
@@ -158,9 +158,9 @@ export default {
 
 <style lang="css" scoped>
 
-#intro-screen{
-  margin-left: auto;
-  margin-right: auto;
+#intro-screen {
+  /* margin-left: auto;
+  margin-right: auto; */
   padding: 8px 5px 12px 5px;
   font-size: 12px;
   display: grid;
