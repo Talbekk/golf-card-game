@@ -7,6 +7,7 @@
     <h2>Game Modes:</h2>
     <div id="game-modes-container">
       <ul v-for="(game, index) in gameModes">
+        <li>
         <game-mode :game="game"/>
       <!-- <game-mode :gameMode="single-player"/>
       <div id="new-game-container">
@@ -17,6 +18,7 @@
          <p><b>Face The Computer:</b></p>
         <b-button to="/game" v-on:click="clickedNewGameComputer" id="btn-main" type="submit">Tee Off</b-button>
       </div> -->
+    </li>
     </ul>
     </div>
       <!-- <div id="last-game-container">
@@ -103,12 +105,6 @@ export default {
     })
   },
   methods: {
-    clickedNewGame(){
-      eventBus.$emit('start-new-game', "single-player");
-    },
-     clickedNewGameComputer(){
-      eventBus.$emit('start-new-game', "versus-computer");
-    },
     handleClick(){
       eventBus.$emit('username-selected', this.userName);
       this.clickedNewGame();
@@ -186,16 +182,15 @@ export default {
   margin-right: auto; */
   padding: 8px 5px 12px 5px;
   font-size: 12px;
+  display: flex;
+  align-items: center;
   /* display: grid;
   grid-template-rows: repeat(auto-fit, minmax(25rem, 1fr)); */
   /* justify-content: space-evenly; */
-  /* max-width: 95%; */
 }
 
 #top-container {
   display: flex;
-  justify-content: center;
-  max-width: 1400px;
 }
 
 #game-modes-container {

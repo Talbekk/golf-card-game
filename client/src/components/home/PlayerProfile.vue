@@ -48,20 +48,20 @@ export default {
 <style lang="css" scoped>
 
 #profile-container {
-  padding: 1em;
+  padding: 0.7em 1em 1em 1em;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin: 2em;
+  justify-content: center;
+  align-items: stretch;
+  margin: 1em;
   border: solid #4b8a4a 1px;
   border-radius: 5px;
   background-color: #4b8a4a;
   background-size: cover;
   color: #333;
   box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
-  width: 75%;
-  font-size: 150%;
+  font-size: 200%;
+
 }
 
 #button-row {
@@ -126,6 +126,8 @@ export default {
   justify-content: center;
   align-items: center;
   margin-bottom: 0;
+  font-size: 75%;
+  padding: 1em;
 }
 
 .record-box.top-left {
