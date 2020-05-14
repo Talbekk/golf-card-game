@@ -7,6 +7,8 @@
       <div id="new-game-container">
         <p><b>One Player:</b></p>
         <b-button to="/game" v-on:click="clickedNewGame" id="btn-main" type="submit">Tee Off</b-button>
+      </div>
+      <div id="new-game-container">
          <p><b>Face The Computer:</b></p>
         <b-button to="/game" v-on:click="clickedNewGameComputer" id="btn-main" type="submit">Tee Off</b-button>
       </div>
@@ -173,7 +175,11 @@ export default {
   max-width: 1400px;
 }
 
-#new-game-container{
+#game-modes-container {
+  display: flex;
+}
+
+#new-game-container {
   padding: 2em;
   display: flex;
   flex-direction: column;
