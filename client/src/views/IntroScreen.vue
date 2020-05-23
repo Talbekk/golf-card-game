@@ -13,11 +13,8 @@
     </ul>
     </div>
       <!-- <div id="last-game-container">
-        <p><b>Last Match:</b></p>
-        <match-details
-        v-if="this.userData.games"
-        :match='this.lastMatch'
-        :chosenScoreCard='chosenScoreCard'/>
+        <h2>Game Log:</h2>
+  
       </div>
       <match-list :matches='matches'/> -->
   </div>
