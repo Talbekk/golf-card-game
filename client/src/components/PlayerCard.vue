@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="my-container">
+  <div id="player-card-container">
     <li>
     <img class="card-icon" v-if="hidden" v-on:click="handleClick" v-on:dblclick="lockCard" src="../assets/CardBack.png"/>
     <img class="card-icon" v-if="!hidden" :src="this.playerCard.image"/>
@@ -74,12 +74,24 @@ export default {
 
 <style lang="css" scoped>
 
+#player-card-container {
+  padding: 0.5em;
+  transition: all .2s ease-in-out;
+}
+
+#player-card-container:hover {
+transform: scale(1.1);
+}
+
+#player-card-container:active {
+transform: scale(1.1);
+}
+
 .card-icon {
   margin-left: auto;
   margin-right: auto;
   max-width: 10em;
   max-height: 10em;
-  padding: 0.5em;
 }
 
 </style>
