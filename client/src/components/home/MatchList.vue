@@ -1,31 +1,39 @@
 <template lang="html">
   <div id="match-list">
-    <h4>Match History:</h4>
-    <ul>
-      <li id="list-item" v-for="(match, index) in matches">
-        <!-- <p>{{match.date.date}} @ {{match.date.time}}</p> -->
-        <!-- <b-button @click="modalShow = !modalShow">View</b-button>
-        <b-modal id="`modal-${index}`" size="lg" v-model="modalShow" scrollable title="Match Details:" ok-only> -->
-          <match-details :match='match' :key='index'/>
-        <!-- </b-modal> -->
-      </li>
-    </ul>
+    <h4>Single Player:</h4>
+    <div>
+      <b-table hover head-variant="dark" border :items="matches" :fields="fields"></b-table>
+    </div>
   </div>
 </template>
 
 <script>
-import MatchDetails from '../components/MatchDetails.vue';
+import MatchDetails from './MatchDetails.vue';
 
 export default {
   name: 'match-list',
   props:['matches'],
-  data(){
-    return{
-      modalShow: false
+  data() {
+    return {
+      fields: [
+        { key: 'date.date', label: 'Date', sortable: true },
+        { key: 'card', sortable: false },
+        { key: 'averageScore', label: 'Average', sortable: true },
+        { key: 'score', sortable: true }
+      ],
+      averageScore: 0
     }
   },
   components: {
     "match-details": MatchDetails
+  },
+  computed: {
+    averageScore: function () {
+        const totalRounds = this.card.length;
+        const totalScore = this.score;
+        const average = totalScore / totalRounds;
+        return this.averageScore = Math.floor(average);
+    }
   }
 }
 </script>
