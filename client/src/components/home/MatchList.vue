@@ -18,7 +18,7 @@ export default {
       fields: [
         { key: 'date.date', label: 'Date', sortable: true },
         { key: 'card', sortable: false },
-        { key: 'averageScore', label: 'Average', sortable: true },
+        // { key: 'averageScore', label: 'Average', sortable: true },
         { key: 'score', sortable: true }
       ],
       averageScore: 0
@@ -26,14 +26,6 @@ export default {
   },
   components: {
     "match-details": MatchDetails
-  },
-  computed: {
-    averageScore: function () {
-        const totalRounds = this.card.length;
-        const totalScore = this.score;
-        const average = totalScore / totalRounds;
-        return this.averageScore = Math.floor(average);
-    }
   }
 }
 </script>
