@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="match-list">
-    <h4>Single Player:</h4>
+    <!-- <h4>Single Player:</h4> -->
     <div>
       <b-table hover head-variant="dark" border :items="matches" :fields="fields"></b-table>
     </div>
@@ -17,7 +17,7 @@ export default {
     return {
       fields: [
         { key: 'date.date', label: 'Date', sortable: true },
-        { key: 'card', sortable: false },
+        { key: 'card.length', label: 'Length', sortable: false },
         // { key: 'averageScore', label: 'Average', sortable: true },
         { key: 'score', sortable: true }
       ],
@@ -34,9 +34,12 @@ export default {
 
 #match-list{
   padding: 1em;
-  margin: 2em;
   display: grid;
   grid-template-rows: repeat(auto-fill, minmax(5rem, 1fr));
+  font-size: 150%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* border: solid #4b8a4a 1px;
   border-radius: 5px;
   background-color: #4b8a4a;

@@ -158,15 +158,10 @@ export default {
 <style lang="css" scoped>
 
 #intro-screen {
-  /* margin-left: auto;
-  margin-right: auto; */
   padding: 8px 5px 12px 5px;
   font-size: 12px;
   display: flex;
   align-items: center;
-  /* display: grid;
-  grid-template-rows: repeat(auto-fit, minmax(25rem, 1fr)); */
-  /* justify-content: space-evenly; */
 }
 
 #top-container {
@@ -182,7 +177,6 @@ export default {
 #last-game-container{
   padding: 2em;
   margin: 2em;
-  max-width: 70%;
   border: solid #4b8a4a 1px;
   border-radius: 5px;
   background-color: #4b8a4a;
@@ -231,11 +225,14 @@ h2 {
   max-width: 50%;
   margin-left: auto;
   margin-right: auto;
-
 }
 
 #username{
   padding: 10px;
+}
+
+li {
+    list-style: none;
 }
 
 </style>
