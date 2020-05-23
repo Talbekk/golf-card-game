@@ -11,25 +11,20 @@
         <game-mode :game="game"/>
         </li>
     </ul>
+  </div id="game-log-container">
+    <h2>Game Log:</h2>
+    <div id="last-game-container">
+      <game-history :matches='matches'/>
     </div>
-      <!-- <div id="last-game-container">
-        <h2>Game Log:</h2>
-  
-      </div>
-      <match-list :matches='matches'/> -->
   </div>
 </template>
 
 <script>
 import {eventBus} from '../main.js';
 import {firebase, auth, db} from '../firebase.js';
-import ScoresPage from '../components/ScoresPage.vue';
-import LeaderboardContainer from './LeaderboardContainer.vue';
-import ScoreCard from '../components/ScoreCard.vue';
-import MatchDetails from '../components/MatchDetails.vue';
-import MatchList from '../components/MatchList.vue';
 import PlayerProfile from '../components/home/PlayerProfile.vue';
 import GameMode from '../components/home/GameMode.vue';
+import GameHistory from '../components/home/GameHistory.vue';
 
 export default {
   name: 'intro-screen',
@@ -55,13 +50,9 @@ export default {
         }
   },
   components: {
-    "scores-page": ScoresPage,
-    "leaderboard-container": LeaderboardContainer,
-    "score-card": ScoreCard,
-    "match-details": MatchDetails,
-    "match-list": MatchList,
     "player-profile": PlayerProfile,
-    "game-mode": GameMode
+    "game-mode": GameMode,
+    "game-history": GameHistory
   },
   created(){
     firebase.auth().onAuthStateChanged((user) => {
