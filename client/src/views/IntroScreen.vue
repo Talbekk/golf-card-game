@@ -51,9 +51,10 @@ export default {
       averageScore: 0,
       matches: [],
       bestScore: 0,
-      gameModes: [{ mode: "Single Player", holes: [3, 9, 18] },
-                  { mode: "Versus Computer", difficulty: ["easy", "intermediate", "pro"], holes: [3, 9, 18]},
-                  { mode: "Multiplayer"}]
+      gameModes: [{ mode: "Single Player", holes: [3, 9, 18] }
+                  // { mode: "Versus Computer", difficulty: ["easy", "intermediate", "pro"], holes: [3, 9, 18]},
+                  // { mode: "Multiplayer"}
+                ]
         }
   },
   components: {
