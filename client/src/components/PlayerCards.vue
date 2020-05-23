@@ -23,6 +23,12 @@ export default {
     eventBus.$on('shown-a-card', (number) => {
     this.shownCards+= number;
     });
+
+    eventBus.$on("player-clicked-card", (card) => {
+      const chosenCard = this.playerCards.find((currentCard) => {
+        return (currentCard === card);
+      });
+    })
   },
   components: {
     "player-card": PlayerCard

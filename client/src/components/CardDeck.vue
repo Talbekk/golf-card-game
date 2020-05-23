@@ -1,5 +1,5 @@
 <template lang="html">
-<div class="deck-container">
+<div id="deck-container">
   <p>Deck:</p>
   <img v-bind:class="[topCardStatus ? selectedClass : unSelectedClass]" v-on:click="drawNextCard" src="../assets/CardBack.png"/>
 </div>
@@ -29,16 +29,23 @@ export default {
 
 <style lang="css" scoped>
 
+#deck-container {
+  padding: 0.5em;
+  transition: all .2s ease-in-out;
+}
+
+#deck-container:hover {
+  transform: scale(1.1);
+}
+
 .card-icon-original {
   max-width: 10em;
   max-height: 10em;
-  padding: 0.5em;
 }
 
 .card-icon-greyed {
   max-width: 10em;
   max-height: 10em;
-  padding: 0.5em;
   filter: grayscale(75%);
 }
 

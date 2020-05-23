@@ -30,6 +30,7 @@ export default {
   },
   methods: {
     handleClick(){
+      eventBus.$emit("player-clicked-card", this.playerCard);
       if(this.shownCards < 2 && this.counter === 0){
       this.showCard();
     }
@@ -79,13 +80,8 @@ export default {
   transition: all .2s ease-in-out;
 }
 
-#player-card-container:hover {
-transform: scale(1.1);
-}
+#player-card-container:hover, #player-card-container.active { transform: scale(1.1); }
 
-#player-card-container:active {
-transform: scale(1.1);
-}
 
 .card-icon {
   margin-left: auto;

@@ -37,5 +37,10 @@ export default {
   background-size: cover;
   color: #333;
   box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
+  transition: all .2s ease-in-out;
+}
+
+#new-game-container:hover {
+  transform: scale(1.1);
 }
 </style>
