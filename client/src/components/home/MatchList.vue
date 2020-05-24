@@ -6,7 +6,8 @@
           {{ getAverageScore(data) }}
         </template>
         <template v-slot:cell(card)="data">
-          <b-button v-on:click="showScoreCard(data)"id="btn-main">View</b-button>
+          <i class="ion-social-twitter"></i>
+          <!-- <b-button v-on:click="showScoreCard(data)"id="btn-main">View</b-button> -->
         </template>
       </b-table>
     </div>
