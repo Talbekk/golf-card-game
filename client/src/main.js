@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import router from './router';
 import {firebase, db} from './firebase.js';
-
 Vue.use(VueFire);
 Vue.use(BootStrapVue);
 
