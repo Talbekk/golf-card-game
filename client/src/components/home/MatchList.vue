@@ -1,8 +1,11 @@
 <template lang="html">
   <div id="match-list">
-    <!-- <h4>Single Player:</h4> -->
     <div>
-      <b-table hover head-variant="dark" border :items="matches" :fields="fields"></b-table>
+      <b-table large hover head-variant="dark" border :items="matches" :fields="fields">
+        <template v-slot:cell(averageScore)="data">
+          {{ getAverageScore(data) }}
+        </template>
+      </b-table>
     </div>
   </div>
 </template>
@@ -18,7 +21,7 @@ export default {
       fields: [
         { key: 'date.date', label: 'Date', sortable: true },
         { key: 'card.length', label: 'Length', sortable: false },
-        // { key: 'averageScore', label: 'Average', sortable: true },
+        { key: 'averageScore', label: 'Average', sortable: true },
         { key: 'score', sortable: true }
       ],
       averageScore: 0
@@ -26,6 +29,14 @@ export default {
   },
   components: {
     "match-details": MatchDetails
+  },
+  methods: {
+    getAverageScore(value){
+      const totalGames = value.item.card.length;
+      const totalScore = value.item.score;
+      const average = totalScore / totalGames;
+      return Math.floor(average);
+    }
   }
 }
 </script>
