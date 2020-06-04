@@ -27,7 +27,8 @@ h4 {
 }
 
 p {
-margin-bottom: 0px;
+  margin-bottom: 0px;
+  color: #fff;
 }
 
 </style>
