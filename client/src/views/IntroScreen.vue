@@ -206,6 +206,7 @@ h4 {
 h2 {
   margin-top: 10px;
   padding-left: 10px;
+  font-weight: bold;
 }
 
 #submit {
