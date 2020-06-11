@@ -26,7 +26,7 @@ export default {
       fields: [
         { key: 'golfer', label: 'Name' },
         { key: 'score', label: 'Score', sortable: true },
-        { key: 'card', label: 'Card' }
+        { key: 'card', label: 'Card', class: 'cardItem' }
         ]
     }
   },
@@ -56,6 +56,16 @@ table {
 
 th {
   height: 30px;
+}
+
+.table td {
+  display: flex;
+  justify-content: center;
+}
+
+.cardItem {
+  display: flex;
+  justify-content: center;
 }
 
 </style>
