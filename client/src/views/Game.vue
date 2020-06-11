@@ -340,4 +340,8 @@ button {
   margin-right: auto;
 }
 
+p {
+  color: #000;
+}
+
 </style>

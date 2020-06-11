@@ -45,7 +45,7 @@ export default {
 
 .card-icon-greyed {
   max-width: 10em;
-  max-height: 10em;           
+  max-height: 10em;
   filter: grayscale(75%);
 }
 
@@ -55,7 +55,8 @@ h4{
 }
 
 p {
-margin-bottom: 0px;
+  margin-bottom: 0px;
+  color: #fff;
 }
 
 </style>
