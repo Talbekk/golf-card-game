@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="cards-container">
-    <!-- <p>Player: {{this.userData.username}}</p> -->
+    <p>Player: {{this.userData.username}}</p>
     <ul>
       <player-card v-for="(playerCard, index) in playerCards" :playerCard='playerCard' :key='index' :index='index' :shownCards='shownCards' :lockedCards='lockedCards' :counter='counter' :topCardSelected='topCardSelected'></player-card>
     </ul>
