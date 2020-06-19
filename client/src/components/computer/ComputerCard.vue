@@ -20,14 +20,14 @@ export default {
       lockedIn: false,
       popoverShow: false,
     }
-  },
-  watch: {
-    lockedCards(){
-      if (this.lockedCards.length === 0){
-        this.resetCard();
-      }
-    }
   }
+//   watch: {
+//     lockedCards(){
+//       if (this.lockedCards.length === 0){
+//         this.resetCard();
+//       }
+//     }
+//   }
 //   methods: {
 //     handleClick(){
 //       eventBus.$emit("player-clicked-card", this.playerCard);
