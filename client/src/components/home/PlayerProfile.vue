@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="profile-container">
     <div id="button-row">
-      <b-button id="btn-main">Edit Profile</b-button>
+      <!-- <b-button id="btn-main">Edit Profile</b-button> -->
       <b-button id="btn-main" v-on:click="signOut">Sign Out</b-button>
     </div>
     <div id="information-row">

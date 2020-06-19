@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <div class="leaderboard-table">
-    <b-table large hover head-variant="dark" border :items="scores" :fields="fields">
+    <b-table large hover head-variant="dark" responsive border :items="scores" :fields="fields">
         <template v-slot:cell(card)="data">
           <b-button v-on:click="showScoreCard(data)"id="btn-main">View</b-button>
         </template>
@@ -45,27 +45,15 @@ export default {
 
 <style lang="css" scoped>
 
-
-table, th, td {
-  border: 1px solid black;
-}
-
-table {
-  width: 100%;
-}
-
-th {
-  height: 30px;
-}
-
-.table td {
-  display: flex;
-  justify-content: center;
-}
-
 .cardItem {
-  display: flex;
-  justify-content: center;
+  max-width: 10%;
 }
 
+#btn-main {
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>
