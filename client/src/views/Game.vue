@@ -173,8 +173,34 @@ checkIfHoleFinished(){
 },
   methods: {
     //round
-    getCards(){
-      this.getRoundDeck();
+    async getCards(){
+      console.log("hits get cards");
+      await this.getRoundDeck();
+      if (this.gameMode === "versus-computer") {
+        console.log("hits versus computer");
+       let playerHand = [];
+       let computerHand = [];
+
+       for (let counter = 0; counter < 8; counter++){
+         if (counter % 2 !== 0){
+            let card = this.roundDeck.shift();
+            playerHand.push(card);
+         } else {
+            let card = this.roundDeck.shift();
+            computerHand.push(card);
+         }
+      }
+      this.playerCards = playerHand;
+      this.computerCards = computerHand;
+      this.playerCards.forEach((card) => {
+        card.lockedIn = false;
+      })
+      this.computerCards.forEach((card) => {
+        card.lockedIn = false;
+      })
+
+      } else if (this.gameMode === "single-player"){
+        console.log("hits singler player");
       let hand = [];
       for (let counter = 0; counter < 4; counter++){
         let card = this.roundDeck.shift();
@@ -184,6 +210,9 @@ checkIfHoleFinished(){
       this.playerCards.forEach((card) => {
         card.lockedIn = false;
       })
+      } else {
+        console.log("failed");
+      }
     },
     //round
     getRoundDeck(){
@@ -233,6 +262,7 @@ checkIfHoleFinished(){
     },
     setupGame(){
       this.playerCards = null;
+      this.computerCards = null;
       this.topCard = null;
       this.runningTotal = 0;
       this.lockedCards = [];

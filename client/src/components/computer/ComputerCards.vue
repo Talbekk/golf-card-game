@@ -5,10 +5,17 @@
 </template>
 
 <script>
+import {eventBus} from '../../main.js';
+import PlayerCard from '../PlayerCard.vue';
 
 export default {
-  name: 'computers-cards'
-  
+  name: 'computers-cards',
+  props: ['computerCards', 'lockedCards', 'counter', 'topCardSelected'],
+  data() {
+      return {
+          shownCards: 0
+      }
+  }
 }
 </script>
 

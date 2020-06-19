@@ -15,7 +15,7 @@ export default {
     clickedNewGame(){
       if (this.game.mode === "Single Player"){
       eventBus.$emit('start-new-game', "single-player");
-    } else if (this.game.mode === "Versus Computer") {
+    } else {
        eventBus.$emit('start-new-game', "versus-computer");
      }
     }
