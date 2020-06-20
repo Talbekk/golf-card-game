@@ -40,7 +40,7 @@ export default {
   if (this.gameMode === "single-player"){
   return ((this.currentHole >= 1 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
 } else {
-   return ((this.currentHole >= 1 && this.counter===8 && this.lockedCards.length === 8 && this.gameStatus === true) ? true : false);
+   return ((this.currentHole >= 1 && this.counter===8 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
 }
 }
 },

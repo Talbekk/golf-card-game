@@ -30,6 +30,7 @@ export default {
         this.computerCards.find((card) => {
          if (card.lockedIn === false) {
            selectedCard = card;
+            selectedCard.lockedIn === true;
          }
           });
        console.log("selectedCard", selectedCard);

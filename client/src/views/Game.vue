@@ -89,6 +89,14 @@ export default {
       this.currentCard = card;
       this.counter += 1;
     }),
+    eventBus.$on('computer-card-reveal', (selectedCard) => {
+      this.computerCards.find((card) => {
+        if(card === selectedCard){
+          card.lockedIn = true;
+        }
+      })
+      this.counter += 1;  
+    })
     //round
     eventBus.$on('draw-next-card', () => {
       this.drawNextCard();
