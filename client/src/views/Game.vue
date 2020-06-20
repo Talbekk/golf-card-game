@@ -2,7 +2,7 @@
   <div id="game_container">
     <div id="game-board">
     <div id="next-button">
-      <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole"></game-header>
+      <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole" :gameMode="gameMode"></game-header>
     </div>
     <div v-if="!viewLeaderBoard" id="board-one">
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
@@ -165,19 +165,13 @@ computed: {
   //game
   holesCompleted(){
     return this.scoreCard.length;
-  },
-  //round
-checkIfHoleFinished(){
-  return ((this.currentHole >= 1 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
-}
+  }
 },
   methods: {
     //round
     async getCards(){
-      console.log("hits get cards");
       await this.getRoundDeck();
       if (this.gameMode === "versus-computer") {
-        console.log("hits versus computer");
        let playerHand = [];
        let computerHand = [];
 
@@ -200,7 +194,6 @@ checkIfHoleFinished(){
       })
 
       } else if (this.gameMode === "single-player"){
-        console.log("hits singler player");
       let hand = [];
       for (let counter = 0; counter < 4; counter++){
         let card = this.roundDeck.shift();

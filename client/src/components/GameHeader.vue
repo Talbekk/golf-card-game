@@ -12,7 +12,7 @@ import {eventBus} from '../main.js';
 
 export default {
   name: "game-header",
-  props: ['gameStatus', 'scoreCard', 'lockedCards', 'counter', 'currentHole'],
+  props: ['gameStatus', 'scoreCard', 'lockedCards', 'counter', 'currentHole', 'gameMode'],
   data(){
     return {
       selectScoresPage: false,
@@ -37,8 +37,14 @@ export default {
   },
   computed: {
     checkIfHoleFinished(){
-      return ((this.currentHole >= 1 && (this.counter===4 || this.lockedCards.length === 4) && this.gameStatus === true) ? true : false);
-  }
+  if (this.gameMode === "single-player"){
+  return ((this.currentHole >= 1 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
+  console.log("hits single player has finished round");
+} else {
+  console.log("hits computer player has finished round");
+   return ((this.currentHole >= 1 && this.counter===8 && this.lockedCards.length === 8 && this.gameStatus === true) ? true : false);
+}
+}
 },
   methods: {
     startNextHole(){
