@@ -24,7 +24,7 @@ import TopCard from '../components/gameplay/TopCard.vue';
 import PlayerCards from '../components/player/PlayerCards.vue';
 import ComputerCards from '../components/computer/ComputerCards.vue';
 import GameHeader from '../components/gameplay/GameHeader.vue';
-import ScoreCard from '../components/ScoreCard.vue';
+import ScoreCard from '../components/scores/ScoreCard.vue';
 import CardDeck from '../components/gameplay/CardDeck.vue';
 import InfoBox from '../components/gameplay/InfoBox.vue';
 import {eventBus} from '../main.js';
@@ -37,8 +37,8 @@ export default {
   data(){
     return {
       roundDeck: [], //round
-      playerCards: null,
-      computerCards: null, //round
+      playerCards: [],
+      computerCards: [], //round
       topCard: null, //round
       currentCard: null, //round
       runningTotal: 0, //round
@@ -65,8 +65,10 @@ export default {
   },
   mounted(){
     eventBus.$on('player-card', (card) => {
+    
       let index = this.playerCards.indexOf(card);
       let currentTopCard = this.topCard;
+      console.log("current top card", currentTopCard.value);
       let switchedCard = this.playerCards.splice(index, 1, currentTopCard);
       let matchingCardValues = this.lockedCards.filter(card =>
         currentTopCard.value === card)
@@ -83,6 +85,7 @@ export default {
       this.discardPile.push(switchedCard);
       this.counter += 1;
       this.topCardSelected = false;
+      
     }),
     //round
     eventBus.$on('card-value', (card) => {
@@ -262,8 +265,8 @@ computed: {
       }
     },
     setupGame(){
-      this.playerCards = null;
-      this.computerCards = null;
+      this.playerCards = [];
+      this.computerCards = [];
       this.topCard = null;
       this.runningTotal = 0;
       this.lockedCards = [];

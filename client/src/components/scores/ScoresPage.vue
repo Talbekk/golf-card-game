@@ -12,7 +12,7 @@
 </template>
 <script>
 
-import {db} from '../firebase.js';
+import {db} from '../../firebase.js';
 import LeaderBoard from './LeaderBoard.vue';
 
 export default {

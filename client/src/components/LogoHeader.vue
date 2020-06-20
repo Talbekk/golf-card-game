@@ -39,9 +39,9 @@
 <script>
 
 import {eventBus} from '../main.js';
-import ScoresPage from './ScoresPage.vue';
+import ScoresPage from './scores/ScoresPage.vue';
 import GameRules from '../views/GameRules.vue';
-import ScoreCard from './ScoreCard.vue';
+import ScoreCard from './scores/ScoreCard.vue';
 
 export default {
   name: "logo-header",

@@ -6,7 +6,7 @@
 
 <script>
 
-import ScoresPage from '../components/ScoresPage.vue';
+import ScoresPage from '../components/scores/ScoresPage.vue';
 import {eventBus} from '../main.js';
 
 export default {
