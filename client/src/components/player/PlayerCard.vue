@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="player-card-container">
     <li>
-    <img class="card-icon" v-if="hidden" v-on:click="handleClick" v-on:dblclick="lockCard" src="../assets/CardBack.png"/>
+    <img class="card-icon" v-if="hidden" v-on:click="handleClick" v-on:dblclick="lockCard" src="../../assets/CardBack.png"/>
     <img class="card-icon" v-if="!hidden" :src="this.playerCard.image"/>
   </li>
 </div>
@@ -9,7 +9,7 @@
 
 <script>
 
-import {eventBus} from '../main.js';
+import {eventBus} from '../../main.js';
 
 export default {
   name: 'player-card',
