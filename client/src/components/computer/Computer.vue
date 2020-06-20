@@ -1,16 +1,17 @@
 <template lang="html">
   <div id="computer-container">
-      <computer-cards v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected"></computer-cards>
+      <computer-cards :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected='topCardSelected'></computer-cards>
   </div>
 </template>
 
 <script>
-import ComputerCards from './CompouterCards.vue';
+import ComputerCards from './ComputerCards.vue';
 
 export default {
   name: 'computer',
+  props:['counter', 'lockedCards', 'computerCards', 'topCardSelected'],
   data () {
-    return {s
+    return {
     }
   },
   components: {

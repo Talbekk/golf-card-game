@@ -12,7 +12,7 @@
   </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
       <player :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player>
-      <computer-cards v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected"></computer-cards>
+      <computer v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected"></computer>
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@
 import DiscardPile from '../components/gameplay/DiscardPile.vue';
 import TopCard from '../components/gameplay/TopCard.vue';
 import Player from '../components/player/Player.vue';
-import ComputerCards from '../components/computer/ComputerCards.vue';
+import Computer from '../components/computer/Computer.vue';
 import GameHeader from '../components/gameplay/GameHeader.vue';
 import ScoreCard from '../components/scores/ScoreCard.vue';
 import CardDeck from '../components/gameplay/CardDeck.vue';
@@ -55,7 +55,7 @@ export default {
   },
   components: {
     "player": Player,
-    "computer-cards": ComputerCards,
+    "computer": Computer,
     "top-card": TopCard,
     "score-card": ScoreCard,
     "discard-pile": DiscardPile,
