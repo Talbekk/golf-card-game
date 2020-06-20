@@ -20,7 +20,7 @@
 <script>
 
 import DiscardPile from '../components/DiscardPile.vue';
-import TopCard from '../components/TopCard.vue';
+import TopCard from '../components/gameplay/TopCard.vue';
 import PlayerCards from '../components/player/PlayerCards.vue';
 import ComputerCards from '../components/computer/ComputerCards.vue';
 import GameHeader from '../components/GameHeader.vue';
