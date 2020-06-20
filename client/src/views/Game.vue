@@ -46,6 +46,7 @@ export default {
       counter: 0, //round
       currentHole: 1, //game
       lockedCards: [], //round
+      computerLockedCards: [],
       scoreCard: [], //game
       discardPile: [], //round
       drawnCard: false, //round
@@ -96,7 +97,22 @@ export default {
     eventBus.$on('computer-card-reveal', (selectedCard) => {
       this.computerCards.find((card) => {
         if(card === selectedCard){
+          console.log("hits calculate value");
           card.lockedIn = true;
+            let cardValue = card.value;
+            let amount = this.calculateScore(cardValue);
+            let matchingCardValues = this.computerLockedCards.filter(card => cardValue === card)
+            if (matchingCardValues.length === 3){
+              this.playerTotal = -30;
+            }
+        else if(matchingCardValues.length === 1 & cardValue === "5"){
+        this.computerTotal += amount;
+      } else if (matchingCardValues.length === 1) {
+        this.computerTotal -= amount;
+      } else {
+          this.computerTotal += amount;
+      }
+      this.nextComputerRound(cardValue);
         }
       })
       this.counter += 1;  
@@ -272,6 +288,7 @@ computed: {
       this.playerTotal = 0;
       this.computerTotal = 0;
       this.lockedCards = [];
+      this.computerLockedCards = [];
       this.discardPile = [];
     },
     //app
@@ -296,6 +313,12 @@ computed: {
       this.discardPile = [];
       this.topCardStatus = false;
       // eventBus.$emit('finished-hole', this.currentHole);
+    },
+    nextComputerRound(value){
+      this.drawTopCard();
+      this.drawnCard = false;
+      this.computerLockedCards.push(value);
+      this.topCardStatus = false;
     },
     nextRound(value){
       this.drawTopCard();
