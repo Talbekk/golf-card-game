@@ -23,7 +23,7 @@ import DiscardPile from '../components/gameplay/DiscardPile.vue';
 import TopCard from '../components/gameplay/TopCard.vue';
 import PlayerCards from '../components/player/PlayerCards.vue';
 import ComputerCards from '../components/computer/ComputerCards.vue';
-import GameHeader from '../components/GameHeader.vue';
+import GameHeader from '../components/gameplay/GameHeader.vue';
 import ScoreCard from '../components/ScoreCard.vue';
 import CardDeck from '../components/gameplay/CardDeck.vue';
 import InfoBox from '../components/gameplay/InfoBox.vue';

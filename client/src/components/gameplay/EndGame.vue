@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ScoreCard from './ScoreCard.vue';
+import ScoreCard from '../ScoreCard.vue';
 
 export default {
   name: "end-game",
