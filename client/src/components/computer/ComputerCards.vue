@@ -1,6 +1,5 @@
 <template lang="html">
   <div id="cards-container">
-    <p>Computer</p>
      <ul>
       <computer-card v-for="(computerCard, index) in computerCards" :computerCard='computerCard' :key='index' :index='index' :shownCards='shownCards' :lockedCards='lockedCards' :counter='counter' :topCardSelected='topCardSelected'></computer-card>
     </ul>

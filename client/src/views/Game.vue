@@ -12,7 +12,7 @@
   </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
       <player :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player>
-      <computer v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected"></computer>
+      <computer v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected" :computerTotal='computerTotal'></computer>
     </div>
   </div>
 </template>
@@ -41,7 +41,8 @@ export default {
       computerCards: [], //round
       topCard: null, //round
       currentCard: null, //round
-      runningTotal: 0, //round
+      playerTotal: 0, //round
+      computerTotal: 0,
       counter: 0, //round
       currentHole: 1, //game
       lockedCards: [], //round
@@ -73,13 +74,13 @@ export default {
       let matchingCardValues = this.lockedCards.filter(card =>
         currentTopCard.value === card)
       if (matchingCardValues.length === 3){
-          this.runningTotal = -30;
+          this.playerTotal = -30;
       } else if(matchingCardValues.length === 1 & currentTopCard.value === "5"){
-        this.runningTotal += this.calculateScore(currentTopCard.value);
+        this.playerTotal += this.calculateScore(currentTopCard.value);
       } else if (matchingCardValues.length === 1) {
-        this.runningTotal -= this.calculateScore(currentTopCard.value);
+        this.playerTotal -= this.calculateScore(currentTopCard.value);
       } else {
-        this.runningTotal += this.calculateScore(currentTopCard.value);
+        this.playerTotal += this.calculateScore(currentTopCard.value);
       }
       this.nextRound(currentTopCard.value);
       this.discardPile.push(switchedCard);
@@ -99,7 +100,7 @@ export default {
         }
       })
       this.counter += 1;  
-    })
+    });
     //round
     eventBus.$on('draw-next-card', () => {
       this.drawNextCard();
@@ -132,14 +133,14 @@ export default {
       let amount = this.calculateScore(cardValue);
       let matchingCardValues = this.lockedCards.filter(card => cardValue === card)
       if (matchingCardValues.length === 3){
-          this.runningTotal = -30;
+          this.playerTotal = -30;
       }
         else if(matchingCardValues.length === 1 & cardValue === "5"){
-        this.runningTotal += amount;
+        this.playerTotal += amount;
       } else if (matchingCardValues.length === 1) {
-        this.runningTotal -= amount;
+        this.playerTotal -= amount;
       } else {
-          this.runningTotal += amount;
+          this.playerTotal += amount;
       }
       this.nextRound(cardValue);
     },
@@ -152,7 +153,7 @@ export default {
   //round
   counter(){
     if (this.counter === 4){
-      this.scoreCard.push(this.runningTotal);
+      this.scoreCard.push(this.playerTotal);
       eventBus.$emit("score-card", this.scoreCard);
     }
   },
@@ -268,7 +269,8 @@ computed: {
       this.playerCards = [];
       this.computerCards = [];
       this.topCard = null;
-      this.runningTotal = 0;
+      this.playerTotal = 0;
+      this.computerTotal = 0;
       this.lockedCards = [];
       this.discardPile = [];
     },

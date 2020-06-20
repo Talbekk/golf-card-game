@@ -1,5 +1,6 @@
 <template lang="html">
   <div id="computer-container">
+    <p>Computer Score: {{this.computerTotal}}</p>
       <computer-cards :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected='topCardSelected'></computer-cards>
   </div>
 </template>
@@ -9,7 +10,7 @@ import ComputerCards from './ComputerCards.vue';
 
 export default {
   name: 'computer',
-  props:['counter', 'lockedCards', 'computerCards', 'topCardSelected'],
+  props:['counter', 'lockedCards', 'computerCards', 'topCardSelected', 'computerTotal'],
   data () {
     return {
     }

@@ -43,42 +43,6 @@ export default {
     }
   },
   methods: {
-//     handleClick(){
-//       eventBus.$emit("player-clicked-card", this.playerCard);
-//       if(this.shownCards < 2 && this.counter === 0){
-//       this.showCard();
-//     }
-//     if(this.shownCards === 2 && this.topCardSelected === true){
-//       this.switchCard();
-//     }
-//     },
-//     showCard() {
-//         this.hidden = false;
-//         setTimeout(()=> { this.hideCard() },2000);
-//         eventBus.$emit('shown-a-card', 1);
-//     },
-//     revealCard() {
-//       if(this.lockedIn === false){
-//         this.hidden = true;
-//       } else {
-//         this.hidden = false;
-//       }
-//     },
-//     hideCard(){
-//       if (this.lockedIn === false){
-//       this.hidden = true;
-//     }
-//     },
-//     lockCard() {
-//       eventBus.$emit('card-value', this.playerCard)
-//       this.lockedIn = true;
-//       this.revealCard();
-//     },
-//     switchCard() {
-//       eventBus.$emit('player-card', this.playerCard)
-//       this.lockedIn = true;
-//       this.revealCard();
-//     },
     resetCard(){
       this.hidden = true;
       this.lockedIn = false;
