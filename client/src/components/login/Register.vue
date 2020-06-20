@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import {firebase, db, auth} from '../firebase.js';
-import {eventBus} from '../main.js';
+import {firebase, db, auth} from '../../firebase.js';
+import {eventBus} from '../../main.js';
 
 export default {
   data(){
