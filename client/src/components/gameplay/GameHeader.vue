@@ -8,11 +8,11 @@
 
 <script>
 import EndGame from './EndGame.vue';
-import {eventBus} from '../main.js';
+import {eventBus} from '../../main.js';
 
 export default {
   name: "game-header",
-  props: ['gameStatus', 'scoreCard', 'lockedCards', 'counter', 'currentHole'],
+  props: ['gameStatus', 'scoreCard', 'lockedCards', 'counter', 'currentHole', 'gameMode'],
   data(){
     return {
       selectScoresPage: false,
@@ -37,8 +37,12 @@ export default {
   },
   computed: {
     checkIfHoleFinished(){
-      return ((this.currentHole >= 1 && (this.counter===4 || this.lockedCards.length === 4) && this.gameStatus === true) ? true : false);
-  }
+  if (this.gameMode === "single-player"){
+  return ((this.currentHole >= 1 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
+} else {
+   return ((this.currentHole >= 1 && this.counter===8 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
+}
+}
 },
   methods: {
     startNextHole(){

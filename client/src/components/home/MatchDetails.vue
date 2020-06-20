@@ -10,7 +10,7 @@
 
 <script>
 
-import ScoreCard from '../ScoreCard.vue';
+import ScoreCard from '../scores/ScoreCard.vue';
 
 export default {
   name: "match-details",

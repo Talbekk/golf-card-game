@@ -18,7 +18,7 @@
 
 <script>
 import MatchDetails from './MatchDetails.vue';
-import ScoreCard from '../ScoreCard.vue';
+import ScoreCard from '../scores/ScoreCard.vue';
 
 export default {
   name: 'match-list',

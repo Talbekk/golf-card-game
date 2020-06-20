@@ -2,7 +2,7 @@
   <div id="game_container">
     <div id="game-board">
     <div id="next-button">
-      <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole"></game-header>
+      <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole" :gameMode="gameMode"></game-header>
     </div>
     <div v-if="!viewLeaderBoard" id="board-one">
       <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
@@ -11,22 +11,22 @@
     </div>
   </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
-      <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player-cards>
-      <computer-cards v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected"></computer-cards>
+      <player :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player>
+      <computer v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected"></computer>
     </div>
   </div>
 </template>
 
 <script>
 
-import DiscardPile from '../components/DiscardPile.vue';
-import TopCard from '../components/TopCard.vue';
-import PlayerCards from '../components/PlayerCards.vue';
-import ComputerCards from '../components/computer/ComputerCards.vue';
-import GameHeader from '../components/GameHeader.vue';
-import ScoreCard from '../components/ScoreCard.vue';
-import CardDeck from '../components/CardDeck.vue';
-import InfoBox from '../components/InfoBox.vue';
+import DiscardPile from '../components/gameplay/DiscardPile.vue';
+import TopCard from '../components/gameplay/TopCard.vue';
+import Player from '../components/player/Player.vue';
+import Computer from '../components/computer/Computer.vue';
+import GameHeader from '../components/gameplay/GameHeader.vue';
+import ScoreCard from '../components/scores/ScoreCard.vue';
+import CardDeck from '../components/gameplay/CardDeck.vue';
+import InfoBox from '../components/gameplay/InfoBox.vue';
 import {eventBus} from '../main.js';
 import {scoreRef, db} from '../firebase.js';
 import {leaderboardRef} from '../firebase.js';
@@ -37,8 +37,8 @@ export default {
   data(){
     return {
       roundDeck: [], //round
-      playerCards: null,
-      computerCards: null, //round
+      playerCards: [],
+      computerCards: [], //round
       topCard: null, //round
       currentCard: null, //round
       runningTotal: 0, //round
@@ -54,8 +54,8 @@ export default {
     }
   },
   components: {
-    "player-cards": PlayerCards,
-    "computer-cards": ComputerCards,
+    "player": Player,
+    "computer": Computer,
     "top-card": TopCard,
     "score-card": ScoreCard,
     "discard-pile": DiscardPile,
@@ -65,8 +65,10 @@ export default {
   },
   mounted(){
     eventBus.$on('player-card', (card) => {
+    
       let index = this.playerCards.indexOf(card);
       let currentTopCard = this.topCard;
+      console.log("current top card", currentTopCard.value);
       let switchedCard = this.playerCards.splice(index, 1, currentTopCard);
       let matchingCardValues = this.lockedCards.filter(card =>
         currentTopCard.value === card)
@@ -83,12 +85,21 @@ export default {
       this.discardPile.push(switchedCard);
       this.counter += 1;
       this.topCardSelected = false;
+      
     }),
     //round
     eventBus.$on('card-value', (card) => {
       this.currentCard = card;
       this.counter += 1;
     }),
+    eventBus.$on('computer-card-reveal', (selectedCard) => {
+      this.computerCards.find((card) => {
+        if(card === selectedCard){
+          card.lockedIn = true;
+        }
+      })
+      this.counter += 1;  
+    })
     //round
     eventBus.$on('draw-next-card', () => {
       this.drawNextCard();
@@ -165,19 +176,13 @@ computed: {
   //game
   holesCompleted(){
     return this.scoreCard.length;
-  },
-  //round
-checkIfHoleFinished(){
-  return ((this.currentHole >= 1 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
-}
+  }
 },
   methods: {
     //round
     async getCards(){
-      console.log("hits get cards");
       await this.getRoundDeck();
       if (this.gameMode === "versus-computer") {
-        console.log("hits versus computer");
        let playerHand = [];
        let computerHand = [];
 
@@ -200,7 +205,6 @@ checkIfHoleFinished(){
       })
 
       } else if (this.gameMode === "single-player"){
-        console.log("hits singler player");
       let hand = [];
       for (let counter = 0; counter < 4; counter++){
         let card = this.roundDeck.shift();
@@ -261,8 +265,8 @@ checkIfHoleFinished(){
       }
     },
     setupGame(){
-      this.playerCards = null;
-      this.computerCards = null;
+      this.playerCards = [];
+      this.computerCards = [];
       this.topCard = null;
       this.runningTotal = 0;
       this.lockedCards = [];

@@ -10,8 +10,8 @@
 
 <script>
 
-import Register from '../components/Register.vue';
-import SignIn from '../components/SignIn.vue';
+import Register from '../components/login/Register.vue';
+import SignIn from '../components/login/SignIn.vue';
 
 export default {
   name: 'login',

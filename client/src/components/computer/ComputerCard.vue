@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="player-card-container">
     <li>
-    <img class="card-icon" v-if="hidden" v-on:click="handleClick" v-on:dblclick="lockCard" src="../../assets/CardBack.png"/>
+    <img class="card-icon" v-if="hidden" src="../../assets/CardBack.png"/>
     <img class="card-icon" v-if="!hidden" :src="this.computerCard.image"/>
   </li>
 </div>
@@ -20,15 +20,29 @@ export default {
       lockedIn: false,
       popoverShow: false,
     }
-  }
-//   watch: {
-//     lockedCards(){
-//       if (this.lockedCards.length === 0){
-//         this.resetCard();
-//       }
-//     }
-//   }
-//   methods: {
+  },
+  mounted() {
+    eventBus.$on("computer-card-reveal", (card) => {
+      if(card === this.computerCard) {
+        this.hidden = false;
+      }
+    })
+  },
+  watch: {
+    lockedCards(){
+      if (this.lockedCards.length === 0){
+        this.resetCard();
+      }
+    },
+    computerCard(){
+        if (this.computerCard.lockedIn === true){
+        this.hidden = false;
+      } else {
+        this.hidden = true;
+      }
+    }
+  },
+  methods: {
 //     handleClick(){
 //       eventBus.$emit("player-clicked-card", this.playerCard);
 //       if(this.shownCards < 2 && this.counter === 0){
@@ -65,11 +79,11 @@ export default {
 //       this.lockedIn = true;
 //       this.revealCard();
 //     },
-//     resetCard(){
-//       this.hidden = true;
-//       this.lockedIn = false;
-//     }
-//   }
+    resetCard(){
+      this.hidden = true;
+      this.lockedIn = false;
+    }
+  }
 }
 </script>
 

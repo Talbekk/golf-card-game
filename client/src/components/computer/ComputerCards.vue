@@ -2,7 +2,7 @@
   <div id="cards-container">
     <p>Computer</p>
      <ul>
-      <computer-card v-for="(computer, index) in computerCards" :computerCard='computerCard' :key='index' :index='index' :shownCards='shownCards' :lockedCards='lockedCards' :counter='counter' :topCardSelected='topCardSelected'></computer-card>
+      <computer-card v-for="(computerCard, index) in computerCards" :computerCard='computerCard' :key='index' :index='index' :shownCards='shownCards' :lockedCards='lockedCards' :counter='counter' :topCardSelected='topCardSelected'></computer-card>
     </ul>
   </div>
 </template>
@@ -21,6 +21,23 @@ export default {
   },
   components: {
       "computer-card": ComputerCard
+  },
+  watch: {
+    counter() {
+      console.log("hits counter watcher");
+      if (this.counter % 2 !== 0){
+        let selectedCard = null;
+        this.computerCards.find((card) => {
+         if (card.lockedIn === false) {
+           selectedCard = card;
+            selectedCard.lockedIn === true;
+         }
+          });
+       console.log("selectedCard", selectedCard);
+       selectedCard.lockedIn === true;
+      eventBus.$emit("computer-card-reveal", selectedCard);
+      }
+    }
   }
 }
 </script>

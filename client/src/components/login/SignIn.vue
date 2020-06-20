@@ -16,8 +16,8 @@
 
 <script>
 
-import {firebase} from '../firebase.js';
-import {eventBus} from '../main.js';
+import {firebase} from '../../firebase.js';
+import {eventBus} from '../../main.js';
 
 export default {
   name: 'sign-in',
