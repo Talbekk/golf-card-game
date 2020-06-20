@@ -21,6 +21,13 @@ export default {
       popoverShow: false,
     }
   },
+  mounted() {
+    eventBus.$on("computer-card-reveal", (card) => {
+      if(card === this.computerCard) {
+        this.hidden = false;
+      }
+    })
+  },
   watch: {
     lockedCards(){
       if (this.lockedCards.length === 0){

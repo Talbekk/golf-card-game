@@ -24,9 +24,17 @@ export default {
   },
   watch: {
     counter() {
+      console.log("hits counter watcher");
       if (this.counter % 2 !== 0){
-       let selectedCard = this.computerCards.find(card => card.lockedIn === false);
+        let selectedCard = null;
+        this.computerCards.find((card) => {
+         if (card.lockedIn === false) {
+           selectedCard = card;
+         }
+          });
+       console.log("selectedCard", selectedCard);
        selectedCard.lockedIn === true;
+      eventBus.$emit("computer-card-reveal", selectedCard);
       }
     }
   }
