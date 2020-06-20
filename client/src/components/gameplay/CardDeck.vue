@@ -1,13 +1,13 @@
 <template lang="html">
 <div id="deck-container">
   <p>Deck:</p>
-  <img v-bind:class="[topCardStatus ? selectedClass : unSelectedClass]" v-on:click="drawNextCard" src="../assets/CardBack.png"/>
+  <img v-bind:class="[topCardStatus ? selectedClass : unSelectedClass]" v-on:click="drawNextCard" src="../../assets/CardBack.png"/>
 </div>
 </template>
 
 <script>
 
-import {eventBus} from '../main.js';
+import {eventBus} from '../../main.js';
 
 export default {
   name: "deck-list",

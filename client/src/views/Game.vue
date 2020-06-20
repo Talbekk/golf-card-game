@@ -25,7 +25,7 @@ import PlayerCards from '../components/player/PlayerCards.vue';
 import ComputerCards from '../components/computer/ComputerCards.vue';
 import GameHeader from '../components/GameHeader.vue';
 import ScoreCard from '../components/ScoreCard.vue';
-import CardDeck from '../components/CardDeck.vue';
+import CardDeck from '../components/gameplay/CardDeck.vue';
 import InfoBox from '../components/InfoBox.vue';
 import {eventBus} from '../main.js';
 import {scoreRef, db} from '../firebase.js';
