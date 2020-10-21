@@ -147,7 +147,6 @@ html, body {
 
 #nav-bar{
   margin-bottom: 0;
-  /* background-color: #333; */
   background-size: cover;
   font-size: 150%;
 }
@@ -197,10 +196,6 @@ html, body {
 .modal-footer {
   border-top: none !important;
   background: #777;
-}
-
-.btn-primary {
-
 }
 
 .btn-primary ,
