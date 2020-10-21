@@ -24,7 +24,7 @@ export default {
   mounted() {
     eventBus.$on("computer-card-reveal", (card) => {
       if(card === this.computerCard) {
-        this.hidden = false;
+       setTimeout(function() {this.hidden = false } , 1000);
       }
     })
   },

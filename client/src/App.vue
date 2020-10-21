@@ -157,14 +157,16 @@ html, body {
 #btn-main,
 #btn-main:link,
 #btn-main:visited {
-  background: #444;
-  border: 1px solid #444;
+  background: #004225;
+  box-shadow: 4px 3px 10px 1px rgb(0,0,0,0.8);
+  border: 1px solid #004225;
 }
 
 #btn-main:hover,
 #btn-main:active {
-  background: #555;
-  border: 1px solid #444;
+  background: #005611;
+  box-shadow: 4px 3px 10px 1px rgb(0,0,0,0.8);
+  border: 1px solid #005611;
 }
 
 /* HEADINGS */

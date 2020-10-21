@@ -54,9 +54,9 @@ export default {
   justify-content: center;
   align-items: stretch;
   margin: 1em;
-  border: solid #4b8a4a 1px;
+  border: solid #999 1px;
   border-radius: 5px;
-  background-color: #4b8a4a;
+  background-color: #999;
   background-size: cover;
   color: #333;
   box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
@@ -97,7 +97,7 @@ export default {
 
 #profile-info-box-data {
   border: 1px solid #000;
-  background-color: #555;
+  background-color: #004225;
   color: #fff;
   padding: 10px;
   flex-grow: 2;
