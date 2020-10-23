@@ -1,21 +1,19 @@
 <template lang="html">
   <div id="intro-screen" v-if="!selectScoresPage">
-    <h2>Player Profile:</h2>
-    <div id="top-container">
+    <div id="left-container">
       <player-profile v-if="!newGame" :userData='userData' :gamesPlayed='gamesPlayed' :totalScore='totalScore' :averageScore='averageScore' :bestScore='bestScore'/>
-    </div>
-    <h2>Game Modes:</h2>
     <div id="game-modes-container">
       <ul v-for="(game, index) in gameModes">
         <li>
         <game-mode :game="game"/>
         </li>
     </ul>
+    </div>
   </div id="game-log-container">
-    <h2>Game Log:</h2>
     <div id="last-game-container">
       <game-history :matches='matches'/>
     </div>
+  </div>
   </div>
 </template>
 
@@ -158,25 +156,27 @@ export default {
 <style lang="css" scoped>
 
 #intro-screen {
-  padding: 8px 5px 12px 5px;
+  /* padding: 8px 5px 12px 5px; */
   font-size: 12px;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 5% 60% 20% 5%;
+  grid-template-rows: 10% auto 10%;
 }
 
-#top-container {
-  display: flex;
+/* #left-container {
+  justify-self: end;
 }
+
+#game-log-container {
+  justify-self: start;
+} */
 
 #game-modes-container {
-  display: flex;
-  justify-content: center;
 }
 
 
 #last-game-container{
   padding: 2em;
-  margin: 2em;
   border: solid #999 1px;
   border-radius: 5px;
   background-color: #999;

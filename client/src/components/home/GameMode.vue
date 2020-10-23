@@ -27,20 +27,15 @@ export default {
 
 #new-game-container {
   padding: 2em;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin: 2em;
   border: solid #999 1px;
-  border-radius: 5px;
   background-color: #999;
   background-size: cover;
   color: #fffcfd;
   box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
-  transition: all .2s ease-in-out;
+  /* transition: all .2s ease-in-out; */
 }
 
 #new-game-container:hover {
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
 }
 </style>

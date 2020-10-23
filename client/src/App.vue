@@ -102,6 +102,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+
 html { scroll-behavior: smooth; }
 
 html, body {
@@ -118,7 +119,6 @@ html, body {
   background-attachment: fixed;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-
 }
 
 #app {

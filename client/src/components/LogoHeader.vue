@@ -104,20 +104,7 @@ export default {
 
 <style lang="css" scoped>
 
-#modal-3___BV_modal_body_{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.nav-item,
-.nav-item:link,
-.nav-item:visited {
-  font-weight: 700;
-}
-
-.nav-item:hover,
-.nav-item:active {
+.nav-item {
   font-weight: 700;
 }
 

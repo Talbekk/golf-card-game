@@ -49,13 +49,7 @@ export default {
 
 #profile-container {
   padding: 0.7em 1em 1em 1em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  margin: 1em;
   border: solid #999 1px;
-  border-radius: 5px;
   background-color: #999;
   background-size: cover;
   color: #333;
