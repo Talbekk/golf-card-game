@@ -1,18 +1,20 @@
 <template lang="html">
   <div id="intro-screen" v-if="!selectScoresPage">
     <div id="left-container">
+      <div id="player-profile-container">
       <player-profile v-if="!newGame" :userData='userData' :gamesPlayed='gamesPlayed' :totalScore='totalScore' :averageScore='averageScore' :bestScore='bestScore'/>
+      </div>
     <div id="game-modes-container">
+      <h3>Game Modes:</h3>
       <ul v-for="(game, index) in gameModes">
         <li>
         <game-mode :game="game"/>
         </li>
     </ul>
     </div>
-  </div id="game-log-container">
-    <div id="last-game-container">
-      <game-history :matches='matches'/>
     </div>
+  <div id="game-log-container">
+      <game-history :matches='matches'/>
   </div>
   </div>
 </template>
@@ -159,43 +161,37 @@ export default {
   /* padding: 8px 5px 12px 5px; */
   font-size: 12px;
   display: grid;
-  grid-template-columns: 5% 60% 20% 5%;
-  grid-template-rows: 10% auto 10%;
+  grid-template-columns: 5% 50% 40% 5%;
+  grid-template-rows: 10% 80% 10%;
 }
 
-/* #left-container {
-  justify-self: end;
-}
+#left-container {
+    grid-row: 2;
+    grid-column: 2;
+    display: grid;
+    grid-template-rows: 70% 30%;
+    justify-items: stretch;
+ }
 
 #game-log-container {
-  justify-self: start;
-} */
+  grid-row: 2;
+  grid-column: 3;
+  border-left: solid #333 1px;
+  background-color: #999;
+  color: #333;
+}
+
+#player-profile-container{
+  grid-row: 1; 
+}
 
 #game-modes-container {
-}
-
-
-#last-game-container{
-  padding: 2em;
-  border: solid #999 1px;
-  border-radius: 5px;
+  grid-row: 2;
+  border-top: 1px #333 solid;
   background-color: #999;
-  background-size: cover;
   color: #333;
-  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); */
-  /* grid-gap: 1em;
-  grid-auto-rows: minmax(100px, auto);
-  grid-auto-columns: minmax(100px, auto);
-  width: 50%;
-  margin: 2em; */
-}
-
-#name-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding-left: 1em;
+  justify-self: center;
 }
 
 h4 {
@@ -215,31 +211,7 @@ h2 {
   box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
 }
 
-#submit {
-  text-decoration: none;
-  padding: 15px;
-  border-radius: 75px;
-  display: inline-block;
-  border: none;
-  transition: all 0.4s ease 0s;
-  margin-top: 5px;
-}
-
-#user-name {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#username{
-  padding: 10px;
-}
-
 li {
     list-style: none;
 }
-
 </style>

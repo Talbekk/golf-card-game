@@ -2,6 +2,7 @@
   <div id="app">
     <logo-header id="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard"></logo-header>
     <router-view :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
+    <app-footer id="footer"></app-footer>
   </div>
 </template>
 
@@ -11,6 +12,7 @@ import IntroScreen from './views/IntroScreen.vue';
 import {eventBus} from './main.js';
 import {scoreRef, auth, db} from './firebase.js';
 import LogoHeader from './components/LogoHeader.vue';
+import Footer from './components/Footer.vue';
 import Game from './views/Game.vue';
 
 export default {
@@ -30,7 +32,8 @@ export default {
   components: {
     "intro-screen": IntroScreen,
     "logo-header": LogoHeader,
-    "Game": Game
+    "Game": Game,
+    "app-footer": Footer
   },
   mounted(){
     this.getDeck();
@@ -123,32 +126,19 @@ html, body {
 
 #app {
   font-family: 'Roboto', 'Arial', sans-serif;
+  display: grid;
+  grid-template-rows: 10% auto 10%;
+  align-items: stretch;
+  justify-items: stretch;
+  height: 100%;
 }
 
-#intro-screen{
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+#nav-bar {
+  background-color: #004225;
 }
 
-#header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-#board-one {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-#nav-bar{
-  margin-bottom: 0;
-  background-size: cover;
-  font-size: 150%;
+#footer {
+   background-color: #004225;
 }
 
 /* BUTTONS */

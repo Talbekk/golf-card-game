@@ -108,4 +108,6 @@ export default {
   font-weight: 700;
 }
 
+b-navbar {padding: 0;}
+
 </style>

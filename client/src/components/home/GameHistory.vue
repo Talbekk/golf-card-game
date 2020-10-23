@@ -1,5 +1,6 @@
 <template lang="html">
   <div id="game-history-container">
+    <h3>Match History:</h3>
     <match-list :matches='matches'/>
   </div>
 </template>

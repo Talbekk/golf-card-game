@@ -24,18 +24,4 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
-#new-game-container {
-  padding: 2em;
-  border: solid #999 1px;
-  background-color: #999;
-  background-size: cover;
-  color: #fffcfd;
-  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
-  /* transition: all .2s ease-in-out; */
-}
-
-#new-game-container:hover {
-  /* transform: scale(1.1); */
-}
 </style>

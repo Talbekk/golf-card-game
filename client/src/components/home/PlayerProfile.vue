@@ -1,5 +1,8 @@
 <template lang="html">
   <div id="profile-container">
+    <div id="title-row">
+     <h3> Profile:</h3>
+    </div>
     <div id="button-row">
       <!-- <b-button id="btn-main">Edit Profile</b-button> -->
       <b-button id="btn-main" v-on:click="signOut">Sign Out</b-button>
@@ -51,11 +54,9 @@ export default {
   padding: 0.7em 1em 1em 1em;
   border: solid #999 1px;
   background-color: #999;
-  background-size: cover;
   color: #333;
-  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
   font-size: 200%;
-
+  height: 100%;
 }
 
 #button-row {
