@@ -106,6 +106,11 @@ export default {
 
 .nav-item {
   font-weight: 700;
+  font-size: 1.5rem;
+  margin-left: .5rem;
+  border-left: 2px solid #000;
+  padding: 0;
+  margin: 0;
 }
 
 b-navbar {padding: 0;}

@@ -52,8 +52,8 @@ export default {
 
 #profile-container {
   padding: 0.7em 1em 1em 1em;
-  border: solid #999 1px;
-  background-color: #999;
+  border: solid #0a8116 1px;
+  background-color: #0a8116;
   color: #333;
   font-size: 200%;
   height: 100%;

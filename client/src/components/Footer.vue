@@ -25,7 +25,11 @@ export default {
 
 #footer-container {
     
-    color: white;
+    color: #111;
+    display: grid;
+    justify-content: center;
+    padding: 1rem;
+
 }
 
 </style>

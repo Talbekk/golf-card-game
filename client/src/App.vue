@@ -2,7 +2,7 @@
   <div id="app">
     <logo-header id="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard"></logo-header>
     <router-view :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
-    <app-footer id="footer"></app-footer>
+    <!-- <app-footer id="footer"></app-footer> -->
   </div>
 </template>
 
@@ -127,18 +127,18 @@ html, body {
 #app {
   font-family: 'Roboto', 'Arial', sans-serif;
   display: grid;
-  grid-template-rows: 10% auto 10%;
+  grid-template-rows: min-content 1fr min-content;
   align-items: stretch;
   justify-items: stretch;
   height: 100%;
 }
 
 #nav-bar {
-  background-color: #004225;
+  background-color: #0a8116;
 }
 
 #footer {
-   background-color: #004225;
+   background-color: #333;
 }
 
 /* BUTTONS */
@@ -168,12 +168,9 @@ html, body {
 
 .modal-content {
   background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/CourseBackground.jpg');
-  /* background-size: cover; */
-  /* height: 100vh; */
   background-position: center;
   background-attachment: fixed;
   text-rendering: optimizeLegibility;
-  /* overflow-x: hidden; */
   background-color: #4b8a4a;
   border: none;
 }
