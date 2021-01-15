@@ -1,10 +1,11 @@
 <template lang="html">
   <div class="player-screen-container">
     <div id="player-profile">
+      <h3 class="section-header">Player Profile</h3>
       <player-profile v-if="!newGame" :userData='userData' :gamesPlayed='gamesPlayed' :totalScore='totalScore' :averageScore='averageScore' :bestScore='bestScore'/>
     </div>
     <div class="game-modes">
-        <h3>Game Modes:</h3>
+        <h3 class="section-header">Game Modes:</h3>
         <ul v-for="(game, index) in gameModes">
           <li>
             <game-mode :game="game"/>
@@ -12,6 +13,7 @@
         </ul>
     </div>
     <div class="game-log">
+      <h3 class="section-header">Match History</h3>
       <game-history :matches='matches'/>
     </div>
   </div>
@@ -158,23 +160,25 @@ export default {
   display: grid;
   grid-template-rows: 1fr min-content;
   grid-template-columns: 1fr min-content;
+  border: 1px solid #000;
 }
 
 .player-profile {
-  background-color: orangered;
   grid-row: 1 / 2;
   grid-column: 1 / 2;
 }
 
 .game-modes {
-    background-color: orchid;
     grid-row: 2 / 3;
     grid-column: 1 / 2;
+    border-top: 1px solid #000;
 }
 
 .game-log {
-  background-color: midnightblue;
   grid-row: 1 / 3;
   grid-column: 2 / 3;
+  border-left: 1px solid #000;
 }
+
+
 </style>

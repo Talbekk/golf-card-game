@@ -123,5 +123,14 @@ body {
 .container {
   display: grid;
   grid-template-rows: min-content repeat(1fr);
+  grid-row-gap: 3rem;
+}
+
+.section-header {
+  font-size: 3rem;
+  padding: 0.5rem;
+  font-weight: 400;
+  color: #fff;
+  background-color: #004225;
 }
 </style>

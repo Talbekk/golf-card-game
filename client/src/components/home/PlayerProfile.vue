@@ -1,7 +1,6 @@
 <template lang="html">
   <div id="profile-container">
     <div id="title-row">
-     <h3> Profile:</h3>
     </div>
     <div id="button-row">
       <!-- <b-button id="btn-main">Edit Profile</b-button> -->
