@@ -1,21 +1,19 @@
 <template lang="html">
-  <div id="player-screen-container">
-    <div id="left-container">
-      <div id="player-profile-container">
+  <div class="player-screen-container">
+    <div id="player-profile">
       <player-profile v-if="!newGame" :userData='userData' :gamesPlayed='gamesPlayed' :totalScore='totalScore' :averageScore='averageScore' :bestScore='bestScore'/>
-      </div>
-    <div id="game-modes-container">
-      <h3>Game Modes:</h3>
-      <ul v-for="(game, index) in gameModes">
-        <li>
-        <game-mode :game="game"/>
-        </li>
-    </ul>
     </div>
+    <div class="game-modes">
+        <h3>Game Modes:</h3>
+        <ul v-for="(game, index) in gameModes">
+          <li>
+            <game-mode :game="game"/>
+          </li>
+        </ul>
     </div>
-  <div id="game-log-container">
+    <div class="game-log">
       <game-history :matches='matches'/>
-  </div>
+    </div>
   </div>
 </template>
 
@@ -155,62 +153,28 @@ export default {
 </script>
 
 <style lang="css" scoped>
-/* 
-#intro-screen {
-  padding: 8px 5px 12px 5px;
-  font-size: 12px;
+
+.player-screen-container {
   display: grid;
-  grid-template-columns: 5% 50% 40% 5%;
-  grid-template-rows: 10% 80% 10%;
+  grid-template-rows: 1fr min-content;
+  grid-template-columns: 1fr min-content;
 }
 
-#left-container {
-    grid-row: 2;
-    grid-column: 2;
-    display: grid;
-    grid-template-rows: 70% 30%;
-    justify-items: stretch;
- }
-
-#game-log-container {
-  grid-row: 2;
-  grid-column: 3;
-  border-left: solid #333 1px;
-  background-color: #999;
-  color: #333;
+.player-profile {
+  background-color: orangered;
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
 }
 
-#player-profile-container{
-  grid-row: 1; 
+.game-modes {
+    background-color: orchid;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
 }
 
-#game-modes-container {
-  grid-row: 2;
-  border-top: 1px #333 solid;
-  background-color: #999;
-  color: #333;
-  padding-left: 1em;
-  justify-self: center;
+.game-log {
+  background-color: midnightblue;
+  grid-row: 1 / 3;
+  grid-column: 2 / 3;
 }
-
-h4 {
-  font-weight: bolder;
-  text-decoration: underline;
-}
-
-h2 {
-  margin-top: 10px;
-  padding-left: 10px;
-  font-weight: bold;
-  color: #fffcfd;
-  border: 1px #004225 solid;
-  background-color: #004225;
-  border-radius: 5px;
-  padding: 0.5em;
-  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
-}
-
-li {
-    list-style: none;
-} */
 </style>
