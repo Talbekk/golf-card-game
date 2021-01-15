@@ -1,6 +1,6 @@
 <template lang="html">
-  <div id="new-game-container">
-    <h4>{{this.game.mode}}</h4>
+  <div class="game-item">
+    <h4 class="game-title">{{this.game.mode}}</h4>
     <b-button to="/game" v-on:click="clickedNewGame" id="btn-main" type="submit">Tee Off</b-button>
   </div>
 </template>
@@ -24,4 +24,16 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+.game-item {
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid #000;
+  margin: 1rem;
+}
+
+.game-title {
+  font-size: 2rem;
+  font-weight: 400;
+}
 </style>

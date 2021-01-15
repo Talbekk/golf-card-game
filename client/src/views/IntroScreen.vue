@@ -5,12 +5,8 @@
       <player-profile v-if="!newGame" :userData='userData' :gamesPlayed='gamesPlayed' :totalScore='totalScore' :averageScore='averageScore' :bestScore='bestScore'/>
     </div>
     <div class="game-modes">
-        <h3 class="section-header">Game Modes:</h3>
-        <ul v-for="(game, index) in gameModes">
-          <li>
-            <game-mode :game="game"/>
-          </li>
-        </ul>
+      <h3 class="section-header">Game Modes</h3>
+      <game-mode-list/>
     </div>
     <div class="game-log">
       <h3 class="section-header">Match History</h3>
@@ -23,7 +19,7 @@
 import {eventBus} from '../main.js';
 import {firebase, auth, db} from '../firebase.js';
 import PlayerProfile from '../components/home/PlayerProfile.vue';
-import GameMode from '../components/home/GameMode.vue';
+import GameModeList from '../components/home/GameModeList.vue';
 import GameHistory from '../components/home/GameHistory.vue';
 
 export default {
@@ -41,16 +37,12 @@ export default {
       totalScore: 0,
       averageScore: 0,
       matches: [],
-      bestScore: 0,
-      gameModes: [{ mode: "Single Player", holes: [3, 9, 18] }
-                  // { mode: "Versus Computer", difficulty: ["easy", "intermediate", "pro"], holes: [3, 9, 18]}
-                  // { mode: "Multiplayer"}
-                ]
+      bestScore: 0
         }
   },
   components: {
     "player-profile": PlayerProfile,
-    "game-mode": GameMode,
+    "game-mode-list": GameModeList,
     "game-history": GameHistory
   },
   created(){

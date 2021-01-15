@@ -133,4 +133,12 @@ body {
   color: #fff;
   background-color: #004225;
 }
+
+#btn-main {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  margin: .5rem 1rem;
+}
 </style>
