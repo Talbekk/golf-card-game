@@ -1,27 +1,20 @@
 <template lang="html">
-  <div id="profile-container">
-    <div id="title-row">
-    </div>
-    <div id="button-row">
-      <!-- <b-button id="btn-main">Edit Profile</b-button> -->
+  <div class="profile-container">
+    <div class="button-row">
       <b-button id="btn-main" v-on:click="signOut">Sign Out</b-button>
     </div>
-    <div id="information-row">
-    <div id="photo-box">
-      <img src="../../assets/profile-default.jpg">
-    </div>
-    <div id="profile-info-box">
-      <div id="profile-info-box-title">
-        <h2><b>{{this.userData.username}}</b></h2>
+    <div class="profile">
+      <div class="profile-photo">
+        <img src="../../assets/profile-default.jpg">
       </div>
-      <div id="profile-info-box-data">
-    <p class="record-box top-left">Games Played: {{this.gamesPlayed}}</p>
-    <p class="record-box top-right">Total Score: {{this.totalScore}}</p>
-    <p class="record-box bot-left">Average Score: {{this.averageScore}}</p>
-    <p class="record-box bot-right">Best Score: {{this.bestScore}}</p>
+      <h4 class="profile-name">{{this.userData.username}}</h4>
+      <div class="profile-data">
+        <p class="record-box top-left">Games Played: {{this.gamesPlayed}}</p>
+        <p class="record-box top-right">Total Score: {{this.totalScore}}</p>
+        <p class="record-box bot-left">Average Score: {{this.averageScore}}</p>
+        <p class="record-box bot-right">Best Score: {{this.bestScore}}</p>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -49,47 +42,37 @@ export default {
 
 <style lang="css" scoped>
 
-#profile-container {
-  padding: 0.7em 1em 1em 1em;
-  border: solid #0a8116 1px;
-  background-color: #0a8116;
-  color: #333;
-  font-size: 200%;
-  height: 100%;
+.profile-container {
+  padding: 1rem;
+  font-size: 2rem;
+  display: grid;
+  grid-template-rows: min-content 1fr;
 }
 
-#button-row {
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  width: 100%;
+.button-row {
+  justify-self: right;
 }
 
-#information-row {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 5px 10px;
+.profile {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  grid-template-columns: min-content 1fr;
 }
 
-#profile-info-box {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex: 8;
-  align-items: stretch;
-}
-
-#profile-info-box-title {
+.profile-name {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
   border: 1px solid black;
+  font-size: 2rem;
+  margin: 0;
   padding: 5px;
   color: #fff;
   background-color: #000;
-  flex-grow: 1;
 }
 
-#profile-info-box-data {
+.profile-data {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
   border: 1px solid #000;
   background-color: #004225;
   color: #fff;
@@ -100,18 +83,15 @@ export default {
   grid-template-rows: 50% 50%;
 }
 
-#button-row #btn-main:last-child {
-  margin-left: 25px;
-}
-
-#photo-box {
-  flex: 1;
-}
-
-#photo-box img {
-  height: 300px;
-  width: 200px;
+.profile-photo {
+  grid-row: 1 / 3;
+  grid-column: 1 / 2;
   border: 5px solid black;
+}
+
+.profile-photo > img {
+  height: 30rem;
+  width: 20rem;
 }
 
 .record-box {
