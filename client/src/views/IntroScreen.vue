@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="intro-screen" v-if="!selectScoresPage">
+  <div id="player-screen-container">
     <div id="left-container">
       <div id="player-profile-container">
       <player-profile v-if="!newGame" :userData='userData' :gamesPlayed='gamesPlayed' :totalScore='totalScore' :averageScore='averageScore' :bestScore='bestScore'/>
@@ -33,7 +33,6 @@ export default {
     return {
       newGame: false,
       userName: null,
-      selectScoresPage: false,
       loggedIn: false,
       userData: {},
       lastMatch: {},
@@ -156,9 +155,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
+/* 
 #intro-screen {
-  /* padding: 8px 5px 12px 5px; */
+  padding: 8px 5px 12px 5px;
   font-size: 12px;
   display: grid;
   grid-template-columns: 5% 50% 40% 5%;
@@ -213,5 +212,5 @@ h2 {
 
 li {
     list-style: none;
-}
+} */
 </style>

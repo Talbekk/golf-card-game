@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="container">
     <logo-header id="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard"></logo-header>
     <router-view :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
     <!-- <app-footer id="footer"></app-footer> -->
@@ -99,105 +99,29 @@ export default {
 </script>
 
 <style>
-
-* {
+*,
+*::before, 
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html { scroll-behavior: smooth; }
-
-html, body {
-
-  height: 100%;
-  background-color: #fff;
-  color: #555555;
-  font-size: 16px;
-  font-weight: 400;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/CourseBackground.jpg');
-  background-size: cover;
-  height: 100vh;
-  background-position: center;
-  background-attachment: fixed;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+html { 
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  font-size: 62.5%;
 }
 
-#app {
-  font-family: 'Roboto', 'Arial', sans-serif;
+body {
+  font-family: 'Roboto', sans-serif; 
+  color: #555;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.container {
   display: grid;
-  grid-template-rows: min-content 1fr min-content;
-  align-items: stretch;
-  justify-items: stretch;
-  height: 100%;
+  grid-template-rows: min-content repeat(1fr);
 }
-
-#nav-bar {
-  background-color: #0a8116;
-}
-
-#footer {
-   background-color: #333;
-}
-
-/* BUTTONS */
-
-#btn-main,
-#btn-main:link,
-#btn-main:visited {
-  background: #004225;
-  box-shadow: 4px 3px 10px 1px rgb(0,0,0,0.8);
-  border: 1px solid #004225;
-}
-
-#btn-main:hover,
-#btn-main:active {
-  background: #005611;
-  box-shadow: 4px 3px 10px 1px rgb(0,0,0,0.8);
-  border: 1px solid #005611;
-}
-
-/* HEADINGS */
-
-#login-heading {
-  font-size: 200%;
-  display: flex;
-  justify-content: center;
-}
-
-.modal-content {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/CourseBackground.jpg');
-  background-position: center;
-  background-attachment: fixed;
-  text-rendering: optimizeLegibility;
-  background-color: #4b8a4a;
-  border: none;
-}
-
-.modal-header {
-  border-bottom: none !important;
-  background: #777;
-}
-
-.modal-footer {
-  border-top: none !important;
-  background: #777;
-}
-
-.btn-primary ,
-.btn-primary :link,
-.btn-primary :visited {
-  background: #444 !important;
-  border: 1px solid #444 !important;
-}
-
-.btn-primary :hover,
-.btn-primary :active {
-  background: #555 !important;
-  border: 1px solid #444 !important;
-}
-
-
-
 </style>

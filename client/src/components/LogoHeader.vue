@@ -104,8 +104,13 @@ export default {
 
 <style lang="css" scoped>
 
+#logo-header {
+  color: #fff;
+}
+
 .nav-item {
   font-weight: 700;
+  color: #fff;
   font-size: 1.5rem;
   margin-left: .5rem;
   border-left: 2px solid #000;
