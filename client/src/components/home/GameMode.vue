@@ -1,7 +1,8 @@
 <template lang="html">
   <div class="game-item">
     <h4 class="game-title">{{this.game.mode}}</h4>
-    <b-button to="/game" v-on:click="clickedNewGame" id="btn-main" type="submit">Tee Off</b-button>
+    <b-button v-if="this.game.mode === 'Single Player'" to="/game" v-on:click="clickedNewGame" id="btn-main" type="submit">Tee Off</b-button>
+    <p class="button-replacement-info" v-if="this.game.mode !== 'Single Player'">&ldquo;Coming Soon&rdquo;</p>
   </div>
 </template>
 
@@ -35,5 +36,13 @@ export default {
 .game-title {
   font-size: 2rem;
   font-weight: 400;
+}
+
+.button-replacement-info {
+  font-style: italic;
+  font-size: 1.7rem;
+  font-weight: 200;
+  padding: .6rem;
+  margin: .5rem 1rem;
 }
 </style>

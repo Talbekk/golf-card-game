@@ -106,6 +106,7 @@ export default {
 
 #logo-header {
   color: #fff;
+  padding: 1rem 1rem;
 }
 
 .nav-item {

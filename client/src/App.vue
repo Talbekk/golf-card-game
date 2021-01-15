@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <logo-header id="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard"></logo-header>
+  <div class="content-container">
+    <logo-header class="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard"></logo-header>
     <router-view :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
     <!-- <app-footer id="footer"></app-footer> -->
   </div>
@@ -104,7 +104,7 @@ export default {
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
 
 html { 
@@ -120,7 +120,8 @@ body {
   line-height: 1.6;
 }
 
-.container {
+.content-container {
+  margin: 0 auto;
   display: grid;
   grid-template-rows: min-content repeat(1fr);
   grid-row-gap: 3rem;
