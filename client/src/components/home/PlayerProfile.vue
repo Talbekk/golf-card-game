@@ -76,11 +76,9 @@ export default {
   border: 1px solid #000;
   background-color: #004225;
   color: #fff;
-  padding: 10px;
-  flex-grow: 2;
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .profile-photo {
@@ -100,8 +98,6 @@ export default {
   justify-content: center;
   align-items: center;
   margin-bottom: 0;
-  font-size: 75%;
-  padding: 1.5em 2.5em;
 }
 
 .record-box.top-left {
@@ -123,6 +119,5 @@ export default {
   border-left: 1px solid black;
   border-top: 1px solid black;
 }
-
 
 </style>
