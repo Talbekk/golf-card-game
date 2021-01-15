@@ -1,8 +1,8 @@
 <template lang="html">
-  <div id="register-container">
-    <h4 id="login-heading">Register a user:</h4>
-    <div id="register-form" v-if="error" class="error">{{error.message}}</div>
-    <b-form @submit.prevent="handleSubmit">
+  <div class="register-container">
+    <h3 class="section-header">Register a user:</h3>
+    <div v-if="error" class="error">{{error.message}}</div>
+      <b-form class="register-form" @submit.prevent="handleSubmit">
       <b-form-group id="email" label="Email:">
         <b-form-input type="email" v-model="email" required placeholder="email"/>
       </b-form-group>
@@ -56,15 +56,13 @@ export default {
 
 <style lang="css" scoped>
 
-#register-container{
-  padding: 1em;
-  border: solid #999 1px;
-  margin: 1em;
-  border-radius: 5px;
-  background-color: #999;
-  background-size: cover;
-  color: #333;
-  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
+.register-container {
+  display: grid;
+  grid-template-rows: repeat(2, min-content);
+}
+
+.register-form {
+  margin: 0 auto;
 }
 
   </style>

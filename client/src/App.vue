@@ -135,6 +135,15 @@ body {
   background-color: #004225;
 }
 
+.game-header {
+  font-size: 5rem;
+  padding: 1rem .5rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #004225;
+  text-transform: uppercase;
+}
+
 #btn-main {
   text-transform: uppercase;
   font-weight: 600;
