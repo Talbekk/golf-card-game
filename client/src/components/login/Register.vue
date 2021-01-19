@@ -1,17 +1,17 @@
 <template lang="html">
-  <div class="register-container">
+  <div class="chosen-auth-container">
     <div v-if="error" class="error">{{error.message}}</div>
       <b-form class="register-form" @submit.prevent="handleSubmit">
-      <b-form-group id="email" label="Email:">
-        <b-form-input type="email" v-model="email" required placeholder="email"/>
+      <b-form-group id="email" label="Email Address:">
+        <b-form-input type="email" v-model="email" required placeholder="Enter Email Address"/>
       </b-form-group>
-      <b-form-group id="username" label="Golfer's Name:">
-        <b-form-input type="text" v-model="username" required placeholder="username"/>
+      <b-form-group id="username" label="Golfer Name:">
+        <b-form-input type="text" v-model="username" required placeholder="Enter Golfer Name"/>
       </b-form-group>
       <b-form-group id="password" label="Password:">
-        <b-form-input type="password" v-model="password" required placeholder="password"/>
+        <b-form-input type="password" v-model="password" required placeholder="Enter Password"/>
         </b-form-group>
-      <b-button id="btn-main" type="submit">Sign Up</b-button>
+      <b-button id="btn-main" type="submit">Register Golfer</b-button>
     </b-form>
   </div>
 </template>
@@ -55,12 +55,8 @@ export default {
 
 <style lang="css" scoped>
 
-.register-container {
-  display: grid;
-}
-
-.register-form {
-  margin: 0 auto;
+.form-control {
+  font-size: 1.5rem;
 }
 
   </style>

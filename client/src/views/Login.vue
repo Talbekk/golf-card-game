@@ -14,7 +14,7 @@
       </div>
       <register v-if='selectedAuthOption === "register"' class="auth-box auth-reg"/>
       <sign-in v-if='selectedAuthOption === "sign-in"' class="auth-box auth-login"/>
-      <p v-if='selectedAuthOption === "guest-mode"' class="auth-box auth-guest-login">Hi</p>
+      <guest-sign-up v-if='selectedAuthOption === "guest-mode"' class="auth-box auth-guest-login"/>
   </div>
 </template>
 
@@ -22,12 +22,14 @@
 
 import Register from '../components/login/Register.vue';
 import SignIn from '../components/login/SignIn.vue';
+import GuestSignUp from '../components/login/GuestSignUp.vue';
 
 export default {
   name: 'login',
   components: {
     'register': Register,
-    'sign-in': SignIn
+    'sign-in': SignIn,
+    'guest-sign-up': GuestSignUp
   },
   data () {
     return {
@@ -93,5 +95,11 @@ export default {
   background-color: #fff;
   color: #004225;
 }
+
+.chosen-auth-container {
+  padding: 1.5rem;
+  font-size: 2rem;
+}
+
 
 </style>
