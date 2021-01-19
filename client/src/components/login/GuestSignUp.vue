@@ -4,7 +4,7 @@
       <b-form-group id="guest-sign-up" label="Golfer Name:">
         <b-form-input type="text" v-model="golferName" placeholder="Enter Golfer Name"/>
       </b-form-group>
-        <b-button id="btn-main" type="submit">Tee Off</b-button>
+        <b-button id="btn-main" to="/game" type="submit">Tee Off</b-button>
     </b-form>
     <div class="error" v-if="error">{{error.message}}</div>
   </div>
