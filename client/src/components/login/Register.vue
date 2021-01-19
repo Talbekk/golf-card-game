@@ -1,6 +1,5 @@
 <template lang="html">
   <div class="register-container">
-    <h3 class="section-header">Register a user:</h3>
     <div v-if="error" class="error">{{error.message}}</div>
       <b-form class="register-form" @submit.prevent="handleSubmit">
       <b-form-group id="email" label="Email:">
@@ -58,7 +57,6 @@ export default {
 
 .register-container {
   display: grid;
-  grid-template-rows: repeat(2, min-content);
 }
 
 .register-form {
