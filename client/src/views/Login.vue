@@ -8,9 +8,9 @@
        <p class="welcome-info">Welcome to Golf: The Card Game, the online version of the fast-paced and exciting table-top card game. If you are new to the game, please checkout the rules option up in the navigation menu of the app. There are a few options to start off, please select one to get started or continue to regsuter for the game:</p>
     </div>
       <div class="auth-options">
-        <button class="auth-option-btn">Register User</button>
-        <button class="auth-option-btn">Sign In</button>
-        <button class="auth-option-btn">Guest Practice</button>
+        <button class="auth-option-btn" v-on:click='selectAuthOption("register")'>Register User</button>
+        <button class="auth-option-btn" v-on:click='selectAuthOption("sign-in")'>Sign In</button>
+        <button class="auth-option-btn" v-on:click='selectAuthOption("guest-mode")'>Guest Practice</button>
       </div>
       <register v-if='selectedAuthOption === "register"' class="auth-box auth-reg"/>
       <sign-in v-if='selectedAuthOption === "sign-in"' class="auth-box auth-login"/>
@@ -32,6 +32,11 @@ export default {
   data () {
     return {
       selectedAuthOption: "register"
+    }
+  },
+  methods: {
+    selectAuthOption(option){
+      this.selectedAuthOption = option;
     }
   }
 }
