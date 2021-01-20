@@ -31,8 +31,8 @@ export default {
 #top-card:hover { transform: scale(1.1); }
 
 .card-icon {
-  max-width: 10em;
-  max-height: 10em;
+  width: 11rem;
+  height: 15.7rem;
 }
 
 h4 {

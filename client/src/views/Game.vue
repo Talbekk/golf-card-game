@@ -1,15 +1,15 @@
 <template lang="html">
-  <div id="game_container">
+  <div class="game-container">
     <div id="game-board">
-    <div id="next-button">
-      <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole" :gameMode="gameMode"></game-header>
+      <div id="next-button">
+        <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole" :gameMode="gameMode"></game-header>
+      </div>
+      <div class="board-one">
+        <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
+        <card-deck :topCardStatus='topCardStatus'></card-deck>
+        <top-card v-if='topCard' :topCard='topCard'></top-card>
+      </div>
     </div>
-    <div v-if="!viewLeaderBoard" id="board-one">
-      <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
-      <card-deck :topCardStatus='topCardStatus'></card-deck>
-      <top-card v-if='topCard' :topCard='topCard'></top-card>
-    </div>
-  </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
       <player :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player>
       <computer v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected"></computer>
@@ -328,11 +328,13 @@ computed: {
 
 <style lang="css" scoped>
 
-#game-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+.game-container {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  grid-row-gap: 5rem;
+  border: 1px solid #000;
+  width: 50%;
+  margin: 0 auto;
 }
 
 #game-board {
@@ -342,13 +344,9 @@ computed: {
   align-items: center;
 }
 
-#board-one {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  /* padding-bottom: 1em; */
+.board-one {
+  display: grid;
+  grid-template-columns: repeat(1fr);
 }
 
 .card-icon {

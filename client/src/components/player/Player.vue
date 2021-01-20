@@ -1,5 +1,6 @@
 <template lang="html">
-  <div id="player-container">
+  <div class="player-container">
+      <p class="player-name">{{this.userData.username}}</p>
       <player-cards :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player-cards>
   </div>
 </template>
@@ -20,4 +21,19 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+.player-container {
+  display: grid;
+  grid-template-rows: repeat(2, min-content);
+  border-radius: 1rem;
+}
+
+.player-name {
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  border: 1px solid #000;
+  padding: 1rem;
+}
 </style>

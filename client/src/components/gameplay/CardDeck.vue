@@ -39,13 +39,13 @@ export default {
 }
 
 .card-icon-original {
-  max-width: 10em;
-  max-height: 10em;
+  width: 12rem;
+  height: 16rem;
 }
 
 .card-icon-greyed {
-  max-width: 10em;
-  max-height: 10em;
+  width: 12rem;
+  height: 16rem;
   filter: grayscale(75%);
 }
 
