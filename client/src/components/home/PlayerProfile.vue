@@ -98,6 +98,7 @@ export default {
   justify-content: center;
   align-items: center;
   margin-bottom: 0;
+  padding: .5rem;
 }
 
 .record-box.top-left {

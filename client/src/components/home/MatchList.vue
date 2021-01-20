@@ -59,7 +59,7 @@ export default {
 
 <style lang="css" scoped>
 
-#match-list{
+#match-list {
   padding: .5em;
   font-size: 1.5rem;
   }
