@@ -19,7 +19,7 @@ export default {
   name: 'app',
   data() {
     return {
-      deck: [],
+      deck: null,
       gameDeck: [], //game
       gameStatus: false, //game
       tutorialStatus: false,
@@ -80,11 +80,13 @@ export default {
     })  },
   methods: {
     getDeck(){
+      if(this.deck){
       eventBus.$emit('setup-game');
       let deckID = this.deck.deck_id
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=52`)
         .then(res => res.json())
         .then(cardData => this.gameDeck = cardData)
+      }
     },
     getUserData(){
     if(auth.currentUser){

@@ -8,8 +8,8 @@
        <p class="welcome-info">Welcome to Golf: The Card Game, the online version of the fast-paced and exciting table-top card game. If you are new to the game, please checkout the rules option up in the navigation menu of the app. There are a few options to start off, please select one to get started or continue to register for the game:</p>
     </div>
       <div class="auth-options">
-        <button class="auth-option-btn" v-on:click='selectAuthOption("register")'>Register User</button>
-        <button class="auth-option-btn" v-on:click='selectAuthOption("sign-in")'>Sign In</button>
+        <button :class="selectedAuthOption === 'register' ? 'auth-option-btn auth-btn-selected' : 'auth-option-btn'" v-on:click='selectAuthOption("register")'>Register User</button>
+        <button :class="selectedAuthOption === 'sign-in' ? 'auth-option-btn auth-btn-selected' : 'auth-option-btn'" v-on:click='selectAuthOption("sign-in")'>Sign In</button>
         <!-- <button class="auth-option-btn" v-on:click='selectAuthOption("guest-mode")'>Guest Practice</button> -->
       </div>
       <register v-if='selectedAuthOption === "register"' class="auth-box auth-reg"/>
@@ -80,8 +80,11 @@ export default {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
-
-.auth-option-btn {
+.auth-option-btn,
+.auth-option-btn::before,
+.auth-option-btn::after,
+.auth-option-btn:link,
+.auth-option-btn:visited {
   font-size: 1.8rem;
   text-transform: uppercase;
   justify-content: center;
@@ -91,7 +94,9 @@ export default {
   color: #fff;
 }
 
-.auth-option-btn:hover{
+.auth-option-btn:hover,
+.auth-option-btn:active,
+.auth-btn-selected {
   background-color: #fff;
   color: #004225;
 }
