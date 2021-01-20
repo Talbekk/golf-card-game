@@ -23,7 +23,7 @@ export default {
 
 <style lang="css" scoped>
 
-#match-details-container{
+ #match-details-container{
   padding: 0.5em;
   display: flex;
   flex-direction: column;

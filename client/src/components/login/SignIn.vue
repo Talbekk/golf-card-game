@@ -7,7 +7,7 @@
       <b-form-group id="password" label="Password:">
         <b-form-input type="password" v-model="password" placeholder="Enter Password"/>
       </b-form-group>
-        <b-button id="btn-main" type="submit">Sign In</b-button>
+        <b-button id="btn-main" type="submit" variant="dark">Sign In</b-button>
     </b-form>
     <div class="error" v-if="error">{{error.message}}</div>
   </div>

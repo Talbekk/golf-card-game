@@ -11,7 +11,7 @@
       <b-form-group id="password" label="Password:">
         <b-form-input type="password" v-model="password" required placeholder="Enter Password"/>
         </b-form-group>
-      <b-button id="btn-main" type="submit">Register Golfer</b-button>
+      <b-button id="btn-main" type="submit" variant="dark">Register Golfer</b-button>
     </b-form>
   </div>
 </template>
@@ -23,7 +23,7 @@ import {eventBus} from '../../main.js';
 export default {
   data(){
     return {
-      email: "",
+      email: null,
       password: '',
       username: "",
       error: ''
