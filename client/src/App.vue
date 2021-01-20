@@ -50,6 +50,7 @@ export default {
       this.tutorialStatus = true;
     }),
     eventBus.$on('start-new-game', (mode) => {
+      console.log("hits event bus", mode);
       this.gameMode = mode;
     }),
     eventBus.$on('username-selected', (name) => {
