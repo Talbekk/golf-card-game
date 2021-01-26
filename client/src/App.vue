@@ -127,7 +127,6 @@ body {
   margin: 0 auto;
   display: grid;
   grid-template-rows: min-content repeat(1fr);
-  grid-row-gap: 3rem;
 }
 
 .section-header {

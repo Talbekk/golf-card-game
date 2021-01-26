@@ -331,7 +331,7 @@ computed: {
 .game-container {
   display: grid;
   grid-template-rows: min-content 1fr;
-  grid-row-gap: 5rem;
+  grid-row-gap: 1.5rem;
   border: 1px solid #000;
   width: 50%;
   margin: 0 auto;
@@ -376,8 +376,7 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 p {

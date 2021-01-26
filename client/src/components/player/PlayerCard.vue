@@ -83,8 +83,8 @@ export default {
 #player-card-container:hover, #player-card-container.active { transform: scale(1.1); }
 
 .card-icon {
-  width: 12rem;
-  height: 16rem;
+  width: 11rem;
+  height: 15rem;
 }
 
 </style>
