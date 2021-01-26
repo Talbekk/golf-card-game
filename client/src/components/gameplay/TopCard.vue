@@ -1,6 +1,6 @@
 <template lang="html">
-  <div id="top-card">
-    <p>Top Card:</p>
+  <div class="top-card">
+    <h5 class="game-sub-section-header">Top Card</h5>
     <img class="card-icon"
     :src="this.topCard.image" v-on:click="handleClick"/>
   </div>
@@ -17,32 +17,35 @@ export default {
     handleClick(){
     eventBus.$emit('top-card-selected');
     }
-  }
+  }   
   }
 </script>
 
 <style lang="css" scoped>
 
-#top-card {
-    padding: 0.5em;
-    transition: all .2s ease-in-out;
+.top-card {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  justify-self: center;
 }
-
-#top-card:hover { transform: scale(1.1); }
 
 .card-icon {
   width: 11rem;
   height: 15.7rem;
+  padding: 0.5em;
+  transition: all .2s ease-in-out;
 }
 
-h4 {
-  margin-top: 10px;
-  margin-bottom: 0;
-}
+.card-icon:hover { transform: scale(1.1); }
 
-p {
-  margin-bottom: 0px;
+.game-sub-section-header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: #004225;
   color: #fff;
+  padding: .5rem;
 }
 
 </style>

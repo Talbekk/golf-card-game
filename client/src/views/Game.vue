@@ -338,21 +338,26 @@ computed: {
 }
 
 #game-board {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
+  display: grid;
+  grid-template-rows: min-content 1fr;
 }
 
 .board-one {
   display: grid;
-  grid-template-columns: repeat(1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .card-icon {
   max-width: 11em;
   max-height: 11em;
   padding: 0.5em;
+}
+
+.game-sub-section-header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 button {

@@ -33,7 +33,8 @@ export default {
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
-  border: 1px solid #000;
   padding: 1rem;
+  background-color: #004225;
+  color: #fff;
 }
 </style>
