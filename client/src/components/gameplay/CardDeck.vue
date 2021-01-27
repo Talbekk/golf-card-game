@@ -32,7 +32,6 @@ export default {
 .deck-container {
   display: grid;
   grid-template-rows: min-content 1fr;
-  justify-self: center;
 }
 
 .card-icon-original:hover {
@@ -53,7 +52,7 @@ export default {
 }
 
 .game-sub-section-header {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;

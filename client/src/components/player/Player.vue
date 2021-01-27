@@ -30,7 +30,8 @@ export default {
 
 .player-name {
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  text-transform: uppercase;
   font-weight: 700;
   text-align: center;
   padding: .5rem;

@@ -339,12 +339,14 @@ computed: {
 
 #game-board {
   display: grid;
-  grid-template-rows: min-content 1fr;
+  grid-template-rows: minmax(60px, min-content) 1fr;
 }
 
 .board-one {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: .2rem;
+  margin: 0 auto;
 }
 
 .card-icon {

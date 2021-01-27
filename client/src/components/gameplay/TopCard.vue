@@ -26,12 +26,11 @@ export default {
 .top-card {
   display: grid;
   grid-template-rows: min-content 1fr;
-  justify-self: center;
 }
 
 .card-icon {
-  width: 11rem;
-  height: 15.7rem;
+ width: 12rem;
+  height: 16rem;
   padding: 0.5em;
   transition: all .2s ease-in-out;
 }
@@ -39,7 +38,7 @@ export default {
 .card-icon:hover { transform: scale(1.1); }
 
 .game-sub-section-header {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
