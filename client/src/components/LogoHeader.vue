@@ -52,7 +52,7 @@ export default {
       currentHole: 1,
     }
   },
-  props:['gameStatus', 'scoreCard'],
+  props:['gameStatus', 'scoreCard', 'gameMode'],
   components: {
     'scores-page': ScoresPage,
     'game-rules': GameRules,
@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     newGame(){
-      eventBus.$emit('start-new-game');
+      eventBus.$emit('start-new-game', this.gameMode);
       this.score = 0;
       this.currentHole = 1;
     },

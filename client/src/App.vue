@@ -1,6 +1,6 @@
 <template>
   <div class="content-container">
-    <logo-header class="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard"></logo-header>
+    <logo-header class="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard" :gameMode="gameMode"></logo-header>
     <router-view :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
     <!-- <app-footer id="footer"></app-footer> -->
   </div>

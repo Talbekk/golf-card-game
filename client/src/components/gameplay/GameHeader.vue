@@ -49,7 +49,7 @@ export default {
       eventBus.$emit('start-next-hole');
     },
     newGame(){
-      eventBus.$emit('start-new-game');
+      eventBus.$emit('start-new-game', this.gameMode);
     }
   }
 }
