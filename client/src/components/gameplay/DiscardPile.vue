@@ -2,6 +2,7 @@
   <div class  ="discard-pile-container">
     <h5 class="game-sub-section-header">Discard Pile</h5>
     <img v-if="this.discardPile.length > 0" class="card-icon" :src="this.discardPile[this.discardPile.length-1][0].image"/>
+    <div v-if="this.discardPile.length === 0" class="discard-pile-card">X</div>
   </div>
 </template>
 
@@ -35,6 +36,22 @@ export default {
   background-color: #004225;
   color: #fff;
   padding: .5rem;
+}
+
+.discard-pile-card {
+  font-size: 10rem;
+  font-weight: 700;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  color: #777;
+  border: 1px solid #000;
+  width: 10rem;
+  height: 14rem;
+  border-radius: 5px;
+  margin: 0.5rem;
+  justify-self:  center;
+  align-self: center;
 }
 
 </style>
