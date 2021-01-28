@@ -82,12 +82,9 @@ export default {
 
 #player-card-container:hover, #player-card-container.active { transform: scale(1.1); }
 
-
 .card-icon {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 10em;
-  max-height: 10em;
+  width: 11rem;
+  height: 15rem;
 }
 
 </style>

@@ -52,7 +52,7 @@ export default {
       currentHole: 1,
     }
   },
-  props:['gameStatus', 'scoreCard'],
+  props:['gameStatus', 'scoreCard', 'gameMode'],
   components: {
     'scores-page': ScoresPage,
     'game-rules': GameRules,
@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     newGame(){
-      eventBus.$emit('start-new-game');
+      eventBus.$emit('start-new-game', this.gameMode);
       this.score = 0;
       this.currentHole = 1;
     },
@@ -104,21 +104,21 @@ export default {
 
 <style lang="css" scoped>
 
-#modal-3___BV_modal_body_{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+#logo-header {
+  color: #fff;
+  padding: 1rem 1rem;
 }
 
-.nav-item,
-.nav-item:link,
-.nav-item:visited {
+.nav-item {
   font-weight: 700;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-left: .5rem;
+  border-left: 2px solid #000;
+  padding: 0;
+  margin: 0;
 }
 
-.nav-item:hover,
-.nav-item:active {
-  font-weight: 700;
-}
+b-navbar {padding: 0;}
 
 </style>

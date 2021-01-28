@@ -1,19 +1,15 @@
 <template lang="html">
-  <div id="intro-screen" v-if="!selectScoresPage">
-    <h2>Player Profile:</h2>
-    <div id="top-container">
+  <div class="player-screen-container">
+    <div id="player-profile">
+      <h3 class="section-header">Player Profile</h3>
       <player-profile v-if="!newGame" :userData='userData' :gamesPlayed='gamesPlayed' :totalScore='totalScore' :averageScore='averageScore' :bestScore='bestScore'/>
     </div>
-    <h2>Game Modes:</h2>
-    <div id="game-modes-container">
-      <ul v-for="(game, index) in gameModes">
-        <li>
-        <game-mode :game="game"/>
-        </li>
-    </ul>
-  </div id="game-log-container">
-    <h2>Game Log:</h2>
-    <div id="last-game-container">
+    <div class="game-modes">
+      <h3 class="section-header">Game Modes</h3>
+      <game-mode-list/>
+    </div>
+    <div class="game-log">
+      <h3 class="section-header">Match History</h3>
       <game-history :matches='matches'/>
     </div>
   </div>
@@ -23,7 +19,7 @@
 import {eventBus} from '../main.js';
 import {firebase, auth, db} from '../firebase.js';
 import PlayerProfile from '../components/home/PlayerProfile.vue';
-import GameMode from '../components/home/GameMode.vue';
+import GameModeList from '../components/home/GameModeList.vue';
 import GameHistory from '../components/home/GameHistory.vue';
 
 export default {
@@ -33,7 +29,6 @@ export default {
     return {
       newGame: false,
       userName: null,
-      selectScoresPage: false,
       loggedIn: false,
       userData: {},
       lastMatch: {},
@@ -42,16 +37,12 @@ export default {
       totalScore: 0,
       averageScore: 0,
       matches: [],
-      bestScore: 0,
-      gameModes: [{ mode: "Single Player", holes: [3, 9, 18] },
-                  { mode: "Versus Computer", difficulty: ["easy", "intermediate", "pro"], holes: [3, 9, 18]}
-                  // { mode: "Multiplayer"}
-                ]
+      bestScore: 0
         }
   },
   components: {
     "player-profile": PlayerProfile,
-    "game-mode": GameMode,
+    "game-mode-list": GameModeList,
     "game-history": GameHistory
   },
   created(){
@@ -157,84 +148,30 @@ export default {
 
 <style lang="css" scoped>
 
-#intro-screen {
-  padding: 8px 5px 12px 5px;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
+.player-screen-container {
+  display: grid;
+  grid-template-rows: 1fr min-content;
+  grid-template-columns: 1fr min-content;
+  border: 1px solid #000;
+  margin: 0 auto;
 }
 
-#top-container {
-  display: flex;
+.player-profile {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
 }
 
-#game-modes-container {
-  display: flex;
-  justify-content: center;
+.game-modes {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    border-top: 1px solid #000;
 }
 
-
-#last-game-container{
-  padding: 2em;
-  margin: 2em;
-  border: solid #4b8a4a 1px;
-  border-radius: 5px;
-  background-color: #4b8a4a;
-  background-size: cover;
-  color: #333;
-  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); */
-  /* grid-gap: 1em;
-  grid-auto-rows: minmax(100px, auto);
-  grid-auto-columns: minmax(100px, auto);
-  width: 50%;
-  margin: 2em; */
+.game-log {
+  grid-row: 1 / 3;
+  grid-column: 2 / 3;
+  border-left: 1px solid #000;
 }
 
-#name-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-h4 {
-  font-weight: bolder;
-  text-decoration: underline;
-}
-
-h2 {
-  margin-top: 10px;
-  padding-left: 10px;
-  font-weight: bold;
-  color: #fff;
-}
-
-#submit {
-  text-decoration: none;
-  padding: 15px;
-  border-radius: 75px;
-  display: inline-block;
-  border: none;
-  transition: all 0.4s ease 0s;
-  margin-top: 5px;
-}
-
-#user-name {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#username{
-  padding: 10px;
-}
-
-li {
-    list-style: none;
-}
 
 </style>

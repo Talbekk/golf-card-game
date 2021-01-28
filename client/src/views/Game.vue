@@ -1,15 +1,15 @@
 <template lang="html">
-  <div id="game_container">
+  <div class="game-container">
     <div id="game-board">
-    <div id="next-button">
-      <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole" :gameMode="gameMode"></game-header>
+      <div id="next-button">
+        <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole" :gameMode="gameMode"></game-header>
+      </div>
+      <div class="board-one">
+        <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
+        <card-deck :topCardStatus='topCardStatus'></card-deck>
+        <top-card v-if='topCard' :topCard='topCard'></top-card>
+      </div>
     </div>
-    <div v-if="!viewLeaderBoard" id="board-one">
-      <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
-      <card-deck :topCardStatus='topCardStatus'></card-deck>
-      <top-card v-if='topCard' :topCard='topCard'></top-card>
-    </div>
-  </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
       <player :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player>
       <computer v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected" :computerTotal='computerTotal'></computer>
@@ -353,33 +353,38 @@ computed: {
 
 <style lang="css" scoped>
 
-#game-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+.game-container {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  grid-row-gap: 1.5rem;
+  border: 1px solid #000;
+  width: 50%;
+  margin: 0 auto;
 }
 
 #game-board {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
+  display: grid;
+  grid-template-rows: minmax(60px, min-content) 1fr;
 }
 
-#board-one {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  /* padding-bottom: 1em; */
+.board-one {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: .2rem;
+  margin: 0 auto;
 }
 
 .card-icon {
   max-width: 11em;
   max-height: 11em;
   padding: 0.5em;
+}
+
+.game-sub-section-header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 button {
@@ -398,8 +403,7 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 p {

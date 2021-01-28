@@ -1,8 +1,8 @@
 <template lang="html">
   <div id="game-header">
     <end-game v-if="!this.gameStatus && (this.currentHole===9)" :scoreCard='scoreCard' :gameStatus='gameStatus'/>
-    <b-button pill id="btn-main" v-if="!this.gameStatus" v-on:click="newGame" name="button">Play Again?</b-button>
-    <b-button pill id="btn-main" v-on:click="startNextHole" v-if="checkIfHoleFinished">Next Round</b-button>
+    <b-button id="btn-main" v-if="!this.gameStatus && this.gameMode" v-on:click="newGame" name="button" variant="dark">Play Again?</b-button>
+    <b-button id="btn-main" v-on:click="startNextHole" v-if="checkIfHoleFinished" variant="dark">Next Round &rarr;</b-button>
   </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
       eventBus.$emit('start-next-hole');
     },
     newGame(){
-      eventBus.$emit('start-new-game');
+      eventBus.$emit('start-new-game', this.gameMode);
     }
   }
 }
@@ -58,10 +58,8 @@ export default {
 <style lang="css" scoped>
 
 #game-header {
-  padding: 0.5em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+ text-align: center;
+ margin: .5rem 0 1rem 0;
 }
 
 b-button {

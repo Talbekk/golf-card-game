@@ -1,14 +1,13 @@
 <template lang="html">
-  <div id="sign-in-container">
-    <h4 id="login-heading">Sign in:</h4>
+  <div class="chosen-auth-container">
     <b-form @submit.prevent="handleSignIn">
-      <b-form-group id="sign-in" label="Email:">
-        <b-form-input type="email" v-model="email" placeholder="sign in"/>
+      <b-form-group id="sign-in" label="Email Address:">
+        <b-form-input type="email" v-model="email" placeholder="Enter Email Address"/>
       </b-form-group>
       <b-form-group id="password" label="Password:">
-        <b-form-input type="password" v-model="password" placeholder="password"/>
+        <b-form-input type="password" v-model="password" placeholder="Enter Password"/>
       </b-form-group>
-        <b-button id="btn-main" type="submit">Sign In</b-button>
+        <b-button id="btn-main" type="submit" variant="dark">Sign In</b-button>
     </b-form>
     <div class="error" v-if="error">{{error.message}}</div>
   </div>
@@ -45,15 +44,8 @@ export default {
 
 <style lang="css" scoped>
 
-#sign-in-container{
-  padding: 1em;
-  border: solid #4b8a4a 1px;
-  margin: 1em;
-  border-radius: 5px;
-  background-color: #4b8a4a;
-  background-size: cover;
-  color: #333;
-  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
+.form-control {
+  font-size: 1.5rem;
 }
 
 </style>

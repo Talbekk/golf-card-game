@@ -1,13 +1,16 @@
 <template lang="html">
-  <div id="leaderboard-container">
-    <div id="views-container">
-      <b-button id="btn-main" type="button" v-on:click="setFilter" name="button">{{this.filter ? "Show All Scores" : "Show Best Scores"}}</b-button>
-      <b-button id="btn-main" type="button" v-on:click="seeTable" name="button">{{this.tableFilter ? "Show Legacy" : "Show Current"}}</b-button>
+  <div class="leaderboard-container">
+    <div class="views-container">
+      <h2 class="views-header">Leaderboard</h2>
+      <div class="views-options">
+        <b-button id="btn-main" type="button" v-on:click="setFilter" name="button">{{this.filter ? "Show All Scores" : "Show Best Scores"}}</b-button>
+        <b-button id="btn-main" type="button" v-on:click="seeTable" name="button">{{this.tableFilter ? "Show Legacy" : "Show Current"}}</b-button>
+      </div>
     </div>
-    <div id="scoreboard-container">
-    <leaderboard v-if="sortedLeaderBoard && tableFilter" :scores='this.sortedLeaderBoard' :title='newTitle' :gameStatus="gameStatus"></leaderboard>
-    <leaderboard v-if="sortedScores && !tableFilter" :scores='this.sortedScores' :title='title' :gameStatus="gameStatus"></leaderboard>
-  </div>
+    <div class="scoreboard-container">
+      <leaderboard v-if="sortedLeaderBoard && tableFilter" :scores='this.sortedLeaderBoard' :title='newTitle' :gameStatus="gameStatus"></leaderboard>
+      <leaderboard v-if="sortedScores && !tableFilter" :scores='this.sortedScores' :title='title' :gameStatus="gameStatus"></leaderboard>
+    </div>
   </div>
 </template>
 <script>
@@ -87,33 +90,42 @@ export default {
 
 <style lang="css" scoped>
 
-#leaderboard-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 8px 5px 12px 5px;
-  font-size: 13px;
-  margin-left: auto;
-  margin-right: auto;
+.leaderboard-container {
+  display: grid;
+  grid-template-rows: min-content auto;
+  height: 85vh;
 }
 
-#views-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding-bottom: 50px;
+
+.views-container {
+  display: grid;
+  grid-template-rows: repeat(2, min-content);
+  width: 50%;
+  margin: 0 auto;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
 }
 
-#scoreboard-container {
-  padding: 15px 30px;
-  border: solid #4b8a4a 1px;
-  border-radius: 5px;
-  background-color: #4b8a4a;
-  background-size: cover;
-  color: #333;
-  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
-  font-size: 120%;
-  font-weight: 400;
+.views-header {
+  background-color: #004225;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 3rem;
+  font-weight: 700;
+  padding: .5rem 0;
+}
+
+.views-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+  padding-bottom: .5rem;
+}
+
+.scoreboard-container {
+    overflow-y: auto;
 }
 
 

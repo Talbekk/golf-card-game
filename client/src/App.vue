@@ -1,7 +1,8 @@
 <template>
-  <div id="app">
-    <logo-header id="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard"></logo-header>
+  <div class="content-container">
+    <logo-header class="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard" :gameMode="gameMode"></logo-header>
     <router-view :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
+    <!-- <app-footer id="footer"></app-footer> -->
   </div>
 </template>
 
@@ -11,13 +12,14 @@ import IntroScreen from './views/IntroScreen.vue';
 import {eventBus} from './main.js';
 import {scoreRef, auth, db} from './firebase.js';
 import LogoHeader from './components/LogoHeader.vue';
+import Footer from './components/Footer.vue';
 import Game from './views/Game.vue';
 
 export default {
   name: 'app',
   data() {
     return {
-      deck: [],
+      deck: null,
       gameDeck: [], //game
       gameStatus: false, //game
       tutorialStatus: false,
@@ -30,7 +32,8 @@ export default {
   components: {
     "intro-screen": IntroScreen,
     "logo-header": LogoHeader,
-    "Game": Game
+    "Game": Game,
+    "app-footer": Footer
   },
   mounted(){
     this.getDeck();
@@ -47,6 +50,7 @@ export default {
       this.tutorialStatus = true;
     }),
     eventBus.$on('start-new-game', (mode) => {
+      console.log("hits event bus", mode);
       this.gameMode = mode;
     }),
     eventBus.$on('username-selected', (name) => {
@@ -76,11 +80,13 @@ export default {
     })  },
   methods: {
     getDeck(){
+      if(this.deck){
       eventBus.$emit('setup-game');
       let deckID = this.deck.deck_id
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=52`)
         .then(res => res.json())
         .then(cardData => this.gameDeck = cardData)
+      }
     },
     getUserData(){
     if(auth.currentUser){
@@ -96,124 +102,55 @@ export default {
 </script>
 
 <style>
-
-* {
+*,
+*::before, 
+*::after {
   margin: 0;
   padding: 0;
+  box-sizing: inherit;
+}
+
+html { 
+  scroll-behavior: smooth;
   box-sizing: border-box;
+  font-size: 62.5%;
 }
-html { scroll-behavior: smooth; }
 
-html, body {
+body {
+  font-family: 'Roboto', sans-serif; 
+  color: #555;
+  font-weight: 300;
+  line-height: 1.6;
+}
 
-  height: 100%;
-  background-color: #fff;
-  color: #555555;
-  font-size: 16px;
+.content-container {
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: min-content repeat(1fr);
+}
+
+.section-header {
+  font-size: 3rem;
+  padding: 0.5rem;
   font-weight: 400;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/CourseBackground.jpg');
-  background-size: cover;
-  height: 100vh;
-  background-position: center;
-  background-attachment: fixed;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
-
+  color: #fff;
+  background-color: #004225;
 }
 
-#app {
-  font-family: 'Roboto', 'Arial', sans-serif;
+.game-header {
+  font-size: 5rem;
+  padding: 1rem .5rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #004225;
+  text-transform: uppercase;
 }
 
-#intro-screen{
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+#btn-main {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  margin: .5rem 0;
 }
-
-#header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-#board-one {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-#nav-bar{
-  margin-bottom: 0;
-  /* background-color: #333; */
-  background-size: cover;
-  font-size: 150%;
-}
-
-/* BUTTONS */
-
-#btn-main,
-#btn-main:link,
-#btn-main:visited {
-  background: #444;
-  border: 1px solid #444;
-}
-
-#btn-main:hover,
-#btn-main:active {
-  background: #555;
-  border: 1px solid #444;
-}
-
-/* HEADINGS */
-
-#login-heading {
-  font-size: 200%;
-  display: flex;
-  justify-content: center;
-}
-
-.modal-content {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('./assets/CourseBackground.jpg');
-  /* background-size: cover; */
-  /* height: 100vh; */
-  background-position: center;
-  background-attachment: fixed;
-  text-rendering: optimizeLegibility;
-  /* overflow-x: hidden; */
-  background-color: #4b8a4a;
-  border: none;
-}
-
-.modal-header {
-  border-bottom: none !important;
-  background: #777;
-}
-
-.modal-footer {
-  border-top: none !important;
-  background: #777;
-}
-
-.btn-primary {
-
-}
-
-.btn-primary ,
-.btn-primary :link,
-.btn-primary :visited {
-  background: #444 !important;
-  border: 1px solid #444 !important;
-}
-
-.btn-primary :hover,
-.btn-primary :active {
-  background: #555 !important;
-  border: 1px solid #444 !important;
-}
-
-
-
 </style>

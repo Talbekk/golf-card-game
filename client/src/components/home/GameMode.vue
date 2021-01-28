@@ -1,7 +1,8 @@
 <template lang="html">
-  <div id="new-game-container">
-    <h4>{{this.game.mode}}</h4>
-    <b-button to="/game" v-on:click="clickedNewGame" id="btn-main" type="submit">Tee Off</b-button>
+  <div class="game-item">
+    <h4 class="game-title">{{this.game.mode}}</h4>
+    <b-button v-if="this.game.mode === 'Single Player'" to="/game" v-on:click="clickedNewGame" id="btn-main" type="submit" variant="dark">Tee Off</b-button>
+    <p class="button-replacement-info" v-if="this.game.mode !== 'Single Player'">&ldquo;Coming Soon&rdquo;</p>
   </div>
 </template>
 
@@ -25,22 +26,23 @@ export default {
 
 <style lang="css" scoped>
 
-#new-game-container {
-  padding: 2em;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin: 2em;
-  border: solid #4b8a4a 1px;
-  border-radius: 5px;
-  background-color: #4b8a4a;
-  background-size: cover;
-  color: #333;
-  box-shadow: 0 30px 80px 10px rgb(0,0,0,0.8);
-  transition: all .2s ease-in-out;
+.game-item {
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid #000;
+  margin: 1rem;
 }
 
-#new-game-container:hover {
-  transform: scale(1.1);
+.game-title {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.button-replacement-info {
+  font-style: italic;
+  font-size: 1.7rem;
+  font-weight: 200;
+  padding: .6rem;
+  margin: .5rem 1rem;
 }
 </style>

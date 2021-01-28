@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="score-container">
+  <div class="score-container">
   <scores-page :gameStatus="gameStatus"></scores-page>
   </div>
 </template>
@@ -25,12 +25,9 @@ export default {
 
 <style lang="css" scoped>
 
-#score-container {
-  margin-left: auto;
-  margin-right: auto;
-  padding: 8px 5px 12px 5px;
-  max-width: 800px;
-  font-size: 120%;
+.score-container {
+  width: 40%;
+  margin: 0 auto;
 }
 
 </style>

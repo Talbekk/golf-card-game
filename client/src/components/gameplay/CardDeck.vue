@@ -1,6 +1,6 @@
 <template lang="html">
-<div id="deck-container">
-  <p>Deck:</p>
+<div class="deck-container">
+  <h5 class="game-sub-section-header">Deck</h5>
   <img v-bind:class="[topCardStatus ? selectedClass : unSelectedClass]" v-on:click="drawNextCard" src="../../assets/CardBack.png"/>
 </div>
 </template>
@@ -29,34 +29,36 @@ export default {
 
 <style lang="css" scoped>
 
-#deck-container {
-  padding: 0.5em;
-  transition: all .2s ease-in-out;
+.deck-container {
+  display: grid;
+  grid-template-rows: min-content 1fr;
 }
 
-#deck-container:hover {
+.card-icon-original:hover {
   transform: scale(1.1);
 }
 
 .card-icon-original {
-  max-width: 10em;
-  max-height: 10em;
+  width: 12rem;
+  height: 16rem;
+  padding: 0.5em;
+  transition: all .2s ease-in-out;
 }
 
 .card-icon-greyed {
-  max-width: 10em;
-  max-height: 10em;
+  width: 12rem;
+  height: 16rem;
   filter: grayscale(75%);
 }
 
-h4{
-  margin-top: 10px;
-  margin-bottom: 0;
-}
-
-p {
-  margin-bottom: 0px;
+.game-sub-section-header {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: #004225;
   color: #fff;
+  padding: .5rem;
 }
 
 </style>
