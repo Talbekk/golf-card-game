@@ -1,9 +1,9 @@
 <template lang="html">
   <div>
     <div class="leaderboard-table">
-    <b-table large hover head-variant="dark" responsive border :items="scores" :fields="fields">
+    <b-table hover head-variant="dark" responsive border :items="scores" :fields="fields">
         <template v-slot:cell(card)="data">
-          <b-button v-on:click="showScoreCard(data)"id="btn-main">View</b-button>
+          <b-button v-on:click="showScoreCard(data)"class="btn-view-card">View Card</b-button>
         </template>
     </b-table>
     </div>
@@ -37,7 +37,6 @@ export default {
     showScoreCard(data){
       this.modalShow = true;
       this.score = Object.values(data.item.card);
-      console.log("modal", this.modalShow);
     }
   }
 }
@@ -45,15 +44,17 @@ export default {
 
 <style lang="css" scoped>
 
+
 .cardItem {
   max-width: 10%;
 }
 
-#btn-main {
-  width: 75%;
+.btn-view-card {
+  width: 50%;
   display: flex;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
+
+
 </style>
