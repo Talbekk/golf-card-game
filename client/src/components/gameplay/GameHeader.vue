@@ -100,27 +100,24 @@ export default {
 }
 
 .game-header-left {
-  justify-self: center;
+  margin-left: 1rem;
+  justify-self: start;
   display: grid;
   justify-items: flex-start; 
   font-size: 2rem;
   font-weight: 700;
 }
 
-.flag-number {
-  margin-right: 2.5rem;
-}
-
 .game-header-right {
   justify-self: end;
-  margin-right: 1rem;
+  margin: .5rem 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: .5rem;
 }
 
 .exit-game-symbol {
-  font-size: 2rem;
+  font-size: 3rem;
   text-decoration: none;
   transition: all .2s;
   line-height: 1;
@@ -130,11 +127,12 @@ export default {
 
 .reset-game-symbol {
   padding: .5rem;
-  font-size: 2rem;
+  font-size: 3rem;
   text-decoration: none;
   transition: all .2s;
   background-color: #fff;
   color: #004225;
+  cursor: pointer;
 }
 
 
