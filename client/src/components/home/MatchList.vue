@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import MatchDetails from './MatchDetails.vue';
+import MatchDetails from './MatchDetails.vue';        
 import ScoreCard from '../scores/ScoreCard.vue';
 
 export default {

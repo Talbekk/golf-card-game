@@ -7,12 +7,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import router from './router';
 import {firebase, db} from './firebase.js';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 Vue.use(VueFire);
 Vue.use(BootStrapVue);
 
 export const eventBus = new Vue();
 export const test = "hi";
 
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
 
 let app;
