@@ -57,6 +57,13 @@ export default {
       if(!this.gameStatus){
         this.modalShow = true;
       }
+    },
+        gameMode(){
+      this.currentGameMode = (this.computerCards.length === 0) 
+      ? 
+      "single-player" 
+      : 
+      "versus-computer";
     }
   },
   computed: {
@@ -66,14 +73,7 @@ export default {
 } else {
    return ((this.currentHole >= 1 && this.counter===8 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
 }
-},
-    gameMode(){
-      this.currentGameMode = (this.computerCards.length === 0) 
-      ? 
-      "single-player" 
-      : 
-      "versus-computer";
-    }
+}
 },
   methods: {
     startNextHole(){
