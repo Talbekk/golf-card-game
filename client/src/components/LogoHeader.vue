@@ -103,7 +103,6 @@ export default {
 <style lang="css" scoped>
 
 #logo-header {
-  background-color: #004225;
   color: #fff;
   margin-bottom: 1rem;
 }
