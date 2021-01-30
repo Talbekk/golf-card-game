@@ -11,8 +11,8 @@
       <b-button id="btn-main" v-on:click="startNextHole" v-if="checkIfHoleFinished" variant="dark">Next Round &rarr;</b-button>
     </div>
     <div class="game-header-right">
-        <font-awesome-icon class="reset-game-symbol" v-on:click="resetGame" :icon="['fas', 'redo']" />
-      <router-link to="/" v-on:click="quitGame" class="exit-game-symbol">&times;</router-link>
+      <font-awesome-icon class="reset-game-symbol" v-on:click="resetGame" :icon="['fas', 'redo']" />
+      <router-link class="exit-game-symbol" to="/"><div v-on:click="quitGame">X</div></router-link>
     </div>
   </div>
 </template>
@@ -59,7 +59,7 @@ export default {
       }
     }
   },
-  computed: {
+  computed: { 
     checkIfHoleFinished(){
   if (this.gameMode === "single-player"){
   return ((this.currentHole >= 1 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
@@ -83,6 +83,7 @@ export default {
       eventBus.$emit('start-new-game', this.gameMode);
     },
     quitGame(){
+      console.log("quit");
       eventBus.$emit('reset-app');
       this.currentHole = 1;
     },
@@ -117,6 +118,7 @@ export default {
 
 .game-header-right {
   justify-self: end;
+  align-content: center;
   margin: .5rem 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);

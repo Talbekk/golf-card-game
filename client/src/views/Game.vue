@@ -11,7 +11,7 @@
       </div>
     </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
-      <player :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player>
+      <player :scoreCard="scoreCard" :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player>
       <computer v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected" :computerTotal='computerTotal'></computer>
     </div>
   </div>
