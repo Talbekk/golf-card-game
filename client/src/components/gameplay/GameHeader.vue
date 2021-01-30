@@ -28,12 +28,12 @@ library.add(faRedo)
 
 export default {
   name: "game-header",
-  props: ['gameStatus', 'scoreCard', 'lockedCards', 'counter', 'currentHole', 'gameMode'],
+  props: ['gameStatus', 'scoreCard', 'lockedCards', 'counter', 'currentHole', 'gameMode', 'playerCards', 'computerCards'],
   data(){
     return {
       selectScoresPage: false,
       modalShow: false,
-      currentHole: 1
+      currentGameMode: ""
     }
   },
 
@@ -50,7 +50,7 @@ export default {
     }),
        eventBus.$on('start-new-game', () => {
       this.currentHole = 1;
-    })
+    })  
   },
   watch: {
     gameStatus(){
@@ -66,7 +66,14 @@ export default {
 } else {
    return ((this.currentHole >= 1 && this.counter===8 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
 }
-}
+},
+    gameMode(){
+      this.currentGameMode = (this.computerCards.length === 0) 
+      ? 
+      "single-player" 
+      : 
+      "versus-computer";
+    }
 },
   methods: {
     startNextHole(){
@@ -80,7 +87,7 @@ export default {
       this.currentHole = 1;
     },
     resetGame(){
-       eventBus.$emit('start-new-game', this.gameMode);
+       eventBus.$emit('start-new-game', this.currentGameMode);
     }
   }
 }

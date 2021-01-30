@@ -2,7 +2,7 @@
   <div class="game-container">
     <div id="game-board">
       <div id="next-button">
-        <game-header :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole" :gameMode="gameMode"></game-header>
+        <game-header :computerCards="computerCards" :playerCards="playerCards" :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole" :gameMode="gameMode"></game-header>
       </div>
       <div class="board-one">
         <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
