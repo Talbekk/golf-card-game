@@ -20,12 +20,6 @@
             <game-rules/>
           </b-modal>
         </div>
-         <div>
-          <b-nav-item v-if="gameStatus" v-b-modal.modal-3>Score Card</b-nav-item>
-            <b-modal id="modal-3" scrollable title="Score Card" ok-only>
-              <score-card :scoreCard="scoreCard"/></score-card>
-            </b-modal>
-          </div>  
       </b-navbar-nav>
     </b-navbar>
   </div>
