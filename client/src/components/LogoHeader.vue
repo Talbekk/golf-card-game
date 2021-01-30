@@ -103,8 +103,9 @@ export default {
 <style lang="css" scoped>
 
 #logo-header {
+  background-color: #004225;
   color: #fff;
-  padding: 1rem 1rem;
+  margin-bottom: 1rem;
 }
 
 .nav-item {
