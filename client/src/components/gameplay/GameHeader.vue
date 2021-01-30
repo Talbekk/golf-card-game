@@ -11,10 +11,8 @@
       <b-button id="btn-main" v-on:click="startNextHole" v-if="checkIfHoleFinished" variant="dark">Next Round &rarr;</b-button>
     </div>
     <div class="game-header-right">
-      <a href="#" class="reset-game-symbol">
-        <font-awesome-icon :icon="['fas', 'redo']" />
-      </a>
-      <a href="#" class="exit-game-symbol">&times;</a>
+        <font-awesome-icon class="reset-game-symbol" v-on:click="resetGame" :icon="['fas', 'redo']" />
+      <router-link to="/" v-on:click="quitGame" class="exit-game-symbol">&times;</router-link>
     </div>
   </div>
 </template>
@@ -76,6 +74,13 @@ export default {
     },
     newGame(){
       eventBus.$emit('start-new-game', this.gameMode);
+    },
+    quitGame(){
+      eventBus.$emit('reset-app');
+      this.currentHole = 1;
+    },
+    resetGame(){
+       eventBus.$emit('start-new-game', this.gameMode);
     }
   }
 }
@@ -88,7 +93,8 @@ export default {
  padding: .5rem 0;
  display: grid;
  grid-template-columns: repeat(3, 1fr);
- background-color: #004225;
+ grid-column-gap: 1rem;
+  background-color: #004225;
  color: #fff;
  align-items: center;
 }
@@ -105,13 +111,16 @@ export default {
   margin-right: 2.5rem;
 }
 
-.game-header-right{
+.game-header-right {
   justify-self: end;
   margin-right: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: .5rem;
 }
 
 .exit-game-symbol {
-  font-size: 3rem;
+  font-size: 2rem;
   text-decoration: none;
   transition: all .2s;
   line-height: 1;
@@ -120,6 +129,7 @@ export default {
 }
 
 .reset-game-symbol {
+  padding: .5rem;
   font-size: 2rem;
   text-decoration: none;
   transition: all .2s;

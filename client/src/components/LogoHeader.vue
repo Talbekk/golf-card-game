@@ -22,9 +22,7 @@
         </div>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
-        <b-nav-item v-if="gameStatus" right>Hole: {{this.currentHole}}</b-nav-item>
         <b-nav-item v-if="gameStatus" right>Current Score: {{this.score}}</b-nav-item>
-        <b-nav-item v-if="gameStatus" v-on:click="newGame" href="#" right>Restart Game</b-nav-item>
         <div>
           <b-nav-item v-if="gameStatus" v-b-modal.modal-3>Score Card</b-nav-item>
             <b-modal id="modal-3" scrollable title="Score Card" ok-only>
