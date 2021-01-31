@@ -61,9 +61,11 @@ export default {
   },
   computed: { 
     checkIfHoleFinished(){
-  if (this.gameMode === "single-player"){
+  if (this.currentGameMode === "single-player"){
+    console.log("true");
   return ((this.currentHole >= 1 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
 } else {
+  console.log("false");
    return ((this.currentHole >= 1 && this.counter===8 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
 }
 },
@@ -83,7 +85,6 @@ export default {
       eventBus.$emit('start-new-game', this.gameMode);
     },
     quitGame(){
-      console.log("quit");
       eventBus.$emit('reset-app');
       this.currentHole = 1;
     },
@@ -145,12 +146,9 @@ export default {
 }
 
 
-.reset-game-symbol:hover {
-  background-color: yellow;
-}
-
+.reset-game-symbol:hover,
 .exit-game-symbol:hover {
-  background-color: red;
+  background-color: #999;
 }
 
 b-button {
