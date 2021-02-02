@@ -48,7 +48,8 @@ export default {
 .game-rules {
   box-sizing: border-box;
   width: 90%;
-  margin: 0 auto;
+  margin: 0 auto 5rem auto;
+  background-color: #fff;
   border: 1px solid #000;
   padding: 1rem;
   color: #000;

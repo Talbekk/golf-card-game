@@ -357,7 +357,8 @@ computed: {
   grid-row-gap: 1.5rem;
   border: 1px solid #000;
   width: 50%;
-  margin: 0 auto;
+  margin: 0 auto 5rem auto;
+  background-color: #fff;
 }
 
 #game-board {

@@ -1,11 +1,9 @@
-<template>
-<div class="main-container">
+<template lang="html">
   <div class="content-container">
     <logo-header class="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard" :gameMode="gameMode"></logo-header>
     <router-view :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
     <!-- <app-footer id="footer"></app-footer> -->
     </div>
-  </div>
 </template>
 
 <script>
@@ -126,14 +124,17 @@ body {
   line-height: 1.6;
 }
 
-.main-container {
-position: relative;
-}
-
 .content-container {
   margin: 0 auto;
   display: grid;
-  grid-template-rows: min-content repeat(1fr);
+  grid-template-rows: min-content auto;
+   background-image: linear-gradient(
+       rgba(121, 145, 145, 0.479), rgba(121, 145, 145, 0.479)),
+        url("./assets/CourseBackground.jpg");
+        background-size: cover;
+         height: 100vh;
+    background-attachment: fixed;
+     
 }
 
 .section-header {

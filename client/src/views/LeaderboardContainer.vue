@@ -27,7 +27,8 @@ export default {
 
 .score-container {
   width: 40%;
-  margin: 0 auto;
+  margin: 0 auto 5rem auto;
+  background-color: #fff;
 }
 
 </style>

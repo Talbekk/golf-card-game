@@ -153,7 +153,8 @@ export default {
   grid-template-rows: 1fr min-content;
   grid-template-columns: 1fr min-content;
   border: 1px solid #000;
-  margin: 0 auto;
+  margin: 0 auto 5rem auto;
+  background-color: #fff;
 }
 
 .player-profile {
