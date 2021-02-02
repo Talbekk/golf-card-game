@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-prod": "build firebase deploy"
+    "build-prod": "npm run build firebase deploy"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",

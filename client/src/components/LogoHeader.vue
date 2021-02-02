@@ -1,45 +1,42 @@
 <template lang="html">
-<div class="logo-container">
-  <div id="logo-header">
-    <b-navbar toggleable="lg" variant="faded" type="light">
-      <b-navbar-brand href="#">
-        <img src="../assets/GameLogo.svg" height="80" alt=""/>
-      </b-navbar-brand>
-      <b-navbar-nav>
-      <b-nav-item to="/" v-on:click="reset">Home</b-nav-item>
-      <b-nav-item v-if="!gameStatus" to="/leaderboard">Leaderboard</b-nav-item>
-      <div>
-        <b-nav-item v-if="gameStatus" v-on:click="showLeaderboardPopup">Leaderboard</b-nav-item>
-        <modal name="leaderboard" adaptive="true" height="75%" width="75%">
-          <div class="popup-container">
-              <div class="popup-close-btn" @click="$modal.hide('leaderboard')">
-                X
+  <div class="logo-header">
+    <ul class="nav-list">
+      <li>
+        <img class="nav-img" src="../assets/GameLogo.svg" height="80" alt=""/>
+      </li>
+       <li>
+          <a href="#" class="nav-item" @click="quitGame">Home</a>
+      </li>
+       <li>
+          <a href="#" class="nav-item" v-if="!gameStatus" @click="showLeaderboardPage">Leaderboard</a>
+          <a href="#" class="nav-item"v-if="gameStatus" @click="showLeaderboardPopup">Leaderboard</a>
+          <modal name="leaderboard" height="75%" width="75%">
+            <div class="popup-container">
+                <div class="popup-close-btn" @click="$modal.hide('leaderboard')">
+                  X
+                </div>
+              <div class="popup-content-container">
+                <scores-page/>
               </div>
-            <div class="popup-content-container">
-              <scores-page/>
             </div>
-          </div>
-        </modal>
-        </div>
-      <b-nav-item v-if="!gameStatus" to="/rules">Rules</b-nav-item>
-      <div>
-        <b-nav-item v-if="gameStatus" v-on:click="showRulesPopup">Rules</b-nav-item>
-           <modal name="rules" :scrollable="true" height="auto" width="75%">
-          <div class="popup-container">
+          </modal>
+        </li>
+        <li>
+          <a href="#" class="nav-item" v-if="!gameStatus" @click="showRulesPage">Rules</a>
+          <a href="#" class="nav-item" v-if="gameStatus" @click="showRulesPopup">Rules</a>
+          <modal name="rules" :scrollable="true" height="auto" width="75%">
+            <div class="popup-container">
               <div class="popup-close-btn" @click="$modal.hide('rules')">
                 X
               </div>
-            <div class="popup-content-container">
-              <game-rules/>
+              <div class="popup-content-container">
+                <game-rules/>
+              </div>
             </div>
-          </div>
-        </modal>
-        </div>
-      </b-navbar-nav>
-    </b-navbar>
+          </modal>
+      </li>
+    </ul>
   </div>
-      
-      </div>
 </template>
 
 <script>
@@ -99,16 +96,23 @@ export default {
       this.score = 0;
       this.currentHole = 1;
     },
-    reset(){
+    quitGame(){
       eventBus.$emit('reset-app');
       this.score= 0;
       this.currentHole = 1;
+      this.$router.push('/')
     },
     showLeaderboardPopup(){
      this.$modal.show('leaderboard');
     },
     showRulesPopup(){
      this.$modal.show('rules');
+    },
+    showLeaderboardPage(){
+     this.$router.push('/leaderboard');
+    },
+    showRulesPage(){
+     this.$router.push('/rules');
     }
   }
 }
@@ -116,24 +120,34 @@ export default {
 
 <style lang="css" scoped>
 
-#logo-header {
-  color: #fff;
-  margin-bottom: 1rem;
+.logo-header {
+  background-color: #004225;
+  margin-bottom: 5rem;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  margin: 0;
 }
 
 .nav-item {
-  font-weight: 700;
+  font-weight: 500;
   color: #fff;
-  font-size: 1.5rem;
-  margin-left: .5rem;
-  border-left: 2px solid #000;
-  padding: 0;
-  margin: 0;
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin-left: 1.5rem;
+  line-height: -1rem;
 }
-b-navbar {padding: 0;}
 
-.logo-container {
-  position: relative;
+.nav-img {
+  height: 7rem;
+  width: 7rem;
+  padding: .5rem;
+  background-color: yellow;
+  border-bottom: 1px solid #004225;
 }
 
 .popup-container {
