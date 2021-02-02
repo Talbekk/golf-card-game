@@ -51,6 +51,7 @@ export default {
   margin: 0 auto;
   border: 1px solid #000;
   padding: 1rem;
+  color: #000;
 }
 
 .rules-header {

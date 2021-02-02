@@ -9,27 +9,31 @@
       <b-nav-item to="/" v-on:click="reset">Home</b-nav-item>
       <b-nav-item v-if="!gameStatus" to="/leaderboard">Leaderboard</b-nav-item>
       <div>
-        <b-nav-item v-if="gameStatus" v-on:click="setShowPopup">Leaderboard</b-nav-item>
-        <modal name="example" adaptive="true" height="75%" width="75%">
+        <b-nav-item v-if="gameStatus" v-on:click="showLeaderboardPopup">Leaderboard</b-nav-item>
+        <modal name="leaderboard" adaptive="true" height="75%" width="75%">
           <div class="popup-container">
-              <div class="popup-close-btn" @click="$modal.hide('example')">
+              <div class="popup-close-btn" @click="$modal.hide('leaderboard')">
                 X
               </div>
             <div class="popup-content-container">
               <scores-page/>
             </div>
           </div>
-          </modal>
-        <b-modal id="modal-1" scrollable title="Leaderboard" ok-only>
-          <scores-page/>
-        </b-modal>
+        </modal>
         </div>
       <b-nav-item v-if="!gameStatus" to="/rules">Rules</b-nav-item>
       <div>
-        <b-nav-item v-if="gameStatus" v-b-modal.modal-2>Rules</b-nav-item>
-          <b-modal id="modal-2" scrollable title="Rules" ok-only>
-            <game-rules/>
-          </b-modal>
+        <b-nav-item v-if="gameStatus" v-on:click="showRulesPopup">Rules</b-nav-item>
+           <modal name="rules" :scrollable="true" height="auto" width="75%">
+          <div class="popup-container">
+              <div class="popup-close-btn" @click="$modal.hide('rules')">
+                X
+              </div>
+            <div class="popup-content-container">
+              <game-rules/>
+            </div>
+          </div>
+        </modal>
         </div>
       </b-navbar-nav>
     </b-navbar>
@@ -100,8 +104,11 @@ export default {
       this.score= 0;
       this.currentHole = 1;
     },
-    setShowPopup(){
-     this.$modal.show('example');
+    showLeaderboardPopup(){
+     this.$modal.show('leaderboard');
+    },
+    showRulesPopup(){
+     this.$modal.show('rules');
     }
   }
 }
