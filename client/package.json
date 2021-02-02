@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "build-prod": "build firebase deploy"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
@@ -14,6 +15,7 @@
     "core-js": "^3.8.2",
     "firebase": "^7.24.0",
     "vue": "^2.6.12",
+    "vue-js-modal": "^2.0.0-rc.6",
     "vue-router": "^3.4.9",
     "vuefire": "^2.2.5"
   },

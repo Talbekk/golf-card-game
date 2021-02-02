@@ -1,8 +1,11 @@
 <template>
+<div class="main-container">
   <div class="content-container">
     <logo-header class="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard" :gameMode="gameMode"></logo-header>
     <router-view :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
     <!-- <app-footer id="footer"></app-footer> -->
+    </div>
+    <popup class="popup" v-if="showPopup"/>
   </div>
 </template>
 
@@ -14,6 +17,7 @@ import {scoreRef, auth, db} from './firebase.js';
 import LogoHeader from './components/LogoHeader.vue';
 import Footer from './components/Footer.vue';
 import Game from './views/Game.vue';
+import Popup from './components/Popup.vue';
 
 export default {
   name: 'app',
@@ -26,14 +30,16 @@ export default {
       userName: null, //game,
       scoreCard: [],
       userData: {},
-      gameMode: null
+      gameMode: null,
+      showPopup: false
     }
   },
   components: {
     "intro-screen": IntroScreen,
     "logo-header": LogoHeader,
     "Game": Game,
-    "app-footer": Footer
+    "app-footer": Footer,
+    "popup": Popup
   },
   mounted(){
     this.getDeck();
@@ -77,7 +83,11 @@ export default {
     }),
     eventBus.$on('score-card', (card) => {
       this.scoreCard = card;
-    })  },
+    }),
+    eventBus.$on('show-popup', () => {
+      this.showPopup = !this.showPopup;
+    })  
+    },
   methods: {
     getDeck(){
       if(this.deck){
@@ -123,6 +133,10 @@ body {
   line-height: 1.6;
 }
 
+.main-container {
+position: relative;
+}
+
 .content-container {
   margin: 0 auto;
   display: grid;
@@ -152,5 +166,8 @@ body {
   font-size: 1.5rem;
   padding: 0.5rem;
   margin: .5rem 0;
+}
+
+.popup {
 }
 </style>

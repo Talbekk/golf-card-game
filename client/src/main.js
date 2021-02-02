@@ -7,7 +7,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import router from './router';
 import {firebase, db} from './firebase.js';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import vmodal from 'vue-js-modal';
+
+Vue.use(vmodal)
 Vue.use(VueFire);
 Vue.use(BootStrapVue);
 

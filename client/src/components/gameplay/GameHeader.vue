@@ -43,14 +43,7 @@ export default {
   mounted() {
     eventBus.$on('view-leaderboard', () => {
       this.selectScoresPage = !this.selectScoresPage;
-    }),
-       eventBus.$on('start-next-hole', () => {
-      this.currentHole+=1;
-    // }
-    }),
-       eventBus.$on('start-new-game', () => {
-      this.currentHole = 1;
-    }) 
+    })
   },
   watch: {
     gameStatus(){
@@ -61,16 +54,14 @@ export default {
   },
   computed: { 
     checkIfHoleFinished(){
-  if (this.currentGameMode === "single-player"){
-    console.log("true");
+  if (this.checkgameMode === "single-player"){
   return ((this.currentHole >= 1 && this.counter===4 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
 } else {
-  console.log("false");
    return ((this.currentHole >= 1 && this.counter===8 && this.lockedCards.length === 4 && this.gameStatus === true) ? true : false);
 }
 },
-    gameMode(){
-      this.currentGameMode = (this.computerCards.length === 0) 
+    checkgameMode(){
+    return (this.computerCards.length === 0) 
       ? 
       "single-player" 
       : 
@@ -89,7 +80,7 @@ export default {
       this.currentHole = 1;
     },
     resetGame(){
-       eventBus.$emit('start-new-game', this.currentGameMode);
+       eventBus.$emit('start-new-game', this.checkgameMode);
     }
   }
 }

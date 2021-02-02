@@ -70,7 +70,6 @@ export default {
     
       let index = this.playerCards.indexOf(card);
       let currentTopCard = this.topCard;
-      console.log("current top card", currentTopCard.value);
       let switchedCard = this.playerCards.splice(index, 1, currentTopCard);
       let matchingCardValues = this.lockedCards.filter(card =>
         currentTopCard.value === card)
@@ -97,7 +96,6 @@ export default {
     eventBus.$on('computer-card-reveal', (selectedCard) => {
       this.computerCards.find((card) => {
         if(card === selectedCard){
-          console.log("hits calculate value");
           card.lockedIn = true;
             let cardValue = card.value;
             let amount = this.calculateScore(cardValue);

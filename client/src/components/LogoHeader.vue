@@ -1,4 +1,5 @@
 <template lang="html">
+<div class="logo-container">
   <div id="logo-header">
     <b-navbar toggleable="lg" variant="faded" type="light">
       <b-navbar-brand href="#">
@@ -8,7 +9,17 @@
       <b-nav-item to="/" v-on:click="reset">Home</b-nav-item>
       <b-nav-item v-if="!gameStatus" to="/leaderboard">Leaderboard</b-nav-item>
       <div>
-        <b-nav-item v-if="gameStatus" v-b-modal.modal-1>Leaderboard</b-nav-item>
+        <b-nav-item v-if="gameStatus" v-on:click="setShowPopup">Leaderboard</b-nav-item>
+        <modal name="example" adaptive="true" height="75%" width="75%">
+          <div class="popup-container">
+              <div class="popup-close-btn" @click="$modal.hide('example')">
+                X
+              </div>
+            <div class="popup-content-container">
+              <scores-page/>
+            </div>
+          </div>
+          </modal>
         <b-modal id="modal-1" scrollable title="Leaderboard" ok-only>
           <scores-page/>
         </b-modal>
@@ -23,6 +34,8 @@
       </b-navbar-nav>
     </b-navbar>
   </div>
+      
+      </div>
 </template>
 
 <script>
@@ -38,7 +51,7 @@ export default {
     return{
       loggedIn: false,
       score: 0,
-      currentHole: 1,
+      currentHole: 1
     }
   },
   props:['gameStatus', 'scoreCard', 'gameMode'],
@@ -86,6 +99,9 @@ export default {
       eventBus.$emit('reset-app');
       this.score= 0;
       this.currentHole = 1;
+    },
+    setShowPopup(){
+     this.$modal.show('example');
     }
   }
 }
@@ -107,7 +123,29 @@ export default {
   padding: 0;
   margin: 0;
 }
-
 b-navbar {padding: 0;}
+
+.logo-container {
+  position: relative;
+}
+
+.popup-container {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  padding: 1rem;
+}
+
+.pop-options {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.popup-close-btn {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.5rem;
+  color: red;
+  cursor: pointer;
+}
 
 </style>
