@@ -49,10 +49,9 @@ export default {
 .auth-container {
   display: grid;
   grid-template-rows: min-content min-content 1fr;
-  grid-column-gap: 4rem;
   margin: 0 auto 5rem auto;
   background-color: #fff;
-  border: 1px solid #000;
+  border: 1px solid #004225;
 }
 
 .title-layout {

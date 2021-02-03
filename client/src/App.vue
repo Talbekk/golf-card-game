@@ -127,7 +127,7 @@ body {
 .content-container {
   margin: 0 auto;
   display: grid;
-  grid-template-rows: min-content auto;
+  grid-template-rows: repeat(2, min-content);
    background-image: linear-gradient(
        rgba(121, 145, 145, 0.479), rgba(121, 145, 145, 0.479)),
         url("./assets/CourseBackground.jpg");
