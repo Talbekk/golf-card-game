@@ -132,8 +132,9 @@ body {
        rgba(121, 145, 145, 0.479), rgba(121, 145, 145, 0.479)),
         url("./assets/CourseBackground.jpg");
         background-size: cover;
-         height: 100vh;
+ 
     background-attachment: fixed;
+    height: 100vh;      
      
 }
 

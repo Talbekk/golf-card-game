@@ -61,6 +61,13 @@ export default {
     'game-rules': GameRules,
     'score-card': ScoreCard
   },
+   watch : {
+    gameStatus(){
+      if(!this.gameStatus){
+        this.$modal.show("rules");
+      }
+    }
+  },
   mounted(){
     eventBus.$on('total', (total) => {
       this.score = total;
@@ -122,7 +129,13 @@ export default {
 
 .logo-header {
   background-color: #004225;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
+              0 2px 4px rgba(0,0,0,0.07), 
+              0 4px 8px rgba(0,0,0,0.07), 
+              0 8px 16px rgba(0,0,0,0.07),
+              0 16px 32px rgba(0,0,0,0.07), 
+              0 32px 64px rgba(0,0,0,0.07);
 }
 
 .nav-list {

@@ -62,5 +62,7 @@ export default {
 #match-list {
   padding: .5em;
   font-size: 1.5rem;
+  max-height: 500px;
+  overflow-y: scroll;
   }
 </style>
