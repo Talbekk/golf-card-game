@@ -3,7 +3,7 @@
       <td>{{this.score.golfer}}</td>
       <td>{{this.score.score}}</td>
       <td>
-          <button v-on:click="showScoreCard"class="btn-view-card">View Card</button>
+          <button class="view-btn" v-on:click="showScoreCard">View Card</button>
       </td>
         </tr>
 </template>
@@ -38,6 +38,26 @@ export default {
   display: flex;
   justify-content: center;
   margin: 0 auto;
+}
+
+td {
+  font-size: 1.8rem;
+}
+
+tr:hover {
+    background-color: #eee;
+}
+
+.view-btn {
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: .5rem;
+    padding: .2rem;
+    transition: all .2s;
+}
+
+.view-btn:hover {
+   background-color: #aaa;
 }
 
 </style>

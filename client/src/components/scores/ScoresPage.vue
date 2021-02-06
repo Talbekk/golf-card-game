@@ -104,6 +104,7 @@ export default {
   margin: 0 auto;
   border-left: 1px solid #000;
   border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
 
 .views-header {
@@ -126,6 +127,8 @@ export default {
 
 .scoreboard-container {
     overflow-y: auto;
+    padding: 0;
+    margin: 0;
 }
 
 

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div class="table-container">
     <table>
       <thead>
         <tr>
@@ -56,18 +56,27 @@ table {
   empty-cells: show;
   border-collapse: collapse;
   table-layout: auto;
-  width: 90%;
   font-size: 1.5rem;
   margin: 2rem;
+  text-align: center;
 }
 
-table, tr, th {
+table, tr, th, td  {
   border: 1px solid black;
 
 }
 
 th {
   padding: 0.5em;
+  text-transform: uppercase;
+  font-size: 2rem;
+  background-color: #004225;
+  color: #fff;
+}
+
+.table-container {
+  display: grid;
+  justify-content: stretch;
 }
 
 .popup-container {
