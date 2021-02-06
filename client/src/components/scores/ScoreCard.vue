@@ -101,7 +101,9 @@ table {
   empty-cells: show;
   border-collapse: collapse;
   table-layout: auto;
-  width: 80%;
+  width: 90%;
+  font-size: 1.5rem;
+  margin: 2rem;
 }
 
 table, tr, th {

@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <div id="match-list">
+    <div class="match-list">
       <b-table hover head-variant="dark" border :items="matches" :fields="fields">
         <template v-slot:cell(averageScore)="data">
           {{ getAverageScore(data) }}
@@ -10,9 +10,19 @@
         </template>
       </b-table>
     </div>
-    <b-modal v-model="modalShow" scrollable title="Score Card" ok-only>
+    <!-- <b-modal v-model="modalShow" scrollable title="Score Card" ok-only>
       <score-card :scoreCard="score"/></score-card>
-    </b-modal>
+    </b-modal> -->
+    <modal name="scorecard" :scrollable="true" height="auto" width="75%">
+      <div class="popup-container">
+        <div class="popup-close-btn" @click="$modal.hide('scorecard')">
+          X
+        </div>
+        <div class="popup-content-container">
+          <score-card :scoreCard="score"/>
+        </div>
+      </div>
+    </modal>
   </div>
 </template>
 
@@ -49,7 +59,8 @@ export default {
       return Math.floor(average);
     },
     showScoreCard(data){
-      this.modalShow = true;
+      // this.modalShow = true;
+      this.$modal.show("scorecard");
       this.score = data.item.card;
       console.log("modal", this.modalShow);
     }
@@ -59,11 +70,31 @@ export default {
 
 <style lang="css" scoped>
 
-#match-list {
+.match-list {
   padding: .5em;
   font-size: 1.5rem;
   max-height: 500px;
   overflow-y: scroll;
-  }
+}
+
+.popup-container {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  padding: 1rem;
+}
+
+.pop-options {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.popup-close-btn {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.5rem;
+  color: red;
+  cursor: pointer;
+}
+
 </style>
   
