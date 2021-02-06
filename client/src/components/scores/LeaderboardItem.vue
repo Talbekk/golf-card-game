@@ -48,16 +48,4 @@ tr:hover {
     background-color: #eee;
 }
 
-.view-btn {
-    text-transform: uppercase;
-    font-weight: 500;
-    margin: .5rem;
-    padding: .2rem;
-    transition: all .2s;
-}
-
-.view-btn:hover {
-   background-color: #aaa;
-}
-
 </style>

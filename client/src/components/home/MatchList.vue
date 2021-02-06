@@ -6,7 +6,7 @@
           {{ getAverageScore(data) }}
         </template>
         <template v-slot:cell(card)="data">
-          <b-button v-on:click="showScoreCard(data)" id="btn-main" variant="dark">View</b-button>
+          <button v-on:click="showScoreCard(data)" class="view-btn">View</button>
         </template>
       </b-table>
     </div>
@@ -90,6 +90,10 @@ export default {
   font-size: 1.5rem;
   color: red;
   cursor: pointer;
+}
+
+.view-btn {
+  font-size: 1.5rem;
 }
 
 </style>

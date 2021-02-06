@@ -131,17 +131,4 @@ export default {
     margin: 0;
 }
 
-.view-btn {
-    text-transform: uppercase;
-    font-size: 2rem;
-    font-weight: 500;
-    margin: .5rem;
-    padding: .2rem;
-    transition: all .2s;
-}
-
-.view-btn:hover {
-   background-color: #aaa;
-}
-
 </style>
