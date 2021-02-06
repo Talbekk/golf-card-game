@@ -1,60 +1,92 @@
 <template lang="html">
   <div>
-    <div class="leaderboard-table">
-    <b-table hover head-variant="dark" responsive border :items="scores" :fields="fields">
-        <template v-slot:cell(card)="data">
-          <b-button v-on:click="showScoreCard(data)"class="btn-view-card">View Card</b-button>
-        </template>
-    </b-table>
-    </div>
-      <b-modal v-model="modalShow" scrollable title="Score Card" ok-only>
-        <score-card :scoreCard="score"></score-card>
-      </b-modal>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Scorecard</th>
+        </tr>
+      </thead>
+      <tbody>
+        <leaderboard-item v-for="(score, index) in this.scores" :key="index" :score="score"/>
+      </tbody>
+    </table>
+    <modal name="leaderboard-scorecard" :scrollable="true" height="auto" width="75%">
+        <div class="popup-container">
+            <div class="popup-close-btn" @click="$modal.hide('leaderboard-scorecard')">
+            X
+            </div>
+            <div class="popup-content-container">
+            <score-card :scoreCard="chosenScoreCard"/>
+            </div>
+        </div>
+        </modal>
   </div>
 </template>
 
 <script>
-import ScoreCard from './ScoreCard.vue';
+import LeaderboardItem from './LeaderboardItem';
+import {eventBus} from '../../main';
+import ScoreCard from './ScoreCard';
 
 export default {
   name: "leaderBoard",
-  props: ['scores', 'title', 'gameStatus'],
+  props: ['scores'],
   data() {
     return {
-      modalShow: false,
-      score: [],  
-      fields: [
-        { key: 'golfer', label: 'Name' },
-        { key: 'score', label: 'Score', sortable: true },
-        { key: 'card', label: 'Card', class: 'cardItem' }
-        ]
+      chosenScoreCard: []
     }
   },
    components: {
+    "leaderboard-item": LeaderboardItem,
     "score-card": ScoreCard
   },
-  methods: {
-    showScoreCard(data){
-      this.modalShow = true;
-      this.score = Object.values(data.item.card);
-    }
+  mounted(){
+    eventBus.$on('view-leaderboard-scorecard', (scoreCard) => {
+      this.chosenScoreCard = scoreCard;
+    });
   }
 }
 </script>
 
 <style lang="css" scoped>
 
-
-.cardItem {
-  max-width: 10%;
+table {
+  empty-cells: show;
+  border-collapse: collapse;
+  table-layout: auto;
+  width: 90%;
+  font-size: 1.5rem;
+  margin: 2rem;
 }
 
-.btn-view-card {
-  width: 50%;
+table, tr, th {
+  border: 1px solid black;
+
+}
+
+th {
+  padding: 0.5em;
+}
+
+.popup-container {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  padding: 1rem;
+}
+
+.pop-options {
   display: flex;
-  justify-content: center;
-  margin: 0 auto;
+  justify-content: flex-end;
 }
 
+.popup-close-btn {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.5rem;
+  color: red;
+  cursor: pointer;
+}
 
 </style>

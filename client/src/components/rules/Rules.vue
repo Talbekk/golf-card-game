@@ -39,7 +39,7 @@
 <script>
 
 export default {
-  name: "game-rules"
+  name: "rules"
 }
 </script>
 

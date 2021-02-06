@@ -10,9 +10,6 @@
         </template>
       </b-table>
     </div>
-    <!-- <b-modal v-model="modalShow" scrollable title="Score Card" ok-only>
-      <score-card :scoreCard="score"/></score-card>
-    </b-modal> -->
     <modal name="scorecard" :scrollable="true" height="auto" width="75%">
       <div class="popup-container">
         <div class="popup-close-btn" @click="$modal.hide('scorecard')">
@@ -62,7 +59,6 @@ export default {
       // this.modalShow = true;
       this.$modal.show("scorecard");
       this.score = data.item.card;
-      console.log("modal", this.modalShow);
     }
   }
 }

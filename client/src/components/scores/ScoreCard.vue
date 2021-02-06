@@ -97,22 +97,22 @@ export default {
 
 <style lang="css" scoped>
 
-table {
-  empty-cells: show;
-  border-collapse: collapse;
-  table-layout: auto;
-  width: 90%;
-  font-size: 1.5rem;
-  margin: 2rem;
-}
+      table {
+        empty-cells: show;
+        border-collapse: collapse;
+        table-layout: auto;
+        width: 90%;
+        font-size: 1.5rem;
+        margin: 2rem;
+      }
 
-table, tr, th {
-  border: 1px solid black;
+      table, tr, th {
+        border: 1px solid black;
 
-}
+      }
 
-th {
-  padding: 0.5em;
-}
+      th {
+        padding: 0.5em;
+      }
 
 </style>
