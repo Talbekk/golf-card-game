@@ -41,6 +41,7 @@ export default {
   },
   methods: {
     showScoreCard(){
+       this.$modal.show('scorecard');
         eventBus.$emit('view-match-list-scorecard', this.match.card);
     }
   }

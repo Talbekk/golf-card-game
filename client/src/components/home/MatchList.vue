@@ -67,6 +67,7 @@ export default {
   mounted(){
       eventBus.$on('view-match-list-scorecard', (scoreCard) => {
       this.chosenScoreCard = scoreCard;
+  
     });
   },
   methods: {

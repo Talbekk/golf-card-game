@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="content-container">
     <logo-header class="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard" :gameMode="gameMode"></logo-header>
-    <router-view :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
+    <router-view class="page-container" :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
     <!-- <app-footer id="footer"></app-footer> -->
     </div>
 </template>
@@ -51,6 +51,7 @@ export default {
     }),
     eventBus.$on('start-new-game', (mode) => {
       this.gameMode = mode;
+      this.gameStatus = true;
     }),
     eventBus.$on('username-selected', (name) => {
       this.userName = name;
@@ -136,6 +137,19 @@ body {
     background-attachment: fixed;
     height: 100vh;      
      
+}
+
+.page-container {
+  box-sizing: border-box;
+  border: 1px solid #000;
+  margin: 0 auto 5rem auto;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
+              0 2px 4px rgba(0,0,0,0.07), 
+              0 4px 8px rgba(0,0,0,0.07), 
+              0 8px 16px rgba(0,0,0,0.07),
+              0 16px 32px rgba(0,0,0,0.07), 
+              0 32px 64px rgba(0,0,0,0.07);
 }
 
 .section-header {

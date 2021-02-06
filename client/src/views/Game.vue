@@ -195,9 +195,11 @@ computed: {
 },
   methods: {
     //round
-    async getCards(){
+    async getCards(){;
       await this.getRoundDeck();
       if (this.gameMode === "versus-computer") {
+        console.log("new round deck", this.roundDeck);  
+        console.log("versus computer");
        let playerHand = [];
        let computerHand = [];
 
@@ -220,6 +222,8 @@ computed: {
       })
 
       } else if (this.gameMode === "single-player"){
+        console.log("new round deck", this.roundDeck); 
+        console.log("single computer");
       let hand = [];
       for (let counter = 0; counter < 4; counter++){
         let card = this.roundDeck.shift();
@@ -235,7 +239,9 @@ computed: {
     },
     //round
     getRoundDeck(){
-      this.gameDeck.cards.forEach((card) => {
+      const parsedData = JSON.parse(JSON.stringify(this.gameDeck));
+      console.log("finalData", parsedData.cards); 
+      parsedData.cards.forEach((card) => {
         this.roundDeck.push(card);
       })
       return this.shuffleDeck(this.roundDeck);
@@ -301,7 +307,7 @@ computed: {
       eventBus.$emit('game-status', true);
       this.topCardStatus = false;
     },
-    // round
+    // round  
     nextHole(){
       this.counter = 0;
       this.currentHole += 1;
@@ -355,16 +361,6 @@ computed: {
   display: grid;
   grid-template-rows: min-content 1fr;
   grid-row-gap: 1.5rem;
-  border: 1px solid #000;
-  width: 50%;
-  margin: 0 auto 5rem auto;
-  background-color: #fff;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
-              0 2px 4px rgba(0,0,0,0.07), 
-              0 4px 8px rgba(0,0,0,0.07), 
-              0 8px 16px rgba(0,0,0,0.07),
-              0 16px 32px rgba(0,0,0,0.07), 
-              0 32px 64px rgba(0,0,0,0.07);
 }
 
 #game-board {

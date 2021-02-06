@@ -7,8 +7,8 @@
     </div>
     <div class="game-header-center">
       <end-game v-if="!this.gameStatus && (this.currentHole===9)" :scoreCard='scoreCard' :gameStatus='gameStatus'/>   
-      <b-button id="btn-main" v-if="!this.gameStatus && this.gameMode" v-on:click="newGame" name="button" variant="dark">Play Again?</b-button>
-      <b-button id="btn-main" v-on:click="startNextHole" v-if="checkIfHoleFinished" variant="dark">Next Round &rarr;</b-button>
+      <button class="action-btn" v-if="!this.gameStatus && this.gameMode" v-on:click="newGame">Play Again?</button>
+      <button class="action-btn" v-on:click="startNextHole" v-if="checkIfHoleFinished">Next Hole &rarr;</button>
     </div>
     <div class="game-header-right">
       <font-awesome-icon class="reset-game-symbol" v-on:click="resetGame" :icon="['fas', 'redo']" />
@@ -142,9 +142,8 @@ export default {
   background-color: #999;
 }
 
-b-button {
-  padding: 0.5px;
-  display: inline-block;
+.action-btn {
+  background-color: #fff;;
 }
 
 </style>

@@ -7,8 +7,8 @@
     </tr>
     <tr>
       <th>Score</th>
-      <th v-for="(score, index) in this.scores">{{score}}</th>
-      <th>{{totalScore}}</th>
+      <td v-for="(score, index) in this.scores">{{score}}</td>
+      <td>{{totalScore}}</td>
     </tr>
   </table>
 </template>
