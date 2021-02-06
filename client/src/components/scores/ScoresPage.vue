@@ -3,8 +3,8 @@
     <div class="views-container">
       <h2 class="views-header">Leaderboard</h2>
       <div class="views-options">
-        <button class="view-btn" v-on:click="setFilter">{{this.filter ? "Show All Scores" : "Show Best Scores"}}</button>
-        <button class="view-btn" v-on:click="seeTable">{{this.tableFilter ? "Show Legacy" : "Show Current"}}</button>
+        <button class="action-btn" v-on:click="setFilter">{{this.filter ? "Show All Scores" : "Show Best Scores"}}</button>
+        <button class="action-btn" v-on:click="seeTable">{{this.tableFilter ? "Show Legacy" : "Show Current"}}</button>
       </div>
     </div>
     <div class="scoreboard-container">

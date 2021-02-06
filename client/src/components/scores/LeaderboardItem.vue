@@ -3,7 +3,7 @@
       <td>{{this.score.golfer}}</td>
       <td>{{this.score.score}}</td>
       <td>
-          <button class="view-btn" v-on:click="showScoreCard">View Card</button>
+          <button class="action-btn" v-on:click="showScoreCard">View Card</button>
       </td>
         </tr>
 </template>
@@ -28,17 +28,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
-.cardItem {
-  max-width: 10%;
-}
-
-.btn-view-card {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-}
 
 td {
   font-size: 1.8rem;

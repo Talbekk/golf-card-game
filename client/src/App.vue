@@ -155,25 +155,57 @@ body {
   text-transform: uppercase;
 }
 
-#btn-main {
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  margin: .5rem 0;
-}
-
-.view-btn {
+.action-btn {
     text-transform: uppercase;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 500;
     margin: .5rem;
     padding: .2rem;
     transition: all .2s;
 }
 
-.view-btn:hover {
+.action-btn:hover {
    background-color: #aaa;
 }
 
+.popup-container {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  padding: 1rem;
+}
+
+.pop-options {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.popup-close-btn {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.5rem;
+  color: red;
+  cursor: pointer;
+}
+
+table {
+  empty-cells: show;
+  border-collapse: collapse;
+  table-layout: auto;
+  font-size: 1.5rem;
+  margin: 2rem;
+  text-align: center;
+}
+
+table, tr, th, td  {
+  border: 1px solid black;
+
+}
+
+th {
+  padding: 0.5em;
+  text-transform: uppercase;
+  font-size: 2rem;
+  background-color: #004225;
+  color: #fff;
+}
 </style>

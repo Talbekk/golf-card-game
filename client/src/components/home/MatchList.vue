@@ -1,31 +1,46 @@
 <template lang="html">
   <div>
-    <div class="match-list">
+    <!-- <div class="match-list">
       <b-table hover head-variant="dark" border :items="matches" :fields="fields">
         <template v-slot:cell(averageScore)="data">
           {{ getAverageScore(data) }}
         </template>
         <template v-slot:cell(card)="data">
-          <button v-on:click="showScoreCard(data)" class="view-btn">View</button>
+          <button v-on:click="showScoreCard(data)" class="action-btn">View</button>
         </template>
       </b-table>
-    </div>
+    </div> -->
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Length</th>
+          <th>Average</th>
+          <th>Score</th>
+          <th>Card</th>
+        </tr>
+      </thead>
+      <tbody>
+        <match-list-item v-for="(match, index) in this.matches" :key="index" :match="match"/>
+      </tbody>
+    </table>
     <modal name="scorecard" :scrollable="true" height="auto" width="75%">
       <div class="popup-container">
         <div class="popup-close-btn" @click="$modal.hide('scorecard')">
           X
         </div>
         <div class="popup-content-container">
-          <score-card :scoreCard="score"/>
+          <score-card :scoreCard="chosenScoreCard"/>
         </div>
       </div>
     </modal>
   </div>
 </template>
 
-<script>
-import MatchDetails from './MatchDetails.vue';        
+<script>  
+import MatchListItem from './MatchListItem';     
 import ScoreCard from '../scores/ScoreCard.vue';
+import {eventBus} from '../../main';
 
 export default {
   name: 'match-list',
@@ -34,6 +49,7 @@ export default {
     return {
       modalShow: false,
       score: [],
+      chosenScoreCard: [],
       fields: [
         { key: 'date.date', label: 'Date', sortable: true },
         { key: 'card.length', label: 'Length', sortable: false },
@@ -45,8 +61,13 @@ export default {
     }
   },
   components: {
-    "match-details": MatchDetails,
+    "match-list-item": MatchListItem,
     "score-card": ScoreCard
+  },
+  mounted(){
+      eventBus.$on('view-match-list-scorecard', (scoreCard) => {
+      this.chosenScoreCard = scoreCard;
+    });
   },
   methods: {
     getAverageScore(value){
@@ -71,29 +92,6 @@ export default {
   font-size: 1.5rem;
   max-height: 500px;
   overflow-y: scroll;
-}
-
-.popup-container {
-  display: grid;
-  grid-template-rows: min-content 1fr;
-  padding: 1rem;
-}
-
-.pop-options {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.popup-close-btn {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 1.5rem;
-  color: red;
-  cursor: pointer;
-}
-
-.view-btn {
-  font-size: 1.5rem;
 }
 
 </style>

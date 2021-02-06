@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="profile-container">
     <div class="button-row">
-      <b-button id="btn-main" v-on:click="signOut" variant="dark">Sign Out</b-button>
+      <button class="action-btn" v-on:click="signOut">Sign Out</button>
     </div>
     <div class="profile">
       <div class="profile-photo">

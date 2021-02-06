@@ -52,50 +52,9 @@ export default {
 
 <style lang="css" scoped>
 
-table {
-  empty-cells: show;
-  border-collapse: collapse;
-  table-layout: auto;
-  font-size: 1.5rem;
-  margin: 2rem;
-  text-align: center;
-}
-
-table, tr, th, td  {
-  border: 1px solid black;
-
-}
-
-th {
-  padding: 0.5em;
-  text-transform: uppercase;
-  font-size: 2rem;
-  background-color: #004225;
-  color: #fff;
-}
-
 .table-container {
   display: grid;
   justify-content: stretch;
-}
-
-.popup-container {
-  display: grid;
-  grid-template-rows: min-content 1fr;
-  padding: 1rem;
-}
-
-.pop-options {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.popup-close-btn {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 1.5rem;
-  color: red;
-  cursor: pointer;
 }
 
 </style>

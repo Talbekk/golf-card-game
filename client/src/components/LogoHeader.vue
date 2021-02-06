@@ -163,23 +163,4 @@ export default {
   border-bottom: 1px solid #004225;
 }
 
-.popup-container {
-  display: grid;
-  grid-template-rows: min-content 1fr;
-  padding: 1rem;
-}
-
-.pop-options {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.popup-close-btn {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 1.5rem;
-  color: red;
-  cursor: pointer;
-}
-
 </style>
