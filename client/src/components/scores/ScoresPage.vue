@@ -3,8 +3,8 @@
     <div class="views-container">
       <h2 class="views-header">Leaderboard</h2>
       <div class="views-options">
-        <b-button id="btn-main" type="button" v-on:click="setFilter" name="button">{{this.filter ? "Show All Scores" : "Show Best Scores"}}</b-button>
-        <b-button id="btn-main" type="button" v-on:click="seeTable" name="button">{{this.tableFilter ? "Show Legacy" : "Show Current"}}</b-button>
+        <button class="view-btn" v-on:click="setFilter">{{this.filter ? "Show All Scores" : "Show Best Scores"}}</button>
+        <button class="view-btn" v-on:click="seeTable">{{this.tableFilter ? "Show Legacy" : "Show Current"}}</button>
       </div>
     </div>
     <div class="scoreboard-container">
@@ -93,7 +93,7 @@ export default {
 .leaderboard-container {
   display: grid;
   grid-template-rows: min-content auto;
-  height: 85vh;
+  height: 82vh;
 }
 
 
@@ -131,5 +131,17 @@ export default {
     margin: 0;
 }
 
+.view-btn {
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: .5rem;
+    padding: .2rem;
+    transition: all .2s;
+}
+
+.view-btn:hover {
+   background-color: #aaa;
+}
 
 </style>
