@@ -1,7 +1,6 @@
 <template lang="html">
-  <div class="game-rules">
-    <rules/>
-    <!-- <h4 class="rules-header">The Deal:</h4>
+  <div>
+    <h4 class="rules-header">The Deal:</h4>
     <p class="rules-text">
       Each player is dealt 4 cards face down from the deck. The remainder of the cards are placed face down, and the top card is turned up to start the discard pile beside it. Players arrange their 4 cards in a row face down. At the start of a round, the player can look at two cards but only for a short time.
     </p>
@@ -33,39 +32,48 @@
     </ul>
     <p class="rules-text">
       Sidenote: There are many variations of golf. This is but my own interpretation of the great game.
-    </p> -->
-    
+    </p>
   </div>
 </template>
 
 <script>
 
-import Rules from "../components/rules/Rules";
-
 export default {
-  name: "game-rules",
-    components: {
-    "rules": Rules
-  }
+  name: "game-rules"
 }
-
 </script>
 
 <style lang="css" scoped>
 
-.game-rules {
-  box-sizing: border-box;
-  width: 90%;
-  margin: 0 auto 5rem auto;
-  background-color: #fff;
-  padding: 1rem;
-  color: #000;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
-              0 2px 4px rgba(0,0,0,0.07), 
-              0 4px 8px rgba(0,0,0,0.07), 
-              0 8px 16px rgba(0,0,0,0.07),
-              0 16px 32px rgba(0,0,0,0.07), 
-              0 32px 64px rgba(0,0,0,0.07);
+.rules-header {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.rules-text {
+  font-size: 1.5rem;
+}
+
+.rules-list {
+  margin-left: 1.5rem;
+
+}
+
+.rules-list-item {
+  font-size: 1.2rem;
+}
+
+a,
+a:link,
+a:visited {
+  color: #02419e;
+}
+
+a:hover,
+a:active {
+  color: #004dbf;
+  text-decoration: none;
 }
 
 </style>

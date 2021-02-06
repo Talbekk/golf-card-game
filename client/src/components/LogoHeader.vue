@@ -30,7 +30,7 @@
                 X
               </div>
               <div class="popup-content-container">
-                <game-rules/>
+                <rules/>
               </div>
             </div>
           </modal>
@@ -43,7 +43,7 @@
 
 import {eventBus} from '../main.js';
 import ScoresPage from './scores/ScoresPage.vue';
-import GameRules from '../views/GameRules.vue';
+import Rules from './rules/Rules';
 import ScoreCard from './scores/ScoreCard.vue';
 
 export default {
@@ -58,7 +58,7 @@ export default {
   props:['gameStatus', 'scoreCard', 'gameMode'],
   components: {
     'scores-page': ScoresPage,
-    'game-rules': GameRules,
+    'rules': Rules,
     'score-card': ScoreCard
   },
    watch : {
