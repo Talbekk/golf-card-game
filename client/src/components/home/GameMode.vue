@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="game-item">
     <h4 class="game-title">{{this.game.mode}}</h4>
-      <button v-if="this.game.mode === 'Single Player'" v-on:click="clickedNewGame" class="action-btn">Tee Off</button>
+      <b-button v-if="this.game.mode === 'Single Player'" to="/game" v-on:click="clickedNewGame" class="action-btn" type="submit">Tee Off</b-button>
     <!-- <button v-if="this.game.mode === 'Single Player'" to="/game" v-on:click="clickedNewGame" class="action-btn" type="submit">Tee Off</button> -->
     <p class="button-replacement-info" v-if="this.game.mode !== 'Single Player'">&ldquo;Coming Soon&rdquo;</p>
   </div>

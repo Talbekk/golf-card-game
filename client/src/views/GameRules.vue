@@ -20,6 +20,7 @@ export default {
 <style lang="css" scoped>
 
 .game-rules { 
+  width: 80%;
   padding: 1rem;
   color: #000;
 }

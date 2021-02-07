@@ -130,7 +130,7 @@ export default {
     eventBus.$on('start-next-hole', () => {
       this.nextHole();
     }),
-    eventBus.$on('start-new-game', () => {
+    eventBus.$on('deal-cards', () => {
       this.setupNewGame();
     }),
     eventBus.$on('view-leaderboard', () => {
@@ -191,15 +191,23 @@ computed: {
   //game
   holesCompleted(){
     return this.scoreCard.length;
+  },
+  newRoundDeck(){
+    if(this.gameDeck.length > 0){
+    let deck = []
+       this.gameDeck.cards.forEach((card) => {
+        deck.push(card);
+      })
+      return this.shuffleDeck(deck);
+    }
   }
 },
   methods: {
     //round
-    async getCards(){;
+    async getCards(){
+      console.log("hits get cards");  
       await this.getRoundDeck();
-      if (this.gameMode === "versus-computer") {
-        console.log("new round deck", this.roundDeck);  
-        console.log("versus computer");
+      if (this.gameMode === "versus-computer") { 
        let playerHand = [];
        let computerHand = [];
 
@@ -221,9 +229,7 @@ computed: {
         card.lockedIn = false;
       })
 
-      } else if (this.gameMode === "single-player"){
-        console.log("new round deck", this.roundDeck); 
-        console.log("single computer");
+      } else if (this.gameMode === "single-player"){  
       let hand = [];
       for (let counter = 0; counter < 4; counter++){
         let card = this.roundDeck.shift();
@@ -240,8 +246,7 @@ computed: {
     //round
     getRoundDeck(){
       const parsedData = JSON.parse(JSON.stringify(this.gameDeck));
-      console.log("finalData", parsedData.cards); 
-      parsedData.cards.forEach((card) => {
+      this.gameDeck.cards.forEach((card) => {
         this.roundDeck.push(card);
       })
       return this.shuffleDeck(this.roundDeck);

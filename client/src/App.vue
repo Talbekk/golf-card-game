@@ -52,6 +52,8 @@ export default {
     eventBus.$on('start-new-game', (mode) => {
       this.gameMode = mode;
       this.gameStatus = true;
+      console.log("hits start game");
+      eventBus.$emit("deal-cards");
     }),
     eventBus.$on('username-selected', (name) => {
       this.userName = name;
@@ -80,10 +82,21 @@ export default {
       this.scoreCard = card;
     }) 
     },
+    computed: {
+       newRoundDeck(){
+   
+    let deck = []
+       this.gameDeck.cards.forEach((card) => {
+        deck.push(card);
+      })
+      return this.shuffleDeck(deck);
+    } 
+    },
   methods: {
     getDeck(){
       if(this.deck){
       eventBus.$emit('setup-game');
+      console.log("new game hit");      
       let deckID = this.deck.deck_id
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=52`)
         .then(res => res.json())
@@ -91,13 +104,25 @@ export default {
       }
     },
     getUserData(){
-    if(auth.currentUser){
-    const uid = auth.currentUser.uid;
-    db.ref().child('users').child(uid).once("value", (snapshot) => {
-    this.userData = snapshot.val();
-  })
-}
-}
+      if(auth.currentUser){
+        const uid = auth.currentUser.uid;
+        db.ref().child('users').child(uid).once("value", (snapshot) => {
+        this.userData = snapshot.val();
+        })
+      }
+    },
+    shuffleDeck(deck){
+      let shuffledDeck = [...deck];
+      let newPosition;
+      let temp;
+      for (let i = shuffledDeck.length-1; i > 0; i --) {
+        newPosition = Math.floor(Math.random() * (i+1))
+        temp = shuffledDeck[i];
+        shuffledDeck[i] = shuffledDeck[newPosition];
+        shuffledDeck[newPosition] = temp;
+      }
+      return shuffledDeck;
+    }
 }
 }
 
@@ -221,5 +246,9 @@ th {
   font-size: 2rem;
   background-color: #004225;
   color: #fff;
+}
+
+#btn-main {
+  font-size: 2rem;
 }
 </style>
