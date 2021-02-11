@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="score-container">
-  <scores-page :gameStatus="gameStatus"/>
+    <scores-page :gameStatus="gameStatus"/>
   </div>
 </template>
 
@@ -28,6 +28,8 @@ export default {
 .score-container {
   padding: 1rem;
   color: #000;
+  width: 90%;
+  margin: 0 auto;
 }
 
 </style>

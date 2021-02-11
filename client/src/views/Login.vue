@@ -67,8 +67,8 @@ export default {
 
 .welcome-info > p{
   font-size: 1.5rem;
-  padding: 1rem 2rem;
-  max-width: 50ch;
+  padding: 1rem .5rem;
+  max-width: 60ch;
   word-wrap: break-word;
   text-align: center;
 }
@@ -103,6 +103,5 @@ export default {
   padding: 1.5rem;
   font-size: 2rem;
 }
-
 
 </style>

@@ -1,10 +1,10 @@
 <template lang="html">
 <div>
-<div id="footer-container">
-    <h3>
-        Hifgdfhghhhhfggh 8rt regffgghd ggh fghfgdh
-    </h3>
-</div>
+  <div id="footer-container">
+      <h3>
+          Hifgdfhghhhhfggh 8rt regffgghd ggh fghfgdh
+      </h3>
+  </div>
 </div>
 </template>
 

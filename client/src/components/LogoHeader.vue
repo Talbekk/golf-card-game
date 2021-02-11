@@ -129,7 +129,7 @@ export default {
 
 .logo-header {
   background-color: #004225;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
               0 2px 4px rgba(0,0,0,0.07), 
               0 4px 8px rgba(0,0,0,0.07), 
