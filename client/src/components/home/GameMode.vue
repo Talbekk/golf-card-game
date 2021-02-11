@@ -50,4 +50,22 @@ export default {
   padding: .6rem;
   margin: .5rem 1rem;
 }
+
+.action-btn {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: .5rem;
+  padding: .2rem;
+  transition: all .2s;
+  background-color: #eee;
+  color: #000;
+  border-radius: 0;
+  border: 1px solid #000;
+}
+
+.action-btn:hover {
+   background-color: #aaa;
+   color: #000;
+}
 </style>
