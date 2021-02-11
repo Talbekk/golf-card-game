@@ -2,18 +2,14 @@
   <div class="content-container">
     <logo-header class="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard" :gameMode="gameMode"></logo-header>
     <router-view class="page-container" :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
-    <!-- <app-footer id="footer"></app-footer> -->
-    </div>
+  </div>
 </template>
 
 <script>
 
-import IntroScreen from './views/IntroScreen.vue';
 import {eventBus} from './main.js';
-import {scoreRef, auth, db} from './firebase.js';
+import {auth, db} from './firebase.js';
 import LogoHeader from './components/LogoHeader.vue';
-import Footer from './components/Footer.vue';
-import Game from './views/Game.vue';
 
 export default {
   name: 'app',
@@ -30,10 +26,7 @@ export default {
     }
   },
   components: {
-    "intro-screen": IntroScreen,
-    "logo-header": LogoHeader,
-    "Game": Game,
-    "app-footer": Footer
+    "logo-header": LogoHeader
   },
   mounted(){
     this.getDeck();

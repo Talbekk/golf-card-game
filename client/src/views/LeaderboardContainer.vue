@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="score-container">
-  <scores-page :gameStatus="gameStatus"/>
+    <scores-page :gameStatus="gameStatus"/>
   </div>
 </template>
 

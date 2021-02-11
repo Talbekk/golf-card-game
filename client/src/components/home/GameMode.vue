@@ -1,8 +1,7 @@
 <template lang="html">
   <div class="game-item">
     <h4 class="game-title">{{this.game.mode}}</h4>
-      <b-button v-if="this.game.mode === 'Single Player'" to="/game" v-on:click="clickedNewGame" class="action-btn" type="submit">Tee Off</b-button>
-    <!-- <button v-if="this.game.mode === 'Single Player'" to="/game" v-on:click="clickedNewGame" class="action-btn" type="submit">Tee Off</button> -->
+    <b-button v-if="this.game.mode === 'Single Player'" to="/game" v-on:click="clickedNewGame" class="action-btn" type="submit">Tee Off</b-button>
     <p class="button-replacement-info" v-if="this.game.mode !== 'Single Player'">&ldquo;Coming Soon&rdquo;</p>
   </div>
 </template>
@@ -15,13 +14,6 @@ export default {
   props: ['game'],
   methods: {
     clickedNewGame(){
-    //   if (this.game.mode === "Single Player"){
-    //   eventBus.$emit('start-new-game', "single-player");
-    //   this.$router.push('/game');
-    // } else {
-    //    eventBus.$emit('start-new-game', "versus-computer");
-    //    this.$router.push('/game');
-    //  }
       eventBus.$emit('start-new-game', "single-player");
       this.$router.push('/game');
     }
