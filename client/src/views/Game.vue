@@ -377,7 +377,7 @@ computed: {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: .2rem;
-  margin: 0 auto;
+  padding: 0 .5rem;
 }
 
 .card-icon {

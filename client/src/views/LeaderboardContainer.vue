@@ -28,6 +28,8 @@ export default {
 .score-container {
   padding: 1rem;
   color: #000;
+  width: 90%;
+  margin: 0 auto;
 }
 
 </style>

@@ -154,20 +154,17 @@ body {
   margin: 0 auto;
   display: grid;
   grid-template-rows: repeat(2, min-content);
-   background-image: linear-gradient(
-       rgba(121, 145, 145, 0.479), rgba(121, 145, 145, 0.479)),
-        url("./assets/CourseBackground.jpg");
-        background-size: cover;
- 
-    background-attachment: fixed;
-    height: 100vh;      
-     
+  background-image: linear-gradient(
+      rgba(121, 145, 145, 0.479), rgba(121, 145, 145, 0.479)),
+      url("./assets/CourseBackground.jpg");
+      background-size: cover;
+
+  background-attachment: fixed;
+  height: 100vh;
 }
 
 .page-container {
-  box-sizing: border-box;
-  border: 1px solid #000;
-  margin: 0 auto 5rem auto;
+  margin: 0 auto;
   background-color: #fff;
   box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
               0 2px 4px rgba(0,0,0,0.07), 
@@ -186,7 +183,7 @@ body {
 }
 
 .game-header {
-  font-size: 5rem;
+  font-size: 4.5rem;
   padding: 1rem .5rem;
   font-weight: 700;
   color: #fff;
@@ -195,12 +192,12 @@ body {
 }
 
 .action-btn {
-    text-transform: uppercase;
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin: .5rem;
-    padding: .2rem;
-    transition: all .2s;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: .5rem;
+  padding: .2rem;
+  transition: all .2s;
 }
 
 .action-btn:hover {
