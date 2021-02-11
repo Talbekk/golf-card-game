@@ -11,7 +11,7 @@
       <b-form-group id="password" label="Password:">
         <b-form-input type="password" v-model="password" required placeholder="Enter Password"/>
         </b-form-group>
-      <b-button id="btn-main" type="submit" variant="dark">Register Golfer</b-button>
+      <button class="action-btn" type="submit">Register Golfer</button>
     </b-form>
   </div>
 </template>
