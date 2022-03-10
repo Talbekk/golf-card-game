@@ -6,7 +6,7 @@
       </div>
       <div class="board-one">
         <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
-        <card-deck :topCardStatus='topCardStatus'></card-deck>
+        <card-deck :topCardStatus='topCardStatus' :counter='counter'></card-deck>
         <top-card v-if='topCard' :topCard='topCard'></top-card>
       </div>
     </div>
@@ -44,7 +44,7 @@ export default {
       playerTotal: 0, //round
       computerTotal: 0,
       counter: 0, //round
-      currentHole: 1, //game
+      currentHole: 1, //game,
       lockedCards: [], //round
       computerLockedCards: [],
       scoreCard: [], //game
