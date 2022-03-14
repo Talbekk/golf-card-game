@@ -7,9 +7,9 @@
       <b-form-group id="password" label="Password:">
         <b-form-input type="password" v-model="password" placeholder="Enter Password"/>
       </b-form-group>
+        <div class="error" v-if="errorMessage">{{errorMessage}}</div>
         <button class="action-btn" type="submit">Sign In</button>
     </b-form>
-    <div class="error" v-if="error">{{error.message}}</div>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
     return {
       email: "",
       password: '',
-      error: ''
+      errorMessage: null
     }
   },
   methods: {
@@ -34,8 +34,7 @@ export default {
       this.$router.replace({name: 'home'});
       eventBus.$emit("signed-in");
     } catch(err) {
-      window.alert("Please try entering your details again!");
-      console.log("fail", err);
+      this.errorMessage = err;
     }
     }
   }
@@ -46,6 +45,16 @@ export default {
 
 .form-control {
   font-size: 1.5rem;
+}
+
+.error {
+  font-size: 1.5rem;
+  color: red;
+  padding-bottom:1rem;
+}
+
+.action-btn {
+  margin: 0;
 }
 
 </style>

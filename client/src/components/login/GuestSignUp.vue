@@ -6,7 +6,6 @@
       </b-form-group>
         <b-button id="btn-main" type="submit">Tee Off</b-button>
     </b-form>
-    <div class="error" v-if="error">{{error.message}}</div>
   </div>
 </template>
 
@@ -21,8 +20,7 @@ export default {
     return {
       golferName: "",
       email: "guest@guest.com",
-      password: "guest12345",
-      error: ''
+      password: "guest12345"
     }
   },
   methods: {
