@@ -43,7 +43,7 @@ export default {
 <style lang="css" scoped>
 
 .profile-container {
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
   font-size: 2rem;
   display: grid;
   grid-template-rows: min-content 1fr;

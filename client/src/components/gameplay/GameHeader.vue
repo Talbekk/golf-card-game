@@ -21,9 +21,10 @@
 import EndGame from './EndGame.vue';
 import {eventBus} from '../../main.js';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faRedo } from '@fortawesome/free-solid-svg-icons'
+import { faRedo, faX } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faRedo)
+library.add(faX) 
 
 
 export default {
@@ -90,7 +91,6 @@ export default {
 
 .game-header-options {
  text-align: center;
- padding: .5rem 0;
  display: grid;
  grid-template-columns: repeat(3, 1fr);
  grid-column-gap: 1rem;
@@ -118,10 +118,10 @@ export default {
 }
 
 .exit-game-symbol {
-  font-size: 3rem;
+  font-size: 2.7rem;
   text-decoration: none;
   transition: all .2s;
-  line-height: 1;
+  font-weight: 600;
   color: #004225;
   background-color: #fff;
 }

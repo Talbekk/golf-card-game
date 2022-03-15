@@ -34,6 +34,7 @@ export default {
 .game-mode-list {
     list-style: none;
     display: grid;
+    align-items: center;
     grid-template-columns: repeat(2, 1fr);
 }
 

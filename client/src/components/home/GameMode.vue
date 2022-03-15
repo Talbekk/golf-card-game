@@ -48,7 +48,7 @@ export default {
   font-size: 1.5rem;
   font-weight: 500;
   margin: .5rem;
-  padding: .2rem;
+  padding: .5rem;
   transition: all .2s;
   background-color: #eee;
   color: #000;
