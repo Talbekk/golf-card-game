@@ -15,7 +15,6 @@ export default {
   methods: {
     clickedNewGame(){
       eventBus.$emit('start-new-game', "single-player");
-      this.$router.push('/game');
     }
     }
   }

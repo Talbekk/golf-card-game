@@ -9,6 +9,7 @@
       <end-game v-if="!this.gameStatus && (this.currentHole===9)" :scoreCard='scoreCard' :gameStatus='gameStatus'/>   
       <button class="action-btn" v-if="!this.gameStatus && this.gameMode" v-on:click="newGame">Play Again?</button>
       <button class="action-btn" v-on:click="startNextHole" v-if="checkIfHoleFinished">Next Hole &rarr;</button>
+      <span v-if="!checkIfHoleFinished"></span>
     </div>
     <div class="game-header-right">
       <font-awesome-icon class="reset-game-symbol" v-on:click="resetGame" :icon="['fas', 'redo']" />
@@ -93,8 +94,7 @@ export default {
  text-align: center;
  display: grid;
  grid-template-columns: repeat(3, 1fr);
- grid-column-gap: 1rem;
-  background-color: #004225;
+ background-color: #004225;  
  color: #fff;
  align-items: center;
 }

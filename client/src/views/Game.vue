@@ -204,8 +204,7 @@ computed: {
 },
   methods: {
     //round
-    async getCards(){
-      console.log("hits get cards");  
+    async getCards(){ 
       await this.getRoundDeck();
       if (this.gameMode === "versus-computer") { 
        let playerHand = [];

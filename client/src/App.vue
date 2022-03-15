@@ -45,7 +45,6 @@ export default {
     eventBus.$on('start-new-game', (mode) => {
       this.gameMode = mode;
       this.gameStatus = true;
-      console.log("hits start game");
       eventBus.$emit("deal-cards");
     }),
     eventBus.$on('username-selected', (name) => {
@@ -88,8 +87,7 @@ export default {
   methods: {
     getDeck(){
       if(this.deck){
-      eventBus.$emit('setup-game');
-      console.log("new game hit");      
+      eventBus.$emit('setup-game');   
       let deckID = this.deck.deck_id
       fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=52`)
         .then(res => res.json())
