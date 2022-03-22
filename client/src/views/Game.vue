@@ -4,10 +4,11 @@
       <div id="next-button">
         <game-header :computerCards="computerCards" :playerCards="playerCards" :gameStatus="gameStatus" :scoreCard="scoreCard" :lockedCards="lockedCards" :counter="counter" :currentHole="currentHole" :gameMode="gameMode"></game-header>
       </div>
-      <div class="board-one">
+      <div v-bind:class="[isTutorialEnabled ? tutorialClass : nonTutorialClass]">
         <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
         <card-deck :topCardStatus='topCardStatus' :counter='counter'></card-deck>
         <top-card v-if='topCard' :topCard='topCard'></top-card>
+        <info-box v-if='isTutorialEnabled'/>
       </div>
     </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
@@ -52,7 +53,10 @@ export default {
       drawnCard: false, //round
       topCardStatus: false,
       viewLeaderBoard: false,
-      topCardSelected: false
+      topCardSelected: false,
+      isTutorialEnabled: false,
+      tutorialClass: "board-one__with-tutorial",
+      nonTutorialClass: "board-one__without-tutorial"
     }
   },
   components: {
@@ -138,6 +142,9 @@ export default {
     }),
     eventBus.$on('top-card-selected', () => {
       this.topCardSelected = !this.topCardSelected;
+    }),
+      eventBus.$on('set-tutorial-mode', () => {
+      this.isTutorialEnabled = !this.isTutorialEnabled;
     })
   },
   watch: {
@@ -372,11 +379,18 @@ computed: {
   grid-template-rows: minmax(60px, min-content) 1fr;
 }
 
-.board-one {
+.board-one__without-tutorial {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   grid-column-gap: .2rem;
   padding: 0 .5rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.board-one__with-tutorial {
+  display: grid;
+  grid-column-gap: .2rem;
+  padding: 0 .5rem;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .card-icon {

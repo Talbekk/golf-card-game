@@ -1,7 +1,7 @@
 <template lang="html">
 <div class="deck-container">
   <h5 class="game-sub-section-header">Deck</h5>
-  <img v-bind:class="[topCardStatus || (counter == 4)? selectedClass : unSelectedClass]" v-on:click="drawNextCard" src="../../assets/CardBack.png"/>
+  <img v-bind:class="[topCardStatus || (counter == 4) ? selectedClass : unSelectedClass]" v-on:click="drawNextCard" src="../../assets/CardBack.png"/>
 </div>
 </template>
 

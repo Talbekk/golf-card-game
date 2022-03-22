@@ -17,8 +17,7 @@ export default {
   props: ['game'],
   data() {
       return {
-    gameModes: [{ mode: "Single Player", holes: [3, 9, 18] },
-            { mode: "Versus Computer", difficulty: ["easy", "intermediate", "pro"], holes: [3, 9, 18]}
+    gameModes: [{ mode: "Single Player", holes: [3, 9, 18] }
             // { mode: "Multiplayer"}
     ]
       }
@@ -35,7 +34,6 @@ export default {
     list-style: none;
     display: grid;
     align-items: center;
-    grid-template-columns: repeat(2, 1fr);
 }
 
 .game-mode-item {
