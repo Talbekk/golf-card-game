@@ -41,7 +41,7 @@ export default {
 .card-icon-original {
   width: 12rem;
   height: 16rem;
-  padding: 0.5em;
+  padding: 0.2rem;
   transition: all .2s ease-in-out;
 }
 

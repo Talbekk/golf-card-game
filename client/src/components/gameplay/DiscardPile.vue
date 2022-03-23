@@ -24,7 +24,6 @@ export default {
 .card-icon {
   width: 12rem;
   height: 16rem;
-  padding: 0.5em;
   filter: opacity(50%);
 }
 
@@ -46,10 +45,10 @@ export default {
   align-content: center;
   color: #777;
   border: 1px solid #000;
-  width: 10rem;
-  height: 14rem;
+  width: 11rem;
+  height: 15rem;
   border-radius: 5px;
-  margin: 0.5rem;
+  /* margin: 0.3rem; */
   justify-self:  center;
   align-self: center;
 }

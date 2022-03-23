@@ -2,12 +2,13 @@
   <div class="info-box-container">
     <h5 class="game-sub-section-header">Info</h5>
     <div class="info-box">
-      <p><b>King:</b> 0</p>
-      <p><b>5:</b> -5</p>
-      <p><b>Pair:</b> 0</p>
-      <p><b>4 of a kind:</b> -30</p>
-      <p><b>A-4/6-10:</b> face value</p>
-      <p><b>Q or J:</b> 10</p>
+      <p class="info-box__header">Card Values</p>
+      <p class="info-box__text">King: 0</p>
+      <p class="info-box__text">5: -5</p>
+      <p class="info-box__text">Pair: 0</p>
+      <p class="info-box__text">4 of a kind: -30</p>
+      <p class="info-box__text">A-4/6-10: face value</p>
+      <p class="info-box__text">Q or J: 10</p>
     </div>
   </div>
 </template>
@@ -26,16 +27,29 @@ export default {
 }
 
 .info-box {
-  padding: 0.5em;
   display: grid;
   justify-content: center;
-  align-content: center;
+  align-content: stretch;
   color: #777;
   border: 1px solid #000;
   border-radius: 5px;
-  padding: 0;
-  width: 10rem;
-  height: 14rem;
+  width: 11rem;
+  height: 15rem;
+  margin: 0.5rem;
+}
+
+.info-box__header{
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  padding-top: .3rem;
+}
+
+.info-box__text{
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
 }
 
 .game-sub-section-header {
@@ -46,11 +60,6 @@ export default {
   background-color: #004225;
   color: #fff;
   padding: .5rem;
-}
-
-p {
-  margin: .5rem;
-
 }
 
 </style>
