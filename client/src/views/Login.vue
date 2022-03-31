@@ -5,12 +5,11 @@
         <h2 class="game-header">Welcome To Golf</h2>
         <h3 class="section-header">The Card Game</h3>
       </div>
-       <p class="welcome-info">Welcome to Golf: The Card Game, the online version of the fast-paced and exciting table-top card game. If you are new to the game, please checkout the rules option up in the navigation menu of the app. There are a few options to start off, please select one to get started or continue to register for the game:</p>
+       <p class="welcome-description">If you are new to the game, please checkout the rules option up in the navigation menu of the app. There are a few options to start off, please select one to get started or continue to register for the game:</p>
     </div>
       <div class="auth-options">
         <button :class="selectedAuthOption === 'register' ? 'auth-option-btn auth-btn-selected' : 'auth-option-btn'" v-on:click='selectAuthOption("register")'>Register User</button>
         <button :class="selectedAuthOption === 'sign-in' ? 'auth-option-btn auth-btn-selected' : 'auth-option-btn'" v-on:click='selectAuthOption("sign-in")'>Sign In</button>
-        <!-- <button class="auth-option-btn" v-on:click='selectAuthOption("guest-mode")'>Guest Practice</button> -->
       </div>
       <register v-if='selectedAuthOption === "register"' class="auth-box auth-reg"/>
       <sign-in v-if='selectedAuthOption === "sign-in"' class="auth-box auth-login"/>
@@ -61,16 +60,12 @@ export default {
   border-top: 1px solid #000;
 }
 
-.welcome-info {
-  margin: 0 auto;
-}
-
-.welcome-info > p{
+.welcome-description{
   font-size: 1.5rem;
-  padding: 1rem .5rem;
+  padding: 1rem;
   max-width: 60ch;
   word-wrap: break-word;
-  text-align: center;
+  margin-bottom: 0;
 }
 
 .auth-options {
@@ -87,7 +82,6 @@ export default {
   text-transform: uppercase;
   justify-content: center;
   padding: .2em;
-  margin-top: 1rem;
   background-color: #004225;
   color: #fff;
 }
