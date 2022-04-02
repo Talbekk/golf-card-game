@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="player-container" v-if="playerCards">
+  <div class="player-container" v-if="playerCards.length > 0">
     <div class="player-header">
       <p class="player-name">{{this.userData.username}}</p>
       <p class="player-score">Score: {{this.score}}</p>
