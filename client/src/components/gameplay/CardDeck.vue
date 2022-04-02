@@ -1,7 +1,7 @@
 <template lang="html">
 <div class="deck-container">
   <h5 class="game-sub-section-header">Deck</h5>
-  <img v-bind:class="[topCardStatus || (counter == 4) ? selectedClass : unSelectedClass]" v-on:click="drawNextCard" src="../../assets/CardBack.png"/>
+  <img v-bind:class="[topCardStatus || ((counter == 4 && gameMode === 'single-player') || (counter == 8 && gameMode === 'vs-computer')) ? selectedClass : unSelectedClass]" v-on:click="drawNextCard" src="../../assets/CardBack.png"/>
 </div>
 </template>
 
@@ -11,7 +11,7 @@ import {eventBus} from '../../main.js';
 
 export default {
   name: "deck-list",
-  props:['topCardStatus', 'counter'],
+  props:['topCardStatus', 'counter', 'gameMode'],
   data() {
     return{
       selectedClass: 'card-icon-greyed',

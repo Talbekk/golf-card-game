@@ -6,7 +6,7 @@
       </div>
       <div v-bind:class="[isTutorialEnabled ? tutorialClass : nonTutorialClass]">
         <discard-pile v-if='discardPile' :discardPile='discardPile'></discard-pile>
-        <card-deck :topCardStatus='topCardStatus' :counter='counter'></card-deck>
+        <card-deck :topCardStatus='topCardStatus' :counter='counter' :gameMode='gameMode'></card-deck>
         <top-card :topCard='topCard'></top-card>
         <info-box v-if='isTutorialEnabled'/>
       </div>
