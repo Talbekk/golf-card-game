@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="player-container">
+  <div class="player-container" v-if="playerCards">
     <div class="player-header">
       <p class="player-name">{{this.userData.username}}</p>
       <p class="player-score">Score: {{this.score}}</p>
@@ -52,12 +52,13 @@ export default {
 .player-header {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  background-color: #004225;
+  grid-column-gap: .1rem;
   color: #fff;
 }
 
 .player-name,
 .player-score {
+  background-color: #004225;
   justify-content: center;
   font-size: 1.3rem;
   text-transform: uppercase;

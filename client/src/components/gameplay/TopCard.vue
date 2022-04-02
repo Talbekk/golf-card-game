@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="top-card">
     <h5 class="game-sub-section-header">Top Card</h5>
-    <img class="card-icon"
-    :src="this.topCard.image" v-on:click="handleClick"/>
+    <img class="card-icon" v-if="this.topCard" :src="this.topCard.image" v-on:click="handleClick"/>
+    <div v-if="!this.topCard" class="discard-pile-card">X</div>
   </div>
 </template>
 
@@ -45,6 +45,22 @@ export default {
   background-color: #004225;
   color: #fff;
   padding: .5rem;
+}
+
+.discard-pile-card {
+  font-size: 10rem;
+  font-weight: 700;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  color: #777;
+  border: 1px solid #000;
+  width: 11rem;
+  height: 15rem;
+  border-radius: 5px;
+  /* margin: 0.3rem; */
+  justify-self:  center;
+  align-self: center;
 }
 
 </style>
