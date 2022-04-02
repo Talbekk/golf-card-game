@@ -13,6 +13,7 @@
     </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
       <player :scoreCard="scoreCard" :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player>
+      <player :scoreCard="scoreCard" :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player>
       <computer v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected" :computerTotal='computerTotal'></computer>
     </div>
   </div>
@@ -375,6 +376,14 @@ computed: {
 }
 
 #game-board {
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
+              0 2px 4px rgba(0,0,0,0.07), 
+              0 4px 8px rgba(0,0,0,0.07), 
+              0 8px 16px rgba(0,0,0,0.07),
+              0 16px 32px rgba(0,0,0,0.07), 
+              0 32px 64px rgba(0,0,0,0.07);
   display: grid;
   grid-template-rows: minmax(60px, min-content) 1fr;
 }
@@ -382,14 +391,15 @@ computed: {
 .board-one__without-tutorial {
   display: grid;
   grid-column-gap: .2rem;
-  padding: 0 .5rem;
+  padding: .5rem;
   grid-template-columns: repeat(3, 1fr);
 }
 
 .board-one__with-tutorial {
   display: grid;
   grid-column-gap: .2rem;
-  padding: 0 .5rem;
+  padding: .5rem;
+  padding-top: 0;
   grid-template-columns: repeat(4, 1fr);
 }
 
@@ -419,10 +429,12 @@ button {
 }
 
 #hand-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-auto-flow: column;
+  padding: .5rem;
+  padding-bottom: 0;
 }
 
 p {

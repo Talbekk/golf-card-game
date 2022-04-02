@@ -80,7 +80,7 @@ export default {
   transition: all .2s ease-in-out;
 }
 
-#player-card-container:hover, #player-card-container.active { transform: scale(1.1); }
+#player-card-container:hover, #player-card-container.active { transform: scale(1.05); }
 
 .card-icon {
   width: 11rem;

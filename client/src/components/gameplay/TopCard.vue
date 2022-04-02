@@ -35,7 +35,7 @@ export default {
   transition: all .2s ease-in-out;
 }
 
-.card-icon:hover { transform: scale(1.1); }
+.card-icon:hover { transform: scale(1.05); }
 
 .game-sub-section-header {
   font-size: 1.2rem;
