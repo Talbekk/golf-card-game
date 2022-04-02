@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="cards-container">
-     <ul>
+     <ul class="card-list">
       <computer-card v-for="(computerCard, index) in computerCards" :computerCard='computerCard' :key='index' :index='index' :shownCards='shownCards' :lockedCards='lockedCards' :counter='counter' :topCardSelected='topCardSelected'></computer-card>
     </ul>
   </div>
@@ -29,7 +29,7 @@ export default {
         this.computerCards.find((card) => {
          if (card.lockedIn === false) {
            selectedCard = card;
-            selectedCard.lockedIn === true;
+            selectedCard.lockedIn === true; 
          }
           });
        console.log("selectedCard", selectedCard);
@@ -43,11 +43,10 @@ export default {
 
 <style lang="css" scoped>
 
-ul {
+.card-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   grid-row-gap: 2px;
   padding-inline-start: 0px;
   list-style-type: none;

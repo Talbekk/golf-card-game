@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="content-container">
-    <logo-header class="nav-bar" :gameStatus="gameStatus" :scoreCard="scoreCard" :gameMode="gameMode"></logo-header>
-    <router-view class="page-container" :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"></router-view>
+    <logo-header class="nav-bar" :gameStatus="gameStatus" :gameMode="gameMode"/>
+    <router-view class="page-container" :gameMode="gameMode" :userData="userData" :gameDeck="gameDeck" :userName="userName" :gameStatus="gameStatus"/>
   </div>
 </template>
 
@@ -20,7 +20,6 @@ export default {
       gameStatus: false, //game
       tutorialStatus: false,
       userName: null, //game,
-      scoreCard: [],
       userData: {},
       gameMode: null
     }
@@ -69,10 +68,7 @@ export default {
     }),
     eventBus.$on('signed-in', () => {
       this.getUserData();
-    }),
-    eventBus.$on('score-card', (card) => {
-      this.scoreCard = card;
-    }) 
+    })
     },
     computed: {
        newRoundDeck(){

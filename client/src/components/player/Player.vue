@@ -36,7 +36,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
 .player-container {
   display: grid;
   grid-template-rows: repeat(2, min-content);

@@ -44,7 +44,6 @@
 import {eventBus} from '../main.js';
 import ScoresPage from './scores/ScoresPage.vue';
 import Rules from './rules/Rules';
-import ScoreCard from './scores/ScoreCard.vue';
 
 export default {
   name: "logo-header",
@@ -55,47 +54,22 @@ export default {
       currentHole: 1
     }
   },
-  props:['gameStatus', 'scoreCard', 'gameMode'],
+  props:['gameStatus', 'gameMode'],
   components: {
     'scores-page': ScoresPage,
-    'rules': Rules,
-    'score-card': ScoreCard
-  },
-   watch : {
-    gameStatus(){
-      if(!this.gameStatus){
-        this.$modal.show("rules");
-      }
-    }
+    'rules': Rules
   },
   mounted(){
     eventBus.$on('total', (total) => {
       this.score = total;
     }),
-    // eventBus.$on('finished-hole', (hole) => {
-    //   console.log("finished hole", hole);
-    //   this.currentHole = hole;
-    // })
     eventBus.$on('start-next-hole', () => {
-      // if(this.scoreCard.length > 1){
       this.currentHole+=1;
-    // }
     }),
     eventBus.$on('start-new-game', () => {
       this.currentHole = 1;
       this.score = 0;
     })
-  },
-  watch: {
-    scoreCard(){
-      let amount = 0;
-      if(this.scoreCard.length > 0){
-        this.scoreCard.forEach((score) => {
-          amount += score;
-        })
-        this.score = amount;
-      }
-    }
   },
   methods: {
     newGame(){

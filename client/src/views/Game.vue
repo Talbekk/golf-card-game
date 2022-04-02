@@ -13,7 +13,7 @@
     </div>
     <div id="hand-container" v-if="playerCards && !viewLeaderBoard">
       <player :scoreCard="scoreCard" :counter='counter' :lockedCards='lockedCards' :playerCards='playerCards' :topCardSelected="topCardSelected" :userData="userData"></player>
-      <computer v-if='gameMode==="versus-computer"' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected" :computerTotal='computerTotal'></computer>
+      <computer v-if='gameMode==="vs-computer"' :scoreCard='computerScoreCard' :counter='counter' :lockedCards='lockedCards' :computerCards='computerCards' :topCardSelected="topCardSelected" :computerTotal='computerTotal'></computer>
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@ import ScoreCard from '../components/scores/ScoreCard.vue';
 import CardDeck from '../components/gameplay/CardDeck.vue';
 import InfoBox from '../components/gameplay/InfoBox.vue';
 import {eventBus} from '../main.js';
-import {scoreRef, db} from '../firebase.js';
+import {db} from '../firebase.js';
 import {leaderboardRef} from '../firebase.js';
 
 export default {
@@ -49,7 +49,9 @@ export default {
       lockedCards: [], //round
       computerLockedCards: [],
       scoreCard: [], //game
+      computerScoreCard: [],
       discardPile: [], //round
+      gameMode: null,
       drawnCard: false, //round
       topCardStatus: false,
       viewLeaderBoard: false,
@@ -173,10 +175,13 @@ export default {
   },
   //round
   counter(){
-    if (this.counter === 4){
+    if (this.counter === 4 && this.gameMode === 'single-player'){
       this.scoreCard.push(this.playerTotal);
-      eventBus.$emit("score-card", this.scoreCard);
     }
+    else if (this.counter === 8 && this.gameMode === 'vs-computer'){
+      this.scoreCard.push(this.playerTotal);
+      this.computerScoreCard.push(this.computerTotal);
+    } 
   },
   //game
   scoreCard(){
@@ -213,7 +218,7 @@ computed: {
     //round
     async getCards(){ 
       await this.getRoundDeck();
-      if (this.gameMode === "versus-computer") { 
+      if (this.gameMode === "vs-computer") { 
        let playerHand = [];
        let computerHand = [];
 
@@ -310,7 +315,6 @@ computed: {
     setupNewGame(){
       this.setupGame();
       this.scoreCard = [];
-      eventBus.$emit("score-card", this.scoreCard);
       this.counter = 0;
       this.currentHole = 1;
       this.roundDeck = [];

@@ -24,7 +24,7 @@ export default {
   mounted() {
     eventBus.$on("computer-card-reveal", (card) => {
       if(card === this.computerCard) {
-       setTimeout(function() {this.hidden = false } , 1000);
+      this.hidden = false;
       }
     })
   },
@@ -59,10 +59,8 @@ export default {
 
 
 .card-icon {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 10em;
-  max-height: 10em;
+  width: 11rem;
+  height: 15rem;
 }
 
 </style>

@@ -24,6 +24,7 @@ export default {
 .card-icon {
   width: 12rem;
   height: 16rem;
+  padding: 0.5em;
   filter: opacity(50%);
 }
 

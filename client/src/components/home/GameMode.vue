@@ -1,12 +1,11 @@
 <template lang="html">
   <div class="game-item">
-    <h4 class="game-title">{{this.game.mode}}</h4>
+    <h4 class="game-title">{{this.game.label}}</h4>
     <div class="checkbox-tutorial-select">
       <input type="checkbox" id="checkbox" v-model="tutorialChecked">
       <label class="checkbox-tutorial-select__label" for="checkbox">Tutorial Mode</label>
     </div>
-    <b-button v-if="this.game.mode === 'Single Player'" to="/game" v-on:click="clickedNewGame" class="action-btn" type="submit">Tee Off</b-button>
-    <p class="button-replacement-info" v-if="this.game.mode !== 'Single Player'">&ldquo;Coming Soon&rdquo;</p>
+    <b-button to="/game" v-on:click="clickedNewGame" class="action-btn" type="submit">Tee Off</b-button>
   </div>
 </template>
 
@@ -26,7 +25,7 @@ export default {
       if(this.tutorialChecked){
         eventBus.$emit('set-tutorial-mode');
       }
-      eventBus.$emit('start-new-game', "single-player");
+      eventBus.$emit('start-new-game', this.game.mode);
     }
     }
   }
