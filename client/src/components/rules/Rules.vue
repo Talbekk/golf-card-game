@@ -31,7 +31,7 @@
       <li class="rules-list-item"><a href="https://www.youtube.com/watch?v=I6xcdO7qKsU" target="_blank">Video Walkthrough</a></li>
     </ul>
     <p class="rules-text">
-      Sidenote: There are many variations of golf. This is but my own interpretation of the great game.
+      Sidenote: There are many variations of golf. This is but my own interpretation of the great game. This version is my own take on the game that I've played over the years and I hope you enjoy!
     </p>
   </div>
 </template>
@@ -52,16 +52,16 @@ export default {
 }
 
 .rules-text {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .rules-list {
-  margin-left: 1.5rem;
+  margin-left: 1.3rem;
 
 }
 
 .rules-list-item {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 a,

@@ -51,7 +51,6 @@ export default {
       scoreCard: [], //game
       computerScoreCard: [],
       discardPile: [], //round
-      gameMode: null,
       drawnCard: false, //round
       topCardStatus: false,
       viewLeaderBoard: false,
@@ -388,7 +387,7 @@ computed: {
               0 16px 32px rgba(0,0,0,0.07), 
               0 32px 64px rgba(0,0,0,0.07);
   display: grid;
-  grid-template-rows: minmax(60px, min-content) 1fr;
+  grid-template-rows: minmax(50px, min-content) 1fr;
 }
 
 .board-one__without-tutorial {
